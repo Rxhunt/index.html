@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RXHUNT v16.0 | HYPER-TECH CONTROLLER</title>
+    <link href="https://fonts.googleapis.com/css2?family=Syncopate:wght@400;700&family=Rajdhani:wght@300;500;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --neon: #00ffaa;
+            --neon-alt: #0088ff;
+            --glass: rgba(0, 0, 0, 0.85);
+            --border: rgba(0, 255, 170, 0.3);
+        }
+
+        * { box-sizing: border-box; cursor: crosshair; transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1); }
+        body {
+            margin: 0; background: #000; color: var(--neon);
+            font-family: 'Rajdhani', sans-serif; height: 100vh; overflow: hidden;
+            background-image: linear-gradient(rgba(0,0,0,0.9), rgba(0,0,0,0.9)), url('https://images.unsplash.com/photo-1550751827-4bd374c3f58b?auto=format&fit=crop&w=1920&q=80');
+            background-size: cover;
+        }
+
+        /* --- iOS 26 High-Tech Layout --- */
+        .status-header {
+            position: fixed; top: 0; width: 100%; height: 45px;
+            display: flex; justify-content: space-between; align-items: center;
+            padding: 0 30px; background: rgba(0,0,0,0.6); backdrop-filter: blur(15px);
+            border-bottom: 1px solid var(--border); z-index: 1000;
+        }
+
+        /* --- Dynamic Right Panel (Performance & Weather) --- */
+        .side-monitor {
+            position: fixed; right: 20px; top: 70px; width: 260px;
+            display: flex; flex-direction: column; gap: 15px; z-index: 500;
+        }
+        .data-card {
+            background: var(--glass); border: 1px solid var(--border);
+            padding: 15px; border-radius: 5px 20px 5px 20px;
+            backdrop-filter: blur(20px); box-shadow: 0 0 20px rgba(0, 255, 170, 0.1);
+        }
+        .data-label { font-family: 'Syncopate'; font-size: 9px; opacity: 0.7; margin-bottom: 8px; }
+
+        /* --- Performance Bars --- */
+        .bar-container { height: 4px; background: #111; margin: 8px 0; border-radius: 2px; }
+        .bar-fill { height: 100%; background: var(--neon); box-shadow: 0 0 10px var(--neon); }
+
+        /* --- Universal Controller Window --- */
+        .win-terminal {
+            position: absolute; top: 80px; left: 40px; right: 300px; bottom: 120px;
+            background: rgba(0, 5, 5, 0.98); border: 1px solid var(--neon);
+            display: none; flex-direction: column; overflow: hidden;
+            border-radius: 10px; box-shadow: 0 0 40px rgba(0, 255, 170, 0.2);
+        }
+        .win-title {
+            padding: 12px 20px; background: rgba(0, 255, 170, 0.1);
+            display: flex; justify-content: space-between; font-family: 'Syncopate'; font-size: 11px;
+        }
+        .win-body { flex: 1; padding: 15px; }
+        iframe { width: 100%; height: 100%; border: none; border-radius: 4px; background: #fff; }
+
+        /* --- Controller Dashboard (Custom Link Adder) --- */
+        .controller-box {
+            display: grid; grid-template-columns: 1fr 1fr; gap: 15px;
+            margin-top: 10px; padding: 15px; border: 1px solid var(--border);
+        }
+        input {
+            background: #000; border: 1px solid var(--border); color: var(--neon);
+            padding: 10px; font-family: monospace; outline: none; width: 100%;
+        }
+        .btn-exe {
+            background: var(--neon); color: #000; font-weight: bold; border: none;
+            padding: 10px; cursor: pointer; text-transform: uppercase;
+        }
+        .btn-exe:hover { background: #fff; box-shadow: 0 0 20px #fff; }
+
+        /* --- iOS 26 Cyber Dock --- */
+        .dock {
+            position: fixed; bottom: 25px; left: 50%; transform: translateX(-50%);
+            display: flex; gap: 18px; padding: 12px 25px;
+            background: rgba(255, 255, 255, 0.08); backdrop-filter: blur(35px);
+            border-radius: 40px; border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+        .dock-item {
+            width: 55px; height: 55px; border-radius: 15px;
+            display: flex; justify-content: center; align-items: center;
+            background: #000; border: 1px solid var(--border); font-size: 22px;
+        }
+        .dock-item:hover { transform: translateY(-15px) scale(1.15); border-color: #fff; }
+
+    </style>
+</head>
+<body>
+
+    <div class="status-header">
+        <span style="font-family: 'Syncopate'; font-size: 12px;">RXHUNT // OS_TERMINAL_v16.0</span>
+        <span id="digital-clock" style="font-size: 18px;">00:00:00</span>
+        <span style="color: #fff;">SECURITY: <span id="sec-stat">GHOST_MODE</span></span>
+    </div>
+
+    <div class="side-monitor">
+        <div class="data-card">
+            <div class="data-label">NOTIFICATIONS</div>
+            <div style="font-size: 11px;">[!] System Breach Detected... Fixed.<br>[+] Gemini AI Synced.<br>[+] Vault Encryption Ready.</div>
+        </div>
+        
+        <div class="data-card">
+            <div class="data-label">ENVIRONMENT</div>
+            <div style="font-size: 20px; font-weight: bold;">SYLHET: 23°C</div>
+            <div style="font-size: 10px; opacity: 0.7;">WIND: 3.2m/s | HUMIDITY: 42%</div>
+        </div>
+
+        <div class="data-card">
+            <div class="data-label">HARDWARE_STATUS</div>
+            <div style="font-size: 11px;">BATTERY_LEVEL: <span id="bat-val">98%</span></div>
+            <div class="bar-container"><div class="bar-fill" style="width: 98%;"></div></div>
+            <div style="font-size: 11px; margin-top:8px;">CPU_PERFORMANCE</div>
+            <div class="bar-container"><div class="bar-fill" style="width: 22%; background: var(--neon-alt);"></div></div>
+        </div>
+    </div>
+
+    <div id="win-controller" class="win-terminal" style="display: flex;">
+        <div class="win-title"><span>COMMAND_CENTER</span> <button onclick="closeWin('win-controller')" style="background:none; border:none; color:red;">[X]</button></div>
+        <div class="win-body">
+            <h3>UNIVERSAL LINK CONTROLLER</h3>
+            <p style="font-size: 12px; opacity: 0.6;">Tumi jeta open korte chao, niche tar Link add koro:</p>
+            <div class="controller-box">
+                <input id="ctrl-name" placeholder="APP_NAME (Mone korar jonno)">
+                <input id="ctrl-url" placeholder="WEBSITE_URL (https://...)">
+                <button class="btn-exe" onclick="addToController()" style="grid-column: span 2;">ADD_TO_SYSTEM</button>
+            </div>
+            <div id="dynamic-apps" style="margin-top:20px; display: grid; grid-template-columns: repeat(3, 1fr); gap:10px;">
+                </div>
+        </div>
+    </div>
+
+    <div id="win-viewer" class="win-terminal">
+        <div class="win-title"><span id="viewer-name">VIEWER</span> <button onclick="closeWin('win-viewer')" style="background:none; border:none; color:red;">[EXIT]</button></div>
+        <iframe id="app-frame" src=""></iframe>
+    </div>
+
+    <div id="win-vault" class="win-terminal">
+        <div class="win-title"><span>PRIVATE_VAULT</span> <button onclick="closeWin('win-vault')" style="background:none; border:none; color:red;">[X]</button></div>
+        <div class="win-body">
+            <div class="controller-box">
+                <input id="v-title" placeholder="VIDEO_TITLE">
+                <input id="v-url" placeholder="YOUTUBE_LINK">
+                <button class="btn-exe" onclick="saveVideo()">SAVE_DATA</button>
+            </div>
+            <div id="v-grid" style="display:grid; grid-template-columns:1fr 1fr; gap:10px; margin-top:15px; overflow-y:auto; height:200px;"></div>
+        </div>
+    </div>
+
+    <div id="win-settings" class="win-terminal">
+        <div class="win-title"><span>OS_SETTINGS</span> <button onclick="closeWin('win-settings')" style="background:none; border:none; color:red;">[X]</button></div>
+        <div class="win-body">
+            <h4>SAFETY_PROTOCOL</h4>
+            <input id="pass-key" type="password" placeholder="SET_MASTER_PASSKEY">
+            <button class="btn-exe" onclick="setSecurity()">ENABLE_SECURITY</button>
+            <hr style="border:0.5px solid var(--border); margin:15px 0;">
+            <h4>THEME_ENGINE</h4>
+            <button class="btn-exe" onclick="setTheme('#00ffaa')">NEON_GREEN</button>
+            <button class="btn-exe" style="background: #0088ff;" onclick="setTheme('#0088ff')">CYBER_BLUE</button>
+            <button class="btn-exe" style="background: #ff0055;" onclick="setTheme('#ff0055')">STARK_RED</button>
+        </div>
+    </div>
+
+    <nav class="dock">
+        <div class="dock-item" onclick="openWin('win-controller')">🎮</div>
+        <div class="dock-item" onclick="launchApp('Gemini', 'https://gemini.google.com')">🧠</div>
+        <div class="dock-item" onclick="launchApp('YouTube', 'https://www.youtube.com')">📺</div>
+        <div class="dock-item" onclick="launchApp('Movies', 'https://moviebox.id')">🍿</div>
+        <div class="dock-item" onclick="openWin('win-vault')">💾</div>
+        <div class="dock-item" onclick="openWin('win-settings')">⚙️</div>
+    </nav>
+
+    <script>
+        let customApps = JSON.parse(localStorage.getItem('rx_apps')) || [];
+        let vaultData = JSON.parse(localStorage.getItem('rx_vault')) || [];
+
+        function openWin(id) { 
+            document.querySelectorAll('.win-terminal').forEach(w => w.style.display = 'none');
+            document.getElementById(id).style.display = 'flex'; 
+        }
+        function closeWin(id) { document.getElementById(id).style.display = 'none'; }
+
+        // --- Universal Controller Logic ---
+        function addToController() {
+            let name = document.getElementById('ctrl-name').value;
+            let url = document.getElementById('ctrl-url').value;
+            if(name && url) {
+                if(!url.startsWith('http')) url = 'https://' + url;
+                customApps.push({ name, url });
+                localStorage.setItem('rx_apps', JSON.stringify(customApps));
+                renderApps();
+            }
+        }
+
+        function renderApps() {
+            document.getElementById('dynamic-apps').innerHTML = customApps.map((app, i) => `
+                <button class="btn-exe" style="font-size:10px;" onclick="launchApp('${app.name}', '${app.url}')">${app.name}</button>
+            `).join('');
+        }
+
+        function launchApp(name, url) {
+            document.getElementById('viewer-name').innerText = name.toUpperCase();
+            document.getElementById('app-frame').src = url;
+            openWin('win-viewer');
+        }
+
+        // --- Video Vault Logic ---
+        function saveVideo() {
+            let title = document.getElementById('v-title').value;
+            let url = document.getElementById('v-url').value;
+            let vid = url.includes('v=') ? url.split('v=')[1].split('&')[0] : url.split('youtu.be/')[1];
+            if(vid) {
+                vaultData.push({ title, embed: "https://www.youtube.com/embed/" + vid });
+                localStorage.setItem('rx_vault', JSON.stringify(vaultData));
+                renderVault();
+            }
+        }
+
+        function renderVault() {
+            document.getElementById('v-grid').innerHTML = vaultData.map(v => `
+                <div style="border:1px solid var(--border); padding:5px; font-size:11px; cursor:pointer;" onclick="launchApp('${v.title}', '${v.embed}')">
+                    ${v.title} [PLAY]
+                </div>
+            `).join('');
+        }
+
+        function setTheme(c) { document.documentElement.style.setProperty('--neon', c); }
+        function setSecurity() { alert("Safety Protocol Locked!"); }
+
+        setInterval(() => { document.getElementById('digital-clock').innerText = new Date().toLocaleTimeString(); }, 1000);
+        window.onload = () => { renderApps(); renderVault(); };
+    </script>
+</body>
+</html>
