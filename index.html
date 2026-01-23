@@ -2,357 +2,311 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="theme-color" content="#000000">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-    <title>RXHUNT v18.5 | OMNI-SECURE</title>
+    <title>RXHUNT v20.0 | CYBER-SURFER OS</title>
     <link href="https://fonts.googleapis.com/css2?family=Syncopate:wght@400;700&family=Rajdhani:wght@300;500;700&display=swap" rel="stylesheet">
     <style>
         :root {
             --neon: #00f3ff;
             --neon-alt: #ff0055;
-            --glass: rgba(0, 0, 0, 0.85);
-            --border: rgba(0, 243, 255, 0.3);
+            --glass: rgba(255, 255, 255, 0.05);
+            --border: rgba(255, 255, 255, 0.2);
+            --bg: #00050a;
         }
-        * { box-sizing: border-box; cursor: crosshair; transition: 0.3s cubic-bezier(0.4, 0, 0.2, 1); }
+
+        * { box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
         body {
-            margin: 0; background: #000; color: var(--neon);
+            margin: 0; background: var(--bg); color: #fff;
             font-family: 'Rajdhani', sans-serif; height: 100vh; overflow: hidden;
-            background-image: radial-gradient(circle at center, #001f1f 0%, #000 100%);
+            background-image: radial-gradient(circle at top right, #002233, #000);
         }
 
-        /* --- Master Lock (Pass: 4455) --- */
-        #master-lock { position: fixed; inset: 0; background: #000; z-index: 10000; display: flex; justify-content: center; align-items: center; }
-        .lock-card { width: 320px; padding: 40px; border: 1px solid var(--neon); background: rgba(0, 243, 255, 0.02); text-align: center; backdrop-filter: blur(20px); }
-        .lock-input { background: transparent; border: none; border-bottom: 2px solid var(--neon); color: var(--neon); font-size: 28px; text-align: center; width: 100%; outline: none; margin: 20px 0; letter-spacing: 10px; }
+        /* --- iOS 26 Glass UI Components --- */
+        .glass-panel {
+            background: var(--glass); backdrop-filter: blur(25px) saturate(180%);
+            border: 1px solid var(--border); border-radius: 25px;
+            box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.8);
+        }
 
-        /* --- OS HUD Interface --- */
-        .os-header { position: fixed; top: 0; width: 100%; height: 50px; display: flex; justify-content: space-between; align-items: center; padding: 0 40px; background: rgba(0,0,0,0.8); backdrop-filter: blur(20px); border-bottom: 1px solid var(--border); z-index: 1000; }
-        .side-monitor { position: fixed; right: 25px; top: 80px; width: 280px; display: flex; flex-direction: column; gap: 15px; z-index: 500; }
-        .glass-widget { background: var(--glass); border: 1px solid var(--border); padding: 18px; border-radius: 5px 25px 5px 25px; backdrop-filter: blur(25px); position: relative; }
-        .label { font-family: 'Syncopate'; font-size: 10px; opacity: 0.6; margin-bottom: 8px; border-bottom: 1px solid var(--border); }
-        .bar { height: 4px; background: #111; margin: 8px 0; border-radius: 5px; overflow: hidden; }
-        .fill { height: 100%; background: var(--neon); box-shadow: 0 0 10px var(--neon); }
+        /* --- Master Lock --- */
+        #master-lock {
+            position: fixed; inset: 0; background: #000; z-index: 10000;
+            display: flex; justify-content: center; align-items: center;
+        }
+        .lock-box { width: 320px; padding: 40px; text-align: center; border-radius: 30px; border: 1px solid var(--neon); }
+        .lock-input { 
+            background: transparent; border: none; border-bottom: 2px solid var(--neon); 
+            color: var(--neon); font-size: 32px; text-align: center; width: 80%; outline: none; margin: 20px 0; letter-spacing: 8px;
+        }
 
-        /* --- Windows --- */
-        .win-container { position: absolute; top: 90px; left: 50px; right: 340px; bottom: 130px; background: rgba(0, 10, 15, 0.98); border: 1px solid var(--neon); display: none; flex-direction: column; border-radius: 12px; overflow: hidden; }
-        .win-nav { padding: 12px 25px; background: rgba(0, 243, 255, 0.1); display: flex; justify-content: space-between; font-family: 'Syncopate'; font-size: 11px; }
-        iframe { width: 100%; height: 100%; border: none; background: white; }
+        /* --- Status Bar --- */
+        .status-bar {
+            position: fixed; top: 0; width: 100%; height: 60px;
+            display: flex; justify-content: space-between; align-items: center;
+            padding: 0 30px; z-index: 1000; background: rgba(0,0,0,0.3); backdrop-filter: blur(10px);
+        }
 
-        /* --- Controller Panel --- */
-        .control-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; padding: 15px; border: 1px solid var(--border); }
-        input[type="text"], input[type="password"] { background: #000; border: 1px solid var(--border); color: var(--neon); padding: 12px; font-family: monospace; outline: none; width: 100%; }
-        .btn-exe { background: var(--neon); color: #000; font-weight: bold; border: none; padding: 12px; cursor: pointer; text-transform: uppercase; width: 100%; }
-        .btn-common { background: #333; color: var(--neon); border: 1px solid var(--border); padding: 10px; cursor: pointer; }
+        /* --- Right HUD (Widgets) --- */
+        .hud-right { position: fixed; right: 20px; top: 80px; width: 260px; display: flex; flex-direction: column; gap: 15px; }
+        .widget { padding: 20px; }
+        .bar-bg { height: 6px; background: rgba(255,255,255,0.1); border-radius: 10px; margin-top: 10px; overflow: hidden; }
+        .bar-fill { height: 100%; background: var(--neon); box-shadow: 0 0 15px var(--neon); }
 
-        /* --- Game Styles (Image inspired) --- */
-        #win-game { display: none; background: #000; position: relative; }
-        .game-panel { flex: 1; display: flex; flex-direction: column; align-items: center; justify-content: center; }
-        .game-status-bar { width: 90%; background: rgba(0,255,255,0.05); border: 1px solid var(--neon); margin-bottom: 20px; padding: 10px; display: flex; justify-content: space-between; font-family: 'Syncopate'; font-size: 11px;}
-        .game-grid { display: grid; grid-template-columns: repeat(3, 110px); gap: 8px; }
-        .game-node { width: 110px; height: 110px; background: rgba(0,255,255,0.05); border: 2px solid var(--neon); display: flex; align-items: center; justify-content: center; font-size: 40px; font-weight: bold; color: var(--neon); cursor: pointer; }
-        .game-node:hover { background: var(--neon); color: #000; box-shadow: 0 0 25px var(--neon); }
-        .timer-fill-game { height: 100%; background: var(--neon-alt); width: 100%; transition: none; }
+        /* --- Universal Windows --- */
+        .window {
+            position: absolute; top: 80px; left: 30px; right: 300px; bottom: 120px;
+            display: none; flex-direction: column; z-index: 100;
+        }
+        .win-head { padding: 15px 25px; display: flex; justify-content: space-between; border-bottom: 1px solid var(--border); font-family: 'Syncopate'; font-size: 10px; }
+        iframe { width: 100%; height: 100%; border: none; background: #fff; border-radius: 0 0 25px 25px; }
 
-        /* --- Game Lock Screen --- */
-        #game-lock-screen { position: absolute; inset: 0; background: rgba(0,0,0,0.95); z-index: 10; display: flex; flex-direction: column; justify-content: center; align-items: center; }
-        #game-lock-input { width: 250px; font-size: 24px; margin-bottom: 20px; }
-        
-        /* --- iOS 26 High-Tech Dock --- */
-        .cyber-dock { position: fixed; bottom: 35px; left: 50%; transform: translateX(-50%); display: flex; gap: 18px; padding: 12px 25px; background: rgba(255, 255, 255, 0.08); backdrop-filter: blur(40px); border-radius: 50px; border: 1px solid rgba(255, 255, 255, 0.2); z-index: 2000; }
-        .dock-btn { width: 55px; height: 55px; border-radius: 15px; display: flex; justify-content: center; align-items: center; background: #000; border: 1px solid var(--border); font-size: 24px; cursor: pointer;}
-        .dock-btn:hover { transform: translateY(-15px) scale(1.2); box-shadow: 0 0 30px var(--neon); }
+        /* --- CYBER SURFER GAME (Canvas Based) --- */
+        #game-view { background: #000; position: relative; overflow: hidden; border-radius: 25px; }
+        #game-canvas { width: 100%; height: 100%; }
+        .game-overlay { position: absolute; top: 20px; left: 20px; font-family: 'Syncopate'; color: var(--neon); }
+        #puzzle-prompt {
+            position: absolute; inset: 0; background: rgba(0,0,0,0.9);
+            display: none; flex-direction: column; justify-content: center; align-items: center; z-index: 200;
+        }
 
-        #main-os { display: none; }
+        /* --- Dock --- */
+        .ios-dock {
+            position: fixed; bottom: 30px; left: 50%; transform: translateX(-50%);
+            display: flex; gap: 15px; padding: 12px 20px; background: rgba(255,255,255,0.15);
+            backdrop-filter: blur(40px); border-radius: 35px; border: 1px solid var(--border); z-index: 2000;
+        }
+        .icon { 
+            width: 60px; height: 60px; border-radius: 16px; background: #000; 
+            display: flex; justify-content: center; align-items: center; font-size: 28px;
+            border: 1px solid var(--border); cursor: pointer;
+        }
+        .icon:hover { transform: translateY(-10px) scale(1.1); box-shadow: 0 10px 20px rgba(0,0,0,0.5); }
+
+        input[type="text"] { background: rgba(255,255,255,0.05); border: 1px solid var(--border); color: #fff; padding: 10px; border-radius: 10px; }
+        .btn { background: var(--neon); color: #000; border: none; padding: 10px 20px; border-radius: 10px; font-weight: bold; cursor: pointer; }
     </style>
 </head>
 <body>
 
     <div id="master-lock">
-        <div class="lock-card">
-            <h2 style="font-family: 'Syncopate'; font-size: 12px;">SYSTEM_ENCRYPTED_V18.5</h2>
-            <input type="password" id="passkey" class="lock-input" maxlength="4" placeholder="••••">
-            <button class="btn-exe" onclick="unlockMainOS()">AUTH_LOGIN</button>
-            <p id="err-main" style="color: red; font-size: 11px; display: none; margin-top: 10px;">DENIED: INVALID_KEY</p>
-            <button id="install-btn" style="display:none; margin-top:20px; font-size:10px;" class="btn-exe">INSTALL_APP</button>
+        <div class="lock-box glass-panel">
+            <h2 style="font-family: 'Syncopate'; font-size: 12px;">SYSTEM_LOCKED_v20</h2>
+            <input type="password" id="main-pass" class="lock-input" maxlength="4" placeholder="••••">
+            <button class="btn" onclick="unlockOS()" style="width: 100%;">ACCESS_VAULT</button>
         </div>
     </div>
 
-    <div id="main-os">
-        <header class="os-header">
-            <span style="font-family: 'Syncopate'; font-size: 11px;">RXHUNT // ULTIMATE_OS</span>
-            <span id="os-clock" style="font-size: 18px; font-weight: bold;">00:00:00</span>
-            <span style="color: var(--neon);">STATUS: SECURE</span>
-        </header>
+    <div id="main-os" style="display: none;">
+        <div class="status-bar">
+            <div style="font-family: 'Syncopate'; font-size: 10px;">RXHUNT // iOS_26_EDITION</div>
+            <div id="clock" style="font-size: 20px; font-weight: 500;">00:00:00</div>
+            <div style="color: var(--neon);">SAFE_MODE_ON</div>
+        </div>
 
-        <div class="side-monitor">
-            <div class="glass-widget">
-                <div class="label">NOTIFICATIONS</div>
-                <div style="font-size: 11px;">• System: Online<br>• Game Ready<br>• PWA Engine Active</div>
+        <div class="hud-right">
+            <div class="widget glass-panel">
+                <div class="label">PERFORMANCE</div>
+                <div style="font-size: 12px; margin-top:10px;">CPU_LOAD: 18%</div>
+                <div class="bar-bg"><div class="bar-fill" style="width: 18%;"></div></div>
+                <div style="font-size: 12px; margin-top:10px;">GPU_TEMP: 42°C</div>
+                <div class="bar-bg"><div class="bar-fill" style="width: 42%; background: var(--neon-alt);"></div></div>
             </div>
-            <div class="glass-widget">
-                <div class="label">HARDWARE_STATUS</div>
-                <div style="font-size: 11px;">LAPTOP_CHARGE: 94%</div>
-                <div class="bar"><div class="fill" style="width: 94%;"></div></div>
-                <div style="font-size: 11px; margin-top:10px;">PERFORMANCE: 12%</div>
-                <div class="bar"><div class="fill" style="width: 12%; background: var(--neon-alt);"></div></div>
-            </div>
-            <div class="glass-widget">
-                <div class="label">METEOROLOGY</div>
-                <div style="font-size: 18px;">SYLHET: 24°C</div>
+            <div class="widget glass-panel">
+                <div class="label">WEATHER</div>
+                <div style="font-size: 22px; font-weight: bold;">SYLHET: 26°C</div>
+                <div style="font-size: 12px; opacity: 0.6;">PARTLY CLOUDY</div>
             </div>
         </div>
 
-        <div id="win-controller" class="win-container" style="display: none;">
-            <div class="win-nav"><span>OMNI_CONTROLLER</span> <button onclick="closeWin('win-controller')" class="btn-common">[X]</button></div>
-            <div style="padding: 25px; overflow-y: auto;">
-                <h3>CONTROLLER HUB</h3>
-                <div class="control-grid">
-                    <input id="app-name" type="text" placeholder="APP NAME">
-                    <input id="app-url" type="text" placeholder="https://...">
-                    <button class="btn-exe" style="grid-column: span 2;" onclick="registerApp()">SAVE_TO_OS</button>
-                </div>
-                <div id="app-list" style="margin-top:25px; display:grid; grid-template-columns:repeat(3, 1fr); gap:12px;"></div>
-            </div>
-        </div>
-
-        <div id="win-viewer" class="win-container">
-            <div class="win-nav"><span id="active-app">VIEWER</span> <button onclick="closeWin('win-viewer')" class="btn-common">[X]</button></div>
+        <div id="win-app" class="window glass-panel">
+            <div class="win-head"><span>APPLICATION_VIEWER</span> <button onclick="closeWin('win-app')" style="color:red; background:none; border:none;">[CLOSE]</button></div>
             <iframe id="app-frame" src=""></iframe>
         </div>
 
-        <div id="win-settings" class="win-container">
-            <div class="win-nav"><span>SETTINGS_&_SECURITY</span> <button onclick="closeWin('win-settings')" class="btn-common">[X]</button></div>
-            <div style="padding: 25px;">
-                <h3>DESIGN_OPTIONS</h3>
-                <button class="btn-exe" style="width:150px;" onclick="changeTheme('#00f3ff')">CYAN_HACK</button>
-                <button class="btn-exe" style="width:150px; background:#ff0055;" onclick="changeTheme('#ff0055')">RED_ALERT</button>
-                <hr style="border:0.5px solid var(--border); margin: 20px 0;">
-                <h3>SECURITY_SETTINGS</h3>
-                <p>MAIN_PASSKEY: <input type="text" id="main-pass-set" value="4455" style="width:100px; display:inline-block;"></p>
-                <p>GAME_PASSKEY: <input type="text" id="game-pass-set" value="1234" style="width:100px; display:inline-block;"></p>
-                <button class="btn-exe" style="width:150px; margin-top:10px;" onclick="updatePasskeys()">UPDATE_KEYS</button>
-            </div>
-        </div>
-
-        <div id="win-game" class="win-container">
-            <div class="win-nav"><span>CYBER_PUZZLE_SIMULATOR</span> <button onclick="closeWin('win-game')" class="btn-common">[X]</button></div>
-            <div id="game-lock-screen">
-                <h3 style="font-family: 'Syncopate';">GAME_ACCESS_REQUIRED</h3>
-                <input type="password" id="game-lock-input" class="lock-input" maxlength="4" placeholder="••••">
-                <button class="btn-exe" onclick="unlockGame()">ACCESS_GAME</button>
-                <p id="err-game" style="color: red; font-size: 11px; display: none; margin-top: 10px;">DENIED: INCORRECT_KEY</p>
-            </div>
-            <div id="game-panel" style="display: none;" class="game-panel">
-                <div class="game-status-bar">
-                    <span>LEVEL: <span id="game-level">1</span></span>
-                    <span>STATUS: <span id="game-status-text">INITIATING...</span></span>
-                    <div style="width: 100px; height: 5px; background: #222;"><div id="game-timer-fill" class="timer-fill-game"></div></div>
+        <div id="win-game" class="window glass-panel" style="display: flex;">
+            <div class="win-head"><span>CYBER_SURFER_v1.0</span> <button onclick="closeWin('win-game')" style="color:red; background:none; border:none;">[EXIT]</button></div>
+            <div id="game-view" style="flex: 1;">
+                <div class="game-overlay">
+                    LEVEL: <span id="g-lvl">1</span> | CODES: <span id="g-score">0/3</span>
                 </div>
-                <div class="game-grid" id="game-nodes-grid"></div>
-                <button class="btn-exe" style="margin-top:20px; width:200px;" onclick="startGame()">START_HACK</button>
+                <canvas id="game-canvas"></canvas>
+                
+                <div id="puzzle-prompt">
+                    <h3 style="font-family: 'Syncopate';">TERMINAL_LOCKED</h3>
+                    <p id="puzzle-hint">Enter the codes you saw in sky:</p>
+                    <input type="text" id="puzzle-input" class="lock-input" style="letter-spacing: 2px; font-size: 20px;">
+                    <button class="btn" onclick="checkPuzzle()">SOLVE_AND_PROCEED</button>
+                </div>
             </div>
         </div>
 
-        <nav class="cyber-dock">
-            <div class="dock-btn" onclick="openWin('win-controller')">🎮</div>
-            <div class="dock-btn" onclick="launch('Gemini', 'https://gemini.google.com')">🤖</div>
-            <div class="dock-btn" onclick="launch('YouTube', 'https://www.youtube.com')">📺</div>
-            <div class="dock-btn" onclick="launch('Movies', 'https://moviebox.id')">🎬</div>
-            <div class="dock-btn" onclick="openWin('win-game')">🧩</div>
-            <div class="dock-btn" onclick="openWin('win-settings')">⚙️</div>
-        </nav>
+        <div id="win-ctrl" class="window glass-panel">
+            <div class="win-head"><span>SYSTEM_CONTROLLER</span> <button onclick="closeWin('win-ctrl')" style="color:red; background:none; border:none;">[X]</button></div>
+            <div style="padding: 30px;">
+                <h3>ADD NEW SYSTEM</h3>
+                <input type="text" id="sys-name" placeholder="App Name" style="width:100%; margin-bottom:10px;">
+                <input type="text" id="sys-url" placeholder="URL (https://...)" style="width:100%; margin-bottom:20px;">
+                <button class="btn" onclick="addSystem()" style="width:100%;">DEPLOY_SYSTEM</button>
+                <div id="sys-list" style="margin-top:30px; display:grid; grid-template-columns: repeat(3, 1fr); gap:15px;"></div>
+            </div>
+        </div>
+
+        <div class="ios-dock">
+            <div class="icon" title="Controller" onclick="openWin('win-ctrl')">🎮</div>
+            <div class="icon" title="Gemini" onclick="launchApp('Gemini', 'https://gemini.google.com')">🧠</div>
+            <div class="icon" title="YouTube" onclick="launchApp('YouTube', 'https://www.youtube.com')">📺</div>
+            <div class="icon" title="Game" onclick="openWin('win-game')">🏃</div>
+            <div class="icon" title="Movies" onclick="launchApp('Movies', 'https://moviebox.id')">🎬</div>
+        </div>
     </div>
 
     <script>
-        let mainPass = localStorage.getItem('rx_main_pass') || "4455";
-        let gamePass = localStorage.getItem('rx_game_pass') || "1234";
-        let userApps = JSON.parse(localStorage.getItem('rx_apps')) || [];
-
-        let gameLevel = 1;
-        let gameSequence = [];
-        let gameUserSequence = [];
-        let gameTimer;
-        let gameTimeLeft;
-
-        // --- Main OS Lock ---
-        function unlockMainOS() {
-            if(document.getElementById('passkey').value === mainPass) {
+        const MASTER_KEY = "4455";
+        let systems = JSON.parse(localStorage.getItem('rx_sys')) || [];
+        
+        // --- OS LOGIC ---
+        function unlockOS() {
+            if(document.getElementById('main-pass').value === MASTER_KEY) {
                 document.getElementById('master-lock').style.display = 'none';
                 document.getElementById('main-os').style.display = 'block';
-            } else {
-                document.getElementById('err-main').style.display = 'block';
-                document.getElementById('passkey').value = "";
-            }
+                initGame();
+            } else { alert("ACCESS DENIED"); }
         }
 
-        // --- Window Management ---
         function openWin(id) { 
-            document.querySelectorAll('.win-container').forEach(w => w.style.display = 'none');
-            document.getElementById(id).style.display = 'flex';
-            if (id === 'win-game') { // If opening game, ensure it's locked
-                document.getElementById('game-lock-screen').style.display = 'flex';
-                document.getElementById('game-panel').style.display = 'none';
-                document.getElementById('game-lock-input').value = "";
-                document.getElementById('err-game').style.display = 'none';
-            }
+            document.querySelectorAll('.window').forEach(w => w.style.display = 'none');
+            document.getElementById(id).style.display = 'flex'; 
         }
         function closeWin(id) { document.getElementById(id).style.display = 'none'; }
 
-        // --- Universal Controller ---
-        function registerApp() {
-            let n = document.getElementById('app-name').value;
-            let u = document.getElementById('app-url').value;
+        function launchApp(name, url) {
+            document.getElementById('app-frame').src = url;
+            openWin('win-app');
+        }
+
+        function addSystem() {
+            const n = document.getElementById('sys-name').value;
+            const u = document.getElementById('sys-url').value;
             if(n && u) {
-                userApps.push({n, u: u.startsWith('http') ? u : 'https://'+u});
-                localStorage.setItem('rx_apps', JSON.stringify(userApps));
-                renderApps();
-                document.getElementById('app-name').value = "";
-                document.getElementById('app-url').value = "";
-            }
-        }
-        function renderApps() {
-            document.getElementById('app-list').innerHTML = userApps.map(a => `
-                <button class="btn-exe" style="font-size:10px;" onclick="launch('${a.n}', '${a.u}')">${a.n}</button>
-            `).join('');
-        }
-        function launch(n, u) {
-            document.getElementById('active-app').innerText = n.toUpperCase();
-            document.getElementById('app-frame').src = u;
-            openWin('win-viewer');
-        }
-
-        // --- Settings & Security ---
-        function changeTheme(c) { document.documentElement.style.setProperty('--neon', c); }
-        function updatePasskeys() {
-            mainPass = document.getElementById('main-pass-set').value;
-            gamePass = document.getElementById('game-pass-set').value;
-            localStorage.setItem('rx_main_pass', mainPass);
-            localStorage.setItem('rx_game_pass', gamePass);
-            alert("Passkeys Updated!");
-        }
-
-        // --- PWA Installation Logic ---
-        let deferredPrompt;
-        window.addEventListener('beforeinstallprompt', (e) => {
-            e.preventDefault();
-            deferredPrompt = e;
-            document.getElementById('install-btn').style.display = 'block';
-        });
-        document.getElementById('install-btn').addEventListener('click', async () => {
-            if (deferredPrompt) {
-                deferredPrompt.prompt();
-                const { outcome } = await deferredPrompt.userChoice;
-                if (outcome === 'accepted') { console.log('App Installed'); }
-                deferredPrompt = null;
-            }
-        });
-
-        // --- Cyber Puzzle Game Logic ---
-        function unlockGame() {
-            if(document.getElementById('game-lock-input').value === gamePass) {
-                document.getElementById('game-lock-screen').style.display = 'none';
-                document.getElementById('game-panel').style.display = 'flex';
-                startGame(); // Start game automatically after unlock
-            } else {
-                document.getElementById('err-game').style.display = 'block';
-                document.getElementById('game-lock-input').value = "";
+                systems.push({n, u});
+                localStorage.setItem('rx_sys', JSON.stringify(systems));
+                renderSystems();
             }
         }
 
-        function startGame() {
-            gameSequence = [];
-            gameUserSequence = [];
-            document.getElementById('game-status-text').innerText = "MEMORIZING...";
-            document.getElementById('game-level').innerText = gameLevel;
-            clearInterval(gameTimer); // Clear previous timer
-            generateGameLevel();
+        function renderSystems() {
+            document.getElementById('sys-list').innerHTML = systems.map(s => 
+                `<button class="btn" style="font-size:10px;" onclick="launchApp('${s.n}', '${s.u}')">${s.n}</button>`
+            ).join('');
         }
 
-        function generateGameLevel() {
-            const grid = document.getElementById('game-nodes-grid');
-            grid.innerHTML = '';
-            for(let i=0; i<9; i++) {
-                let node = document.createElement('div');
-                node.className = 'game-node';
-                node.innerText = i + 1;
-                node.onclick = () => handleGameInput(i + 1);
-                grid.appendChild(node);
-            }
-            for(let i=0; i < gameLevel + 2; i++) { // More nodes for higher levels
-                gameSequence.push(Math.floor(Math.random() * 9) + 1);
-            }
-            showGameSequence();
+        // --- CYBER SURFER GAME ENGINE (iOS style) ---
+        const canvas = document.getElementById('game-canvas');
+        const ctx = canvas.getContext('2d');
+        let gameActive = false;
+        let player = { x: 1, lane: 1, animFrame: 0 }; // Lane 0, 1, 2
+        let skyCodes = [];
+        let collectedCodes = "";
+        let obstacles = [];
+        let level = 1;
+        let speed = 5;
+
+        function initGame() {
+            canvas.width = canvas.offsetWidth;
+            canvas.height = canvas.offsetHeight;
+            window.addEventListener('keydown', (e) => {
+                if(e.key === "ArrowLeft" && player.lane > 0) player.lane--;
+                if(e.key === "ArrowRight" && player.lane < 2) player.lane++;
+            });
+            // Support for Touch
+            canvas.addEventListener('touchstart', (e) => {
+                let x = e.touches[0].clientX;
+                if(x < window.innerWidth/2) { if(player.lane > 0) player.lane--; }
+                else { if(player.lane < 2) player.lane++; }
+            });
+            gameLoop();
         }
 
-        function showGameSequence() {
-            let i = 0;
-            const nodes = document.querySelectorAll('.game-node');
-            const interval = setInterval(() => {
-                nodes.forEach(n => n.style.background = 'rgba(0,255,255,0.05)'); // Reset background
-                let targetNode = Array.from(nodes).find(n => n.innerText == gameSequence[i]);
-                if (targetNode) {
-                    targetNode.style.background = 'var(--neon)';
-                }
+        function spawnSkyCode() {
+            if(Math.random() < 0.02 && skyCodes.length < 3) {
+                const char = Math.floor(Math.random() * 9);
+                skyCodes.push({ x: Math.random() * canvas.width, y: -50, val: char });
+            }
+        }
+
+        function gameLoop() {
+            ctx.clearRect(0,0, canvas.width, canvas.height);
+            
+            // Draw 3 Lanes (iOS 26 Style)
+            ctx.strokeStyle = "rgba(0, 243, 255, 0.2)";
+            for(let i=1; i<3; i++) {
+                ctx.beginPath();
+                ctx.moveTo(i * canvas.width/3, 0);
+                ctx.lineTo(i * canvas.width/3, canvas.height);
+                ctx.stroke();
+            }
+
+            // Draw Character (Anime style circle for now)
+            ctx.fillStyle = var(--neon-alt);
+            ctx.beginPath();
+            ctx.arc((player.lane * canvas.width/3) + canvas.width/6, canvas.height - 80, 25, 0, Math.PI*2);
+            ctx.fill();
+            ctx.fillStyle = "#fff";
+            ctx.fillText("RUNNER", (player.lane * canvas.width/3) + canvas.width/6 - 20, canvas.height - 75);
+
+            // Sky Codes
+            spawnSkyCode();
+            skyCodes.forEach((code, index) => {
+                code.y += speed;
+                ctx.font = "bold 30px Syncopate";
+                ctx.fillStyle = var(--neon);
+                ctx.fillText(code.val, code.x, code.y);
                 
-                i++;
-                if(i >= gameSequence.length) {
-                    clearInterval(interval);
-                    setTimeout(() => {
-                        nodes.forEach(n => n.style.background = 'rgba(0,255,255,0.05)');
-                        document.getElementById('game-status-text').innerText = "YOUR TURN!";
-                        startLevelTimer();
-                    }, 500);
+                // Collect logic
+                if(code.y > canvas.height - 100 && code.y < canvas.height) {
+                    collectedCodes += code.val;
+                    skyCodes.splice(index, 1);
+                    document.getElementById('g-score').innerText = collectedCodes.length + "/3";
+                    if(collectedCodes.length >= 3) triggerPuzzle();
                 }
-            }, 800);
+            });
+
+            if(gameActive) requestAnimationFrame(gameLoop);
         }
 
-        function startLevelTimer() {
-            gameTimeLeft = 100; // Starting at 100%
-            const fill = document.getElementById('game-timer-fill');
-            gameTimer = setInterval(() => {
-                gameTimeLeft -= 1;
-                fill.style.width = gameTimeLeft + '%';
-                if(gameTimeLeft <= 0) {
-                    clearInterval(gameTimer);
-                    alert("HACK FAILED! SYSTEM REBOOTING...");
-                    gameLevel = 1; // Reset level on failure
-                    startGame();
-                }
-            }, (5000 / 100)); // 5 seconds per level, 1% every 50ms
+        function triggerPuzzle() {
+            gameActive = false;
+            document.getElementById('puzzle-prompt').style.display = 'flex';
+            document.getElementById('puzzle-hint').innerText = "SYSTEM_LOCKED! ENTER CODES: " + collectedCodes;
         }
 
-        function handleGameInput(num) {
-            gameUserSequence.push(num);
-            // Check if current input is correct
-            if(gameUserSequence[gameUserSequence.length-1] !== gameSequence[gameUserSequence.length-1]) {
-                clearInterval(gameTimer);
-                alert("ACCESS DENIED! MALWARE DETECTED.");
-                gameLevel = 1;
-                startGame();
-                return;
-            }
-            // Check if sequence is complete and correct
-            if(gameUserSequence.length === gameSequence.length) {
-                clearInterval(gameTimer);
-                alert("NODE SECURED! ADVANCING TO NEXT LEVEL.");
-                gameLevel++;
-                startGame();
+        function checkPuzzle() {
+            const input = document.getElementById('puzzle-input').value;
+            if(input === collectedCodes) {
+                alert("ACCESS GRANTED! LEVEL " + level + " COMPLETE");
+                level++;
+                document.getElementById('g-lvl').innerText = level;
+                resetLevel();
+            } else {
+                alert("WRONG CODE! REBOOTING LEVEL");
+                resetLevel();
             }
         }
 
-        // --- Initializations ---
-        setInterval(() => { document.getElementById('os-clock').innerText = new Date().toLocaleTimeString(); }, 1000);
-        window.onload = () => {
-            renderApps();
-            document.getElementById('main-pass-set').value = mainPass;
-            document.getElementById('game-pass-set').value = gamePass;
-        };
+        function resetLevel() {
+            collectedCodes = "";
+            skyCodes = [];
+            document.getElementById('puzzle-prompt').style.display = 'none';
+            document.getElementById('puzzle-input').value = "";
+            gameActive = true;
+            gameLoop();
+        }
 
-        // Enter key support for main and game login
-        document.getElementById("passkey").addEventListener("keyup", (e) => { if(e.keyCode === 13) unlockMainOS(); });
-        document.getElementById("game-lock-input").addEventListener("keyup", (e) => { if(e.keyCode === 13) unlockGame(); });
+        setInterval(() => { document.getElementById('clock').innerText = new Date().toLocaleTimeString(); }, 1000);
+        window.onload = renderSystems;
+        gameActive = true;
     </script>
 </body>
 </html>
