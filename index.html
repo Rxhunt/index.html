@@ -2,283 +2,287 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>RIFAT MINI MARKET | Mobile App</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RIFAT MINI MARKET | Athens</title>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&family=Syncopate:wght@700&display=swap" rel="stylesheet">
     <style>
         :root {
-            --accent: #ff4757;
-            --bg: #f2f2f7; /* iOS Light Gray Bg */
+            --primary: #ff4757;
+            --secondary: #2f3542;
             --glass: rgba(255, 255, 255, 0.85);
-            --border: rgba(0, 0, 0, 0.05);
+            --ios-shadow: 0 15px 35px rgba(0,0,0,0.1);
         }
 
-        * { 
-            box-sizing: border-box; 
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-            -webkit-tap-highlight-color: transparent;
-        }
-
-        body { 
-            margin: 0; 
-            background: var(--bg); 
-            color: #1c1c1e; 
-            padding-bottom: 90px; /* Space for bottom nav */
-        }
-
-        /* App Header */
-        header {
-            position: sticky; top: 0;
-            background: var(--glass);
-            backdrop-filter: blur(20px);
-            padding: 15px 20px;
-            display: flex; justify-content: space-between; align-items: center;
-            z-index: 1000;
-            border-bottom: 1px solid var(--border);
-        }
-
-        .shop-name { font-family: 'Syncopate'; font-size: 13px; font-weight: 700; color: #d63031; }
-
-        /* Search Bar (iOS Style) */
-        .search-container { padding: 10px 15px; background: #fff; }
-        #search-bar {
-            width: 100%; padding: 12px 40px;
-            background: #e3e3e8; border-radius: 12px;
-            border: none; outline: none; font-size: 16px;
-        }
-
-        /* Hero Image/Banner */
-        .banner {
-            margin: 15px; height: 160px;
-            background: linear-gradient(45deg, #ff6b6b, #ff4757);
-            border-radius: 20px; color: white;
-            display: flex; flex-direction: column; justify-content: center;
-            padding: 20px; box-shadow: 0 10px 20px rgba(255, 71, 87, 0.2);
-        }
-
-        /* Product List */
-        .container { padding: 0 15px; }
-        .section-title { font-size: 20px; font-weight: 700; margin: 20px 0 10px; }
+        * { box-sizing: border-box; font-family: 'Poppins', sans-serif; transition: 0.3s cubic-bezier(0.4, 0, 0.2, 1); }
         
-        .product-grid {
-            display: grid; grid-template-columns: 1fr 1fr; gap: 12px;
+        body { 
+            margin: 0; background: #f0f2f5; color: #2d3436; 
+            background-image: radial-gradient(at 0% 0%, rgba(255, 71, 87, 0.1) 0, transparent 50%);
+            padding-bottom: 120px; 
         }
 
-        /* Mobile Product Card */
+        /* Top Bar */
+        .top-bar { padding: 10px 20px; background: var(--primary); color: white; display: flex; justify-content: space-between; font-size: 12px; font-weight: 600; }
+
+        header {
+            position: sticky; top: 10px; margin: 10px 15px;
+            background: var(--glass); backdrop-filter: blur(15px); -webkit-backdrop-filter: blur(15px);
+            border: 1px solid rgba(255,255,255,0.5); border-radius: 25px;
+            padding: 15px 25px; display: flex; justify-content: space-between;
+            align-items: center; z-index: 1000; box-shadow: var(--ios-shadow);
+        }
+        .shop-name { font-family: 'Syncopate'; font-size: 16px; color: var(--primary); }
+
+        .search-area { margin: 20px; text-align: center; }
+        #search-bar {
+            width: 100%; max-width: 600px; padding: 15px 25px;
+            border-radius: 50px; border: none; background: white;
+            box-shadow: var(--ios-shadow); outline: none;
+        }
+
+        .container { padding: 0 20px; max-width: 1200px; margin: auto; }
+        .product-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(180px, 1fr)); gap: 15px; }
+
         .item-card {
-            background: white; border-radius: 18px; padding: 12px;
-            display: flex; flex-direction: column; align-items: center;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.03);
+            background: white; border-radius: 30px; padding: 15px;
+            text-align: center; box-shadow: var(--ios-shadow); position: relative;
         }
-        .item-card img { width: 100%; height: 120px; object-fit: contain; border-radius: 12px; margin-bottom: 8px; }
-        .item-card h3 { font-size: 14px; margin: 5px 0; text-align: center; height: 35px; overflow: hidden; }
-        .price { color: var(--accent); font-weight: 700; font-size: 16px; margin-bottom: 8px; }
+        .item-card img { width: 100%; height: 140px; object-fit: contain; border-radius: 15px; }
+        .price { color: #2ecc71; font-weight: 700; font-size: 20px; margin: 5px 0; }
+        .stock-badge { font-size: 11px; color: #7f8c8d; }
 
-        .btn-add {
-            background: #007aff; color: white; border: none; width: 100%;
-            padding: 10px; border-radius: 10px; font-weight: 600; font-size: 13px;
+        .btn-ios {
+            background: var(--secondary); color: white; border: none; width: 100%;
+            padding: 12px; border-radius: 15px; cursor: pointer; font-weight: 600;
         }
+        .btn-ios:active { transform: scale(0.95); }
 
-        /* Bottom Tab Navigation */
-        .bottom-nav {
-            position: fixed; bottom: 0; left: 0; right: 0;
-            background: var(--glass); backdrop-filter: blur(25px);
-            display: flex; justify-content: space-around; padding: 10px 0 25px;
-            border-top: 1px solid var(--border); z-index: 2000;
+        /* Cute Social Bar with Real Icons */
+        .social-bar {
+            position: fixed; bottom: 30px; left: 50%; transform: translateX(-50%);
+            background: rgba(255, 255, 255, 0.5); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.4); border-radius: 40px;
+            padding: 10px 25px; display: flex; gap: 20px; align-items: center;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1); z-index: 4000;
         }
-        .nav-item { text-align: center; color: #8e8e93; font-size: 10px; text-decoration: none; cursor: pointer; }
-        .nav-item.active { color: #007aff; }
-        .nav-icon { font-size: 22px; margin-bottom: 2px; }
+        .social-text { font-size: 12px; font-weight: 600; border-right: 1px solid rgba(0,0,0,0.1); padding-right: 15px; }
+        .social-bar img { width: 30px; height: 30px; transition: 0.3s; cursor: pointer; }
+        .social-bar img:hover { transform: translateY(-5px) scale(1.1); }
 
-        /* Mobile Cart Drawer */
-        #cart-sidebar {
-            position: fixed; bottom: -100%; left: 0; right: 0;
-            height: 80vh; background: white; border-radius: 25px 25px 0 0;
-            z-index: 3000; padding: 25px; box-shadow: 0 -10px 40px rgba(0,0,0,0.1);
-            transition: 0.5s cubic-bezier(0.19, 1, 0.22, 1);
+        /* Cart Sidebar */
+        #cart-sidebar { 
+            position: fixed; right: -100%; top: 0; width: 100%; max-width: 380px; 
+            height: 100%; background: white; z-index: 5000; padding: 25px; 
+            box-shadow: -10px 0 30px rgba(0,0,0,0.1); transition: 0.4s;
         }
-        #cart-sidebar.open { bottom: 0; }
-        .cart-header { display: flex; justify-content: space-between; margin-bottom: 20px; }
+        #cart-sidebar.open { right: 0; }
+        .cart-item { display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px; padding-bottom: 10px; border-bottom: 1px solid #eee; }
+        
+        /* Admin */
+        .admin-icon { position: fixed; bottom: 35px; right: 20px; background: white; width: 45px; height: 45px; display: flex; align-items: center; justify-content: center; border-radius: 50%; cursor: pointer; box-shadow: var(--ios-shadow); z-index: 3000; }
+        #admin-panel { position: fixed; inset: 0; background: rgba(0,0,0,0.7); backdrop-filter: blur(8px); display: none; justify-content: center; align-items: center; z-index: 7000; }
+        .admin-card { background: #fff; padding: 25px; border-radius: 30px; width: 90%; max-width: 450px; }
 
-        /* Toast & Admin */
-        #toast { position: fixed; top: 50px; left: 50%; transform: translateX(-50%); background: #32d74b; color: white; padding: 10px 20px; border-radius: 20px; font-weight: 600; font-size: 14px; z-index: 5000; display: none; }
-        #admin-panel { position: fixed; inset: 0; background: rgba(0,0,0,0.9); z-index: 9999; display: none; justify-content: center; align-items: center; }
-        .admin-card { background: white; width: 90%; border-radius: 20px; padding: 20px; max-height: 80vh; overflow-y: auto; }
-        input { width: 100%; padding: 12px; margin: 10px 0; background: #f2f2f7; border: none; border-radius: 10px; }
+        #toast { position: fixed; top: -100px; left: 50%; transform: translateX(-50%); background: #2ecc71; color: white; padding: 12px 25px; border-radius: 50px; font-weight: bold; z-index: 9999; }
     </style>
 </head>
 <body>
 
+    <div class="top-bar">
+        <span>📍 LIOSION 40, ATHENS</span>
+        <span>🚚 RIFAT MARKET DELIVERY</span>
+    </div>
+
     <header>
-        <div class="shop-name">RIFAT MINI MARKET</div>
-        <div style="font-size: 14px;">🇬🇷 🇧🇩</div>
+        <div class="shop-name">RIFAT MARKET</div>
+        <div onclick="toggleCart()" style="cursor:pointer; font-size: 24px; position: relative;">
+            🛒 <span id="cart-count" style="position:absolute; top:-5px; right:-10px; background:var(--primary); color:white; padding:2px 6px; border-radius:50%; font-size:10px;">0</span>
+        </div>
     </header>
 
-    <div class="search-container">
+    <div class="search-area">
         <input type="text" id="search-bar" placeholder="Search product..." onkeyup="searchFilter()">
     </div>
 
-    <div class="banner">
-        <h2 style="margin: 0;">Athens Fresh Hub</h2>
-        <p style="margin: 5px 0; opacity: 0.9;">Best Groceries at Liosion 40</p>
-    </div>
-
     <div class="container">
-        <h2 class="section-title">Fresh Items</h2>
         <div class="product-grid" id="main-grid">
-            <div class="item-card" data-name="Organic Eggs">
-                <img src="https://images.unsplash.com/photo-1582722872445-44ad5c789d75?w=400" alt="Eggs">
-                <h3>Organic Eggs (12)</h3>
-                <div class="price">€ 3.50</div>
-                <button class="btn-add" onclick="addItem('Organic Eggs', 3.50)">Add to Cart</button>
+            <div class="item-card" data-name="Feta Cheese" id="prod-1">
+                <img src="https://cdn-icons-png.flaticon.com/512/2305/2305001.png">
+                <h3 style="font-size:15px; margin:5px 0;">Greek Feta Cheese</h3>
+                <div class="price">€ 4.50</div>
+                <div style="margin-bottom:10px;"><span class="stock-badge">Stock: <span class="stock-val">15</span></span></div>
+                <button class="btn-ios" onclick="addItem('Feta Cheese', 4.50, 'prod-1')">Add to Basket</button>
             </div>
-            <div class="item-card" data-name="Greek Milk">
-                <img src="https://images.unsplash.com/photo-1550583724-125581fe2f8a?w=400" alt="Milk">
-                <h3>Greek Milk (1L)</h3>
-                <div class="price">€ 1.20</div>
-                <button class="btn-add" onclick="addItem('Greek Milk', 1.20)">Add to Cart</button>
-            </div>
-        </div>
-
-        <h2 class="section-title">Our Location</h2>
-        <div style="border-radius: 15px; overflow: hidden; height: 180px; margin-bottom: 30px;">
-            <iframe src="http://googleusercontent.com/maps.google.com/7" width="100%" height="100%" frameborder="0" style="border:0;" allowfullscreen=""></iframe>
         </div>
     </div>
 
-    <div class="bottom-nav">
-        <div class="nav-item active" onclick="location.reload()">
-            <div class="nav-icon">🏠</div>
-            <div>Home</div>
-        </div>
-        <div class="nav-item" onclick="toggleCart()">
-            <div class="nav-icon">🛒</div>
-            <div>Cart (<span id="cart-count">0</span>)</div>
-        </div>
-        <div class="nav-item" onclick="openAdmin()">
-            <div class="nav-icon">⚙️</div>
-            <div>Admin</div>
-        </div>
+    <div class="social-bar">
+        <span class="social-text">Contact</span>
+        <a href="https://wa.me/302108251402" target="_blank"><img src="https://cdn-icons-png.flaticon.com/512/3670/3670051.png" alt="WhatsApp"></a>
+        <a href="https://facebook.com" id="fb-link" target="_blank"><img src="https://cdn-icons-png.flaticon.com/512/5968/5968764.png" alt="Facebook"></a>
+        <a href="https://instagram.com" id="ig-link" target="_blank"><img src="https://cdn-icons-png.flaticon.com/512/174/174855.png" alt="Instagram"></a>
     </div>
 
     <div id="cart-sidebar">
-        <div class="cart-header">
-            <h2 style="margin: 0;">My Basket</h2>
-            <button onclick="toggleCart()" style="background:none; border:none; font-size:24px;">✕</button>
+        <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:20px;">
+            <h2 style="margin:0;">My Basket</h2>
+            <span onclick="toggleCart()" style="font-size:30px; cursor:pointer;">&times;</span>
         </div>
-        <div id="cart-items-list" style="max-height: 40vh; overflow-y: auto; margin-bottom: 20px;"></div>
+        <div id="cart-items-list" style="max-height: 350px; overflow-y: auto;"></div>
         
-        <div id="pay-section" style="margin-bottom: 20px; display: none;">
-            <label style="display:block; padding:10px; background:#f2f2f7; border-radius:10px; margin-bottom:5px;">
-                <input type="radio" name="pay" value="Cash on Delivery" checked> Cash on Delivery
-            </label>
-            <label style="display:block; padding:10px; background:#f2f2f7; border-radius:10px;">
-                <input type="radio" name="pay" value="Bank Transfer"> Bank Transfer
-            </label>
-        </div>
-
-        <div style="padding-top: 15px; border-top: 1px solid #eee;">
+        <div id="checkout-section" style="display:none; margin-top:20px;">
+            <hr>
+            <input type="text" id="cust-name" placeholder="Name" style="width:100%; padding:10px; margin-bottom:10px; border:1px solid #ddd; border-radius:10px;">
+            <textarea id="cust-address" placeholder="Address" style="width:100%; padding:10px; border:1px solid #ddd; border-radius:10px; height:60px;"></textarea>
             <h3 style="display:flex; justify-content:space-between;">Total: <span>€ <span id="total-price">0.00</span></span></h3>
-            <button class="btn-add" style="background:#2ecc71; height: 50px; font-size: 16px;" onclick="handleCheckout()">Complete Order</button>
+            <button class="btn-ios" style="background:#27ae60;" onclick="handleCheckout()">Order via WhatsApp</button>
         </div>
     </div>
 
-    <div id="toast">Added! 🛍️</div>
+    <div class="admin-icon" onclick="openAdmin()">⚙️</div>
 
     <div id="admin-panel">
         <div class="admin-card">
             <div id="login-box">
-                <h2>Manager Access</h2>
-                <input type="password" id="admin-pass" placeholder="Enter PIN">
-                <button class="btn-add" onclick="checkPass()">Login</button>
-                <p onclick="closeAdmin()" style="text-align:center; color:red; margin-top:15px;">Close</p>
+                <h2>Manager</h2>
+                <input type="password" id="admin-pass-input" placeholder="Enter PIN" style="width:100%; padding:12px; margin-bottom:10px; border-radius:10px;">
+                <button class="btn-ios" onclick="checkPass()">Login</button>
+                <p onclick="closeAdmin()" style="cursor:pointer; color:red; text-align:center; margin-top:15px;">Cancel</p>
             </div>
-            <div id="dashboard" style="display:none;">
-                <h3>Store Manager</h3>
-                <input type="text" id="wa-num" placeholder="WA Number (e.g. 3069...)">
+            <div id="dashboard" style="display:none; max-height:80vh; overflow-y:auto;">
+                <button class="btn-ios" style="background:#0984e3; margin-bottom:15px;" onclick="toggleOrders()">View Orders History</button>
+                <div id="order-history-section" style="display:none;">
+                    <div id="orders-list"></div>
+                    <button onclick="clearOrders()" style="color:red; background:none; border:none; margin-bottom:15px; cursor:pointer;">Clear History</button>
+                </div>
                 <hr>
-                <input type="text" id="new-p-name" placeholder="Item Name">
-                <input type="number" id="new-p-price" step="0.01" placeholder="Price €">
-                <input type="text" id="new-p-img" placeholder="Image URL">
-                <button class="btn-add" style="background:#007aff;" onclick="saveProduct()">Save Product</button>
-                <button class="btn-add" style="background:#8e8e93; margin-top:10px;" onclick="closeAdmin()">Logout</button>
+                <h3>Add Product</h3>
+                <input type="text" id="new-p-name" placeholder="Product Name">
+                <input type="number" id="new-p-price" step="0.01" placeholder="Price">
+                <input type="number" id="new-p-limit" placeholder="Stock Quantity">
+                <input type="text" id="new-p-img" placeholder="Image URL (png/jpg)">
+                <button class="btn-ios" onclick="saveProduct()">Save Product</button>
+                <button class="btn-ios" style="background:#ccc; margin-top:10px;" onclick="location.reload()">Logout</button>
             </div>
         </div>
     </div>
 
+    <div id="toast">Added! 🛒</div>
+
     <script>
-        let cart = [];
-        let waNumber = "302108251402";
-        const ADMIN_PASS = "rifat123";
+        let cart = {};
+        let orders = JSON.parse(localStorage.getItem('orderHistory')) || [];
+        let currentPin = localStorage.getItem('adminPin') || "rifat123";
 
         function toggleCart() { document.getElementById('cart-sidebar').classList.toggle('open'); }
         function openAdmin() { document.getElementById('admin-panel').style.display = 'flex'; }
-        function closeAdmin() { 
-            document.getElementById('admin-panel').style.display = 'none';
-            document.getElementById('dashboard').style.display = 'none';
-        }
+        function closeAdmin() { document.getElementById('admin-panel').style.display = 'none'; }
 
         function checkPass() {
-            if(document.getElementById('admin-pass').value === ADMIN_PASS) {
+            if(document.getElementById('admin-pass-input').value === currentPin) {
                 document.getElementById('login-box').style.display = 'none';
                 document.getElementById('dashboard').style.display = 'block';
-            } else { alert("Access Denied!"); }
+                renderOrders();
+            } else { alert("Wrong PIN!"); }
         }
 
-        function addItem(name, price) {
-            cart.push({ name, price, id: Date.now() });
+        function addItem(name, price, prodId) {
+            const stockSpan = document.querySelector(`#${prodId} .stock-val`);
+            let stock = parseInt(stockSpan.innerText);
+            
+            if(stock > 0) {
+                stockSpan.innerText = --stock;
+                if(cart[name]) {
+                    cart[name].qty++;
+                } else {
+                    cart[name] = { price, qty: 1, id: prodId };
+                }
+                updateUI();
+                showToast("Added to Basket!");
+            } else {
+                alert("Out of Stock!");
+            }
+        }
+
+        function removeItem(name) {
+            const prodId = cart[name].id;
+            const stockSpan = document.querySelector(`#${prodId} .stock-val`);
+            stockSpan.innerText = parseInt(stockSpan.innerText) + 1;
+
+            if(cart[name].qty > 1) {
+                cart[name].qty--;
+            } else {
+                delete cart[name];
+            }
             updateUI();
-            showToast("Added to Cart!");
         }
 
         function updateUI() {
             const list = document.getElementById('cart-items-list');
             list.innerHTML = '';
             let total = 0;
-            cart.forEach(item => {
-                total += item.price;
-                list.innerHTML += `<div style="display:flex; justify-content:space-between; padding:10px 0; border-bottom:1px solid #eee;">
-                    <span>${item.name}</span>
-                    <span>€${item.price.toFixed(2)} <button onclick="removeItem(${item.id})" style="border:none; color:red; background:none; margin-left:10px;">✕</button></span>
-                </div>`;
-            });
-            document.getElementById('cart-count').innerText = cart.length;
+            let count = 0;
+
+            for(let key in cart) {
+                let itemTotal = cart[key].price * cart[key].qty;
+                total += itemTotal;
+                count += cart[key].qty;
+                list.innerHTML += `
+                    <div class="cart-item">
+                        <div>
+                            <b>${key}</b><br>
+                            <small>${cart[key].qty} x €${cart[key].price.toFixed(2)}</small>
+                        </div>
+                        <div style="display:flex; align-items:center; gap:10px;">
+                            <b>€${itemTotal.toFixed(2)}</b>
+                            <button onclick="removeItem('${key}')" style="background:#ff4757; color:white; border:none; border-radius:5px; padding:2px 8px; cursor:pointer;">-</button>
+                        </div>
+                    </div>`;
+            }
+
+            document.getElementById('cart-count').innerText = count;
             document.getElementById('total-price').innerText = total.toFixed(2);
-            document.getElementById('pay-section').style.display = cart.length > 0 ? 'block' : 'none';
-        }
-
-        function removeItem(id) {
-            cart = cart.filter(i => i.id !== id);
-            updateUI();
-        }
-
-        function showToast(msg) {
-            const t = document.getElementById('toast');
-            t.innerText = msg; t.style.display = "block";
-            setTimeout(() => { t.style.display = "none"; }, 1500);
+            document.getElementById('checkout-section').style.display = count > 0 ? 'block' : 'none';
         }
 
         function handleCheckout() {
-            if(cart.length === 0) return;
-            const method = document.querySelector('input[name="pay"]:checked').value;
-            let list = cart.map(i => `- ${i.name} (€${i.price.toFixed(2)})`).join('%0A');
-            let total = document.getElementById('total-price').innerText;
-            let msg = `🛒 *RIFAT MARKET ORDER*%0A------------------%0A${list}%0A------------------%0A*Total: €${total}*%0A*Pay:* ${method}%0A📍 Liosion 40, Athens`;
-            window.open(`https://wa.me/${waNumber}?text=${msg}`, '_blank');
+            const name = document.getElementById('cust-name').value;
+            const addr = document.getElementById('cust-address').value;
+            if(!name || !addr) return alert("Please enter Name and Address!");
+
+            let itemsTxt = "";
+            for(let key in cart) {
+                itemsTxt += `- ${key} (${cart[key].qty})%0A`;
+            }
+
+            const total = document.getElementById('total-price').innerText;
+            const orderData = { customer: name, address: addr, items: itemsTxt.replace(/%0A/g, ', '), total, time: new Date().toLocaleString() };
+            
+            orders.unshift(orderData);
+            localStorage.setItem('orderHistory', JSON.stringify(orders));
+
+            let msg = `🌟 *RIFAT MARKET ORDER*%0A*Customer:* ${name}%0A*Address:* ${addr}%0A%0A*Items:*%0A${itemsTxt}%0A*Total:* €${total}`;
+            window.open(`https://wa.me/302108251402?text=${msg}`);
+            
+            cart = {};
+            updateUI();
+            toggleCart();
         }
 
         function saveProduct() {
             const name = document.getElementById('new-p-name').value;
             const price = parseFloat(document.getElementById('new-p-price').value);
-            const img = document.getElementById('new-p-img').value || 'https://via.placeholder.com/200';
+            const stock = document.getElementById('new-p-limit').value || 10;
+            const img = document.getElementById('new-p-img').value || 'https://via.placeholder.com/150';
+            const id = 'p' + Date.now();
+
             if(name && price) {
                 const grid = document.getElementById('main-grid');
                 const div = document.createElement('div');
-                div.className = 'item-card';
-                div.setAttribute('data-name', name);
-                div.innerHTML = `<img src="${img}"><h3>${name}</h3><div class="price">€ ${price.toFixed(2)}</div><button class="btn-add" onclick="addItem('${name}', ${price})">Add to Cart</button>`;
-                grid.prepend(div);
-                alert("Live!");
+                div.className = 'item-card'; div.id = id; div.setAttribute('data-name', name);
+                div.innerHTML = `<img src="${img}"><h3>${name}</h3><div class="price">€ ${price.toFixed(2)}</div><div style="margin-bottom:10px;"><span class="stock-badge">Stock: <span class="stock-val">${stock}</span></span></div><button class="btn-ios" onclick="addItem('${name}', ${price}, '${id}')">Add to Basket</button>`;
+                grid.appendChild(div);
+                alert("Product Added!");
             }
         }
 
@@ -286,10 +290,25 @@
             let val = document.getElementById('search-bar').value.toLowerCase();
             let cards = document.getElementsByClassName('item-card');
             for(let card of cards) {
-                let name = card.getAttribute('data-name').toLowerCase();
-                card.style.display = name.includes(val) ? "flex" : "none";
+                card.style.display = card.getAttribute('data-name').toLowerCase().includes(val) ? "block" : "none";
             }
         }
+
+        function showToast(msg) {
+            const t = document.getElementById('toast');
+            t.innerText = msg; t.style.top = "30px";
+            setTimeout(() => t.style.top = "-100px", 2000);
+        }
+
+        function renderOrders() {
+            const list = document.getElementById('orders-list');
+            list.innerHTML = orders.length ? '' : '<p>No orders.</p>';
+            orders.forEach(o => {
+                list.innerHTML += `<div style="background:#f1f2f6; padding:10px; border-radius:10px; margin-bottom:10px; font-size:12px;"><b>${o.time}</b><br>👤 ${o.customer}<br>📍 ${o.address}<br>📦 ${o.items}<br>💰 €${o.total}</div>`;
+            });
+        }
+        function toggleOrders() { const s = document.getElementById('order-history-section'); s.style.display = s.style.display==='none'?'block':'none'; }
+        function clearOrders() { if(confirm("Clear?")) { orders=[]; localStorage.removeItem('orderHistory'); renderOrders(); } }
     </script>
 </body>
 </html>
