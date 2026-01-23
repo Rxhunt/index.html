@@ -3,178 +3,190 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>RIFAT MINI MARKET | Athens, Greece</title>
+    <title>RIFAT MINI MARKET | Athens</title>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&family=Syncopate:wght@700&display=swap" rel="stylesheet">
     <style>
         :root {
             --accent: #ff6b6b;
-            --glass: rgba(255, 255, 255, 0.45);
-            --border: rgba(255, 255, 255, 0.3);
-            --bg: linear-gradient(135deg, #e0f2f1 0%, #fce4ec 100%);
+            --glass: rgba(255, 255, 255, 0.5);
+            --border: rgba(255, 255, 255, 0.4);
+            --bg: linear-gradient(135deg, #fdfbfb 0%, #ebedee 100%);
         }
 
-        * { box-sizing: border-box; font-family: 'Poppins', sans-serif; transition: 0.3s cubic-bezier(0.4, 0, 0.2, 1); }
-        
-        body { margin: 0; background: var(--bg); color: #2d3436; min-height: 100vh; overflow-x: hidden; }
+        * { box-sizing: border-box; font-family: 'Poppins', sans-serif; transition: 0.3s; }
+        body { margin: 0; background: var(--bg); color: #2d3436; min-height: 100vh; }
 
         /* iOS Glass Header */
         header {
             position: sticky; top: 15px; margin: 0 15px;
-            background: var(--glass); backdrop-filter: blur(25px);
+            background: var(--glass); backdrop-filter: blur(20px);
             border: 1px solid var(--border); border-radius: 25px;
             padding: 15px 25px; display: flex; justify-content: space-between;
-            align-items: center; z-index: 1000; box-shadow: 0 8px 32px rgba(0,0,0,0.05);
+            align-items: center; z-index: 1000; box-shadow: 0 10px 30px rgba(0,0,0,0.05);
         }
 
-        .shop-name { font-family: 'Syncopate'; font-size: 14px; color: #d63031; letter-spacing: 1px; }
+        .shop-name { font-family: 'Syncopate'; font-size: 14px; color: #d63031; }
 
-        /* Main Container */
-        .container { padding: 60px 20px; max-width: 1100px; margin: auto; }
-        
-        .hero { text-align: center; margin-bottom: 40px; }
-        .hero h1 { font-family: 'Syncopate'; font-size: 26px; margin-bottom: 5px; color: #2d3436; }
-
-        /* Product Grid */
-        .product-grid {
-            display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-            gap: 20px;
+        /* Cart Icon */
+        .cart-trigger { position: relative; cursor: pointer; font-size: 24px; }
+        .cart-count { 
+            position: absolute; top: -5px; right: -10px; background: var(--accent);
+            color: white; font-size: 10px; padding: 2px 6px; border-radius: 50%;
         }
 
+        /* Container & Grid */
+        .container { padding: 40px 20px; max-width: 1100px; margin: auto; }
+        .product-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 20px; }
+
+        /* Product Card */
         .item-card {
-            background: var(--glass); backdrop-filter: blur(15px);
+            background: var(--glass); backdrop-filter: blur(10px);
             border: 1px solid var(--border); border-radius: 35px;
-            padding: 15px; text-align: center; box-shadow: 0 10px 20px rgba(0,0,0,0.02);
+            padding: 15px; text-align: center; box-shadow: 0 8px 15px rgba(0,0,0,0.02);
         }
+        .item-card:hover { transform: translateY(-8px); background: white; }
+        .item-card img { width: 100%; height: 160px; object-fit: cover; border-radius: 25px; }
+        .price-tag { font-weight: bold; color: var(--accent); font-size: 20px; margin: 10px 0; }
 
-        .item-card:hover { transform: translateY(-8px); background: rgba(255,255,255,0.7); }
-
-        .item-card img { width: 100%; height: 150px; object-fit: cover; border-radius: 25px; }
-
-        .price-tag { font-weight: bold; color: var(--accent); font-size: 18px; margin: 10px 0; }
-
-        .btn-order {
-            background: #00b894; color: white; border: none; width: 100%;
-            padding: 12px; border-radius: 18px; cursor: pointer; font-weight: bold;
+        /* Add to Cart Button */
+        .btn-add {
+            background: #2d3436; color: white; border: none; width: 100%;
+            padding: 12px; border-radius: 18px; cursor: pointer; font-weight: 600;
         }
+        .btn-add:hover { background: var(--accent); transform: scale(1.05); }
 
-        /* Map Section */
-        .map-section { margin-top: 50px; border-radius: 35px; overflow: hidden; border: 4px solid var(--glass); }
-
-        /* --- OWNER CONTROL PANEL --- */
-        .admin-btn {
-            position: fixed; bottom: 30px; left: 30px;
-            width: 55px; height: 55px; background: #2d3436; color: white;
-            border-radius: 50%; display: flex; justify-content: center;
-            align-items: center; font-size: 22px; cursor: pointer; z-index: 2000;
+        /* Cart Drawer */
+        #cart-drawer {
+            position: fixed; right: -100%; top: 0; width: 350px; height: 100%;
+            background: white; z-index: 4000; box-shadow: -10px 0 30px rgba(0,0,0,0.1);
+            padding: 30px; transition: 0.5s; overflow-y: auto;
         }
+        #cart-drawer.active { right: 0; }
+        .cart-item { display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px; border-bottom: 1px solid #eee; padding-bottom: 10px; }
 
-        #owner-modal {
-            position: fixed; inset: 0; background: rgba(0,0,0,0.7); backdrop-filter: blur(15px);
-            display: none; justify-content: center; align-items: center; z-index: 3000;
-        }
+        /* Map & Footer */
+        .map-section { margin-top: 50px; border-radius: 30px; overflow: hidden; border: 4px solid var(--glass); }
 
-        .modal-content {
-            background: white; padding: 30px; border-radius: 40px; width: 90%; max-width: 450px;
-            max-height: 85vh; overflow-y: auto;
-        }
+        /* Admin Controls */
+        .admin-gear { position: fixed; bottom: 20px; left: 20px; width: 50px; height: 50px; background: #000; color: #fff; border-radius: 50%; display: flex; justify-content: center; align-items: center; cursor: pointer; z-index: 5000; }
+        #admin-modal { position: fixed; inset: 0; background: rgba(0,0,0,0.8); backdrop-filter: blur(15px); display: none; justify-content: center; align-items: center; z-index: 6000; padding: 20px; }
+        .modal-content { background: white; padding: 30px; border-radius: 35px; width: 100%; max-width: 400px; }
 
-        input { width: 100%; padding: 12px; margin: 8px 0; border-radius: 15px; border: 1px solid #eee; background: #f9f9f9; outline: none; }
-        label { font-size: 12px; font-weight: 600; margin-top: 10px; display: block; }
-
-        .btn-save { background: #0984e3; color: white; border: none; padding: 15px; border-radius: 20px; width: 100%; cursor: pointer; font-weight: bold; margin-top: 15px; }
+        input { width: 100%; padding: 12px; margin: 8px 0; border-radius: 15px; border: 1px solid #eee; outline: none; }
     </style>
 </head>
 <body>
 
     <header>
-        <div class="shop-name" id="shop-title">RIFAT MINI MARKET</div>
-        <div style="font-size: 12px; font-weight: 600;">Athens, GR 🇬🇷</div>
+        <div class="shop-name" id="shop-name-disp">RIFAT MINI MARKET</div>
+        <div class="cart-trigger" onclick="toggleCart()">🛒 <span class="cart-count" id="count">0</span></div>
     </header>
 
     <div class="container">
-        <div class="hero">
-            <h1 id="hero-heading">Fresh Groceries</h1>
-            <p>Quality products delivered to your doorstep in Athens.</p>
-        </div>
-
-        <div class="product-grid" id="product-area">
+        <h1 style="font-family: 'Syncopate'; text-align: center; font-size: 22px;">Athens Fresh Market 🇬🇷</h1>
+        
+        <div class="product-grid" id="product-list">
             <div class="item-card">
-                <img src="https://images.unsplash.com/photo-1550989460-0adf9ea622e2?auto=format&fit=crop&w=400&q=60" alt="Fruit">
-                <h3>Fresh Fruits</h3>
-                <p class="price-tag">€ 4.50</p>
-                <button class="btn-order">Add to Cart</button>
+                <img src="https://images.unsplash.com/photo-1588964895597-cfccd6e2dbf9?auto=format&fit=crop&w=400" alt="Milk">
+                <h3>Fresh Milk</h3>
+                <p class="price-tag">€ 1.50</p>
+                <button class="btn-add" onclick="addToCart('Fresh Milk', 1.50)">Add to Cart</button>
             </div>
         </div>
 
-        <div class="map-section" id="map-container">
-            <iframe id="google-map" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m12!1m3!1d50310.60565863266!2d23.7275!3d37.9838!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x14a1bd1f067043f1%3A0x2736354576668576!2sAthens%2C%20Greece!5e0!3m2!1sen!2s!4v1700000000000!5m2!1sen!2s" width="100%" height="300" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+        <div class="map-section">
+            <iframe id="loc-map" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d100650.123!2d23.7275!3d37.9838!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x14a1bd1f067043f1%3A0x273635457666857!2sAthens%2C%20Greece!5e0!3m2!1sen!2s!4v1700000000000" width="100%" height="300" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
         </div>
     </div>
 
-    <div class="admin-btn" onclick="toggleAdmin()">⚙️</div>
+    <div id="cart-drawer">
+        <h2 style="font-family: 'Syncopate'; font-size: 18px;">Your Basket</h2>
+        <div id="basket-items"></div>
+        <hr>
+        <h3>Total: € <span id="total-price">0.00</span></h3>
+        <button class="btn-add" style="background: #00b894;" onclick="alert('Order Sent to WhatsApp!')">Checkout</button>
+        <p onclick="toggleCart()" style="text-align: center; cursor: pointer; color: #777; margin-top: 15px;">Close</p>
+    </div>
 
-    <div id="owner-modal">
+    <div class="admin-gear" onclick="toggleAdmin()">⚙️</div>
+    <div id="admin-modal">
         <div class="modal-content">
-            <h2 style="text-align: center; font-family: 'Syncopate'; font-size: 18px;">Dashboard</h2>
-            
-            <section style="background: #f8f9fa; padding: 15px; border-radius: 20px; margin-bottom: 15px;">
-                <strong>Shop Customization</strong>
-                <label>Change Shop Name</label>
-                <input type="text" id="new-name" placeholder="RIFAT MINI MARKET">
-                <label>Change Hero Heading</label>
-                <input type="text" id="new-hero" placeholder="Fresh Groceries">
-                <label>Google Maps Embed Link</label>
-                <input type="text" id="new-map" placeholder="Paste iframe SRC here">
-            </section>
-
-            <section style="background: #e3f2fd; padding: 15px; border-radius: 20px;">
-                <strong>Add New Grocery</strong>
-                <input type="text" id="p-name" placeholder="Product Name (e.g. Milk)">
-                <input type="text" id="p-price" placeholder="Price (e.g. € 1.20)">
-                <input type="text" id="p-img" placeholder="Image Link (URL)">
-            </section>
-
-            <button class="btn-save" onclick="applySettings()">Save & Update</button>
-            <p style="text-align: center; color: #ff7675; cursor: pointer; font-size: 14px; margin-top: 10px;" onclick="toggleAdmin()">Close</p>
+            <h3>Shop Manager</h3>
+            <label>Shop Name</label>
+            <input type="text" id="set-name" placeholder="RIFAT MINI MARKET">
+            <label>Map Link (Google src)</label>
+            <input type="text" id="set-map" placeholder="Paste Map Link">
+            <hr>
+            <label>Product Name</label>
+            <input type="text" id="p-name" placeholder="Name">
+            <label>Price (€)</label>
+            <input type="number" step="0.01" id="p-price" placeholder="Price">
+            <label>Image URL</label>
+            <input type="text" id="p-img" placeholder="Link">
+            <button class="btn-add" style="background:#0984e3;" onclick="saveSettings()">Save & Update</button>
+            <p onclick="toggleAdmin()" style="text-align:center; cursor:pointer; color:red;">Cancel</p>
         </div>
     </div>
 
     <script>
-        function toggleAdmin() {
-            const modal = document.getElementById('owner-modal');
-            modal.style.display = (modal.style.display === 'flex') ? 'none' : 'flex';
+        let cart = [];
+        let total = 0;
+
+        function toggleCart() { document.getElementById('cart-drawer').classList.toggle('active'); }
+        function toggleAdmin() { 
+            let m = document.getElementById('admin-modal');
+            m.style.display = (m.style.display === 'flex') ? 'none' : 'flex';
         }
 
-        function applySettings() {
-            // 1. Update Texts
-            const nameInput = document.getElementById('new-name').value;
-            const heroInput = document.getElementById('new-hero').value;
-            const mapInput = document.getElementById('new-map').value;
+        function addToCart(name, price) {
+            cart.push({name, price});
+            updateBasket();
+            // Simple animation
+            document.getElementById('count').style.transform = "scale(1.5)";
+            setTimeout(() => { document.getElementById('count').style.transform = "scale(1)"; }, 200);
+        }
 
-            if(nameInput) document.getElementById('shop-title').innerText = nameInput;
-            if(heroInput) document.getElementById('hero-heading').innerText = heroInput;
-            if(mapInput) document.getElementById('google-map').src = mapInput;
+        function updateBasket() {
+            const basket = document.getElementById('basket-items');
+            basket.innerHTML = '';
+            total = 0;
+            cart.forEach((item, index) => {
+                total += item.price;
+                basket.innerHTML += `
+                    <div class="cart-item">
+                        <span>${item.name}</span>
+                        <span>€ ${item.price.toFixed(2)}</span>
+                    </div>
+                `;
+            });
+            document.getElementById('count').innerText = cart.length;
+            document.getElementById('total-price').innerText = total.toFixed(2);
+        }
 
-            // 2. Add Product
+        function saveSettings() {
+            const name = document.getElementById('set-name').value;
+            const map = document.getElementById('set-map').value;
             const pName = document.getElementById('p-name').value;
-            const pPrice = document.getElementById('p-price').value;
-            const pImg = document.getElementById('p-img').value || 'https://via.placeholder.com/200';
+            const pPrice = parseFloat(document.getElementById('p-price').value);
+            const pImg = document.getElementById('p-img').value || 'https://via.placeholder.com/150';
+
+            if(name) document.getElementById('shop-name-disp').innerText = name;
+            if(map) document.getElementById('loc-map').src = map;
 
             if(pName && pPrice) {
-                const area = document.getElementById('product-area');
+                const list = document.getElementById('product-list');
                 const card = document.createElement('div');
                 card.className = 'item-card';
                 card.innerHTML = `
-                    <img src="${pImg}" alt="item">
+                    <img src="${pImg}" alt="img">
                     <h3>${pName}</h3>
-                    <p class="price-tag">${pPrice}</p>
-                    <button class="btn-order">Add to Cart</button>
+                    <p class="price-tag">€ ${pPrice.toFixed(2)}</p>
+                    <button class="btn-add" onclick="addToCart('${pName}', ${pPrice})">Add to Cart</button>
                 `;
-                area.appendChild(card);
+                list.appendChild(card);
             }
-
             toggleAdmin();
-            alert("Rifat Mini Market System Updated!");
+            alert("Rifat Mini Market Updated!");
         }
     </script>
 </body>
