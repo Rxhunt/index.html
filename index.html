@@ -1,324 +1,181 @@
 <!DOCTYPE html>
-<html lang="bn">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <meta name="apple-mobile-web-app-capable" content="yes">
-    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-    <title>RXHUNT v22.0 | OMNI-APP</title>
-    <link href="https://fonts.googleapis.com/css2?family=Syncopate:wght@400;700&family=Rajdhani:wght@300;500;700&display=swap" rel="stylesheet">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RIFAT MINI MARKET | Athens, Greece</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&family=Syncopate:wght@700&display=swap" rel="stylesheet">
     <style>
         :root {
-            --neon: #00f3ff;
-            --neon-alt: #ff0055;
-            --glass: rgba(255, 255, 255, 0.08);
-            --border: rgba(255, 255, 255, 0.2);
-            --bg: #00080f;
+            --accent: #ff6b6b;
+            --glass: rgba(255, 255, 255, 0.45);
+            --border: rgba(255, 255, 255, 0.3);
+            --bg: linear-gradient(135deg, #e0f2f1 0%, #fce4ec 100%);
         }
 
-        * { box-sizing: border-box; -webkit-tap-highlight-color: transparent; cursor: crosshair; }
-        body {
-            margin: 0; background: var(--bg); color: #fff;
-            font-family: 'Rajdhani', sans-serif; height: 100vh; overflow: hidden;
-            background-image: radial-gradient(circle at center, #001f2f 0%, #000 100%);
+        * { box-sizing: border-box; font-family: 'Poppins', sans-serif; transition: 0.3s cubic-bezier(0.4, 0, 0.2, 1); }
+        
+        body { margin: 0; background: var(--bg); color: #2d3436; min-height: 100vh; overflow-x: hidden; }
+
+        /* iOS Glass Header */
+        header {
+            position: sticky; top: 15px; margin: 0 15px;
+            background: var(--glass); backdrop-filter: blur(25px);
+            border: 1px solid var(--border); border-radius: 25px;
+            padding: 15px 25px; display: flex; justify-content: space-between;
+            align-items: center; z-index: 1000; box-shadow: 0 8px 32px rgba(0,0,0,0.05);
         }
 
-        /* --- Master Lock Screen --- */
-        #master-lock {
-            position: fixed; inset: 0; background: #000; z-index: 10000;
-            display: none; justify-content: center; align-items: center; backdrop-filter: blur(50px);
-        }
-        .lock-card { width: 320px; padding: 40px; text-align: center; border-radius: 40px; border: 1px solid var(--neon); background: var(--glass); }
-        .lock-input { background: transparent; border: none; border-bottom: 2px solid var(--neon); color: var(--neon); font-size: 32px; text-align: center; width: 80%; outline: none; letter-spacing: 8px; margin: 20px 0; }
+        .shop-name { font-family: 'Syncopate'; font-size: 14px; color: #d63031; letter-spacing: 1px; }
 
-        /* --- iOS 26 HUD & Widgets --- */
-        .status-bar {
-            position: fixed; top: 0; width: 100%; height: 50px; display: flex; justify-content: space-between;
-            align-items: center; padding: 0 30px; background: rgba(0,0,0,0.5); backdrop-filter: blur(20px); z-index: 1000;
-        }
-        .hud-side { position: fixed; right: 20px; top: 70px; width: 260px; display: flex; flex-direction: column; gap: 15px; z-index: 500; }
-        .widget { background: var(--glass); border: 1px solid var(--border); padding: 20px; border-radius: 25px; backdrop-filter: blur(40px); }
-        .bar-container { height: 6px; background: rgba(255,255,255,0.1); border-radius: 10px; margin-top: 8px; overflow: hidden; }
-        .bar-fill { height: 100%; background: var(--neon); box-shadow: 0 0 10px var(--neon); }
+        /* Main Container */
+        .container { padding: 60px 20px; max-width: 1100px; margin: auto; }
+        
+        .hero { text-align: center; margin-bottom: 40px; }
+        .hero h1 { font-family: 'Syncopate'; font-size: 26px; margin-bottom: 5px; color: #2d3436; }
 
-        /* --- Application Windows --- */
-        .window {
-            position: absolute; top: 70px; left: 20px; right: 300px; bottom: 120px;
-            display: none; flex-direction: column; border-radius: 30px; border: 1px solid var(--border);
-            background: rgba(0,0,0,0.95); overflow: hidden; z-index: 100; box-shadow: 0 20px 50px rgba(0,0,0,0.8);
-        }
-        .win-nav { padding: 15px 25px; background: rgba(255,255,255,0.05); display: flex; justify-content: space-between; font-family: 'Syncopate'; font-size: 10px; border-bottom: 1px solid var(--border); }
-        iframe { width: 100%; height: 100%; border: none; background: white; }
-
-        /* --- CYBER SURFER GAME UI --- */
-        #game-view { background: #000; position: relative; flex: 1; overflow: hidden; }
-        #game-canvas { width: 100%; height: 100%; }
-        .game-hud { position: absolute; top: 15px; left: 20px; font-family: 'Syncopate'; color: var(--neon); }
-        #terminal-box { 
-            position: absolute; inset: 0; background: rgba(0,0,0,0.9); 
-            display: none; flex-direction: column; justify-content: center; align-items: center; z-index: 500;
+        /* Product Grid */
+        .product-grid {
+            display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 20px;
         }
 
-        /* --- iOS Dock --- */
-        .dock {
-            position: fixed; bottom: 30px; left: 50%; transform: translateX(-50%);
-            display: flex; gap: 15px; padding: 12px 25px; background: rgba(255,255,255,0.12);
-            backdrop-filter: blur(50px); border-radius: 40px; border: 1px solid var(--border); z-index: 2000;
+        .item-card {
+            background: var(--glass); backdrop-filter: blur(15px);
+            border: 1px solid var(--border); border-radius: 35px;
+            padding: 15px; text-align: center; box-shadow: 0 10px 20px rgba(0,0,0,0.02);
         }
-        .icon { 
-            width: 60px; height: 60px; border-radius: 18px; background: #000; 
-            display: flex; justify-content: center; align-items: center; font-size: 28px;
-            border: 1px solid var(--border); cursor: pointer; transition: 0.3s;
-        }
-        .icon:hover { transform: translateY(-15px) scale(1.15); box-shadow: 0 10px 25px var(--neon); }
 
-        /* --- Settings & Controller --- */
-        .settings-grid { padding: 30px; display: grid; gap: 20px; }
-        .btn-exe { background: var(--neon); color: #000; border: none; padding: 12px 25px; border-radius: 12px; font-weight: bold; cursor: pointer; }
-        input[type="text"] { background: rgba(255,255,255,0.05); border: 1px solid var(--border); color: #fff; padding: 12px; border-radius: 12px; width: 100%; }
+        .item-card:hover { transform: translateY(-8px); background: rgba(255,255,255,0.7); }
 
-        @media (max-width: 768px) {
-            .window { right: 20px; bottom: 120px; }
-            .hud-side { display: none; }
+        .item-card img { width: 100%; height: 150px; object-fit: cover; border-radius: 25px; }
+
+        .price-tag { font-weight: bold; color: var(--accent); font-size: 18px; margin: 10px 0; }
+
+        .btn-order {
+            background: #00b894; color: white; border: none; width: 100%;
+            padding: 12px; border-radius: 18px; cursor: pointer; font-weight: bold;
         }
+
+        /* Map Section */
+        .map-section { margin-top: 50px; border-radius: 35px; overflow: hidden; border: 4px solid var(--glass); }
+
+        /* --- OWNER CONTROL PANEL --- */
+        .admin-btn {
+            position: fixed; bottom: 30px; left: 30px;
+            width: 55px; height: 55px; background: #2d3436; color: white;
+            border-radius: 50%; display: flex; justify-content: center;
+            align-items: center; font-size: 22px; cursor: pointer; z-index: 2000;
+        }
+
+        #owner-modal {
+            position: fixed; inset: 0; background: rgba(0,0,0,0.7); backdrop-filter: blur(15px);
+            display: none; justify-content: center; align-items: center; z-index: 3000;
+        }
+
+        .modal-content {
+            background: white; padding: 30px; border-radius: 40px; width: 90%; max-width: 450px;
+            max-height: 85vh; overflow-y: auto;
+        }
+
+        input { width: 100%; padding: 12px; margin: 8px 0; border-radius: 15px; border: 1px solid #eee; background: #f9f9f9; outline: none; }
+        label { font-size: 12px; font-weight: 600; margin-top: 10px; display: block; }
+
+        .btn-save { background: #0984e3; color: white; border: none; padding: 15px; border-radius: 20px; width: 100%; cursor: pointer; font-weight: bold; margin-top: 15px; }
     </style>
 </head>
 <body>
 
-    <div id="master-lock">
-        <div class="lock-card">
-            <h2 style="font-family: 'Syncopate'; font-size: 11px;">SYSTEM_ENCRYPTED</h2>
-            <input type="password" id="pass-input" class="lock-input" placeholder="••••">
-            <button class="btn-exe" onclick="authenticate()" style="width: 100%;">ACCESS_OS</button>
+    <header>
+        <div class="shop-name" id="shop-title">RIFAT MINI MARKET</div>
+        <div style="font-size: 12px; font-weight: 600;">Athens, GR 🇬🇷</div>
+    </header>
+
+    <div class="container">
+        <div class="hero">
+            <h1 id="hero-heading">Fresh Groceries</h1>
+            <p>Quality products delivered to your doorstep in Athens.</p>
+        </div>
+
+        <div class="product-grid" id="product-area">
+            <div class="item-card">
+                <img src="https://images.unsplash.com/photo-1550989460-0adf9ea622e2?auto=format&fit=crop&w=400&q=60" alt="Fruit">
+                <h3>Fresh Fruits</h3>
+                <p class="price-tag">€ 4.50</p>
+                <button class="btn-order">Add to Cart</button>
+            </div>
+        </div>
+
+        <div class="map-section" id="map-container">
+            <iframe id="google-map" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m12!1m3!1d50310.60565863266!2d23.7275!3d37.9838!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x14a1bd1f067043f1%3A0x2736354576668576!2sAthens%2C%20Greece!5e0!3m2!1sen!2s!4v1700000000000!5m2!1sen!2s" width="100%" height="300" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
         </div>
     </div>
 
-    <div id="main-os">
-        <header class="status-bar">
-            <div style="font-family: 'Syncopate'; font-size: 10px;">RXHUNT // HYPER_TECH_v22</div>
-            <div id="clock" style="font-size: 22px; font-weight: bold;">00:00:00</div>
-            <div style="color: var(--neon); font-size: 12px;" id="lock-status">SECURITY: UNLOCKED</div>
-        </header>
+    <div class="admin-btn" onclick="toggleAdmin()">⚙️</div>
 
-        <div class="hud-side">
-            <div class="widget">
-                <div style="font-size: 10px; opacity: 0.6; font-family: 'Syncopate';">PERFORMANCE_METRIC</div>
-                <div style="font-size: 13px; margin-top:10px;">CPU_USE: 24% | RAM: 1.2GB</div>
-                <div class="bar-container"><div class="bar-fill" style="width: 24%;"></div></div>
-                <div style="font-size: 13px; margin-top:10px;">GPU_LOAD: 8%</div>
-                <div class="bar-container"><div class="bar-fill" style="width: 8%; background: var(--neon-alt);"></div></div>
-            </div>
-            <div class="widget">
-                <div style="font-size: 10px; opacity: 0.6; font-family: 'Syncopate';">HUD_INFO</div>
-                <div id="battery-txt" style="font-size: 13px; margin-top:10px;">CHARGE: --%</div>
-                <div class="bar-container"><div id="battery-bar" class="bar-fill" style="width: 0%;"></div></div>
-                <div style="font-size: 18px; margin-top:15px; font-weight: bold;">Sylhet: 24°C</div>
-            </div>
+    <div id="owner-modal">
+        <div class="modal-content">
+            <h2 style="text-align: center; font-family: 'Syncopate'; font-size: 18px;">Dashboard</h2>
+            
+            <section style="background: #f8f9fa; padding: 15px; border-radius: 20px; margin-bottom: 15px;">
+                <strong>Shop Customization</strong>
+                <label>Change Shop Name</label>
+                <input type="text" id="new-name" placeholder="RIFAT MINI MARKET">
+                <label>Change Hero Heading</label>
+                <input type="text" id="new-hero" placeholder="Fresh Groceries">
+                <label>Google Maps Embed Link</label>
+                <input type="text" id="new-map" placeholder="Paste iframe SRC here">
+            </section>
+
+            <section style="background: #e3f2fd; padding: 15px; border-radius: 20px;">
+                <strong>Add New Grocery</strong>
+                <input type="text" id="p-name" placeholder="Product Name (e.g. Milk)">
+                <input type="text" id="p-price" placeholder="Price (e.g. € 1.20)">
+                <input type="text" id="p-img" placeholder="Image Link (URL)">
+            </section>
+
+            <button class="btn-save" onclick="applySettings()">Save & Update</button>
+            <p style="text-align: center; color: #ff7675; cursor: pointer; font-size: 14px; margin-top: 10px;" onclick="toggleAdmin()">Close</p>
         </div>
-
-        <div id="win-app" class="window">
-            <div class="win-nav"><span id="app-name">VIEWER</span> <button onclick="closeWin('win-app')" style="color:red; background:none; border:none; font-weight:bold;">[X]</button></div>
-            <iframe id="app-frame" src=""></iframe>
-        </div>
-
-        <div id="win-settings" class="window">
-            <div class="win-nav"><span>SYSTEM_CONTROLLER</span> <button onclick="closeWin('win-settings')">[X]</button></div>
-            <div class="settings-grid">
-                <div>
-                    <h3>SECURITY_CENTER</h3>
-                    <label><input type="checkbox" id="lock-toggle" onchange="updateLockConfig()"> Enable Master Passkey (4455)</label><br><br>
-                    <input type="text" id="new-key" placeholder="Change Passkey">
-                </div>
-                <hr style="border:0.5px solid var(--border); width: 100%;">
-                <div>
-                    <h3>OMNI_ADDER</h3>
-                    <input type="text" id="site-n" placeholder="App Name" style="margin-bottom: 10px;">
-                    <input type="text" id="site-u" placeholder="https://..." style="margin-bottom: 10px;">
-                    <button class="btn-exe" onclick="addNewApp()">DEPLOY_APP</button>
-                    <div id="custom-apps" style="margin-top:20px; display:flex; gap:10px; flex-wrap:wrap;"></div>
-                </div>
-            </div>
-        </div>
-
-        <div id="win-game" class="window" style="display: flex;">
-            <div class="win-nav"><span>CYBER_SURFER_v1.0</span> <button onclick="closeWin('win-game')">[X]</button></div>
-            <div id="game-view">
-                <div class="game-hud">LVL: <span id="lvl">1</span> | KEY_FRAGMENTS: <span id="frag">0/3</span></div>
-                <canvas id="game-canvas"></canvas>
-                <div id="terminal-box">
-                    <h2 style="font-family: 'Syncopate'; color: var(--neon);">COMPUTER_LOCKED</h2>
-                    <p>Enter the 3 numbers seen in sky to hack:</p>
-                    <input type="text" id="term-input" class="lock-input" maxlength="3" style="font-size: 45px;">
-                    <button class="btn-exe" onclick="verifyHack()">INJECT_EXPLOIT</button>
-                </div>
-            </div>
-        </div>
-
-        <nav class="dock">
-            <div class="icon" onclick="openWin('win-settings')">⚙️</div>
-            <div class="icon" onclick="launch('Gemini AI', 'https://gemini.google.com')">🧠</div>
-            <div class="icon" onclick="launch('YouTube', 'https://www.youtube.com')">📺</div>
-            <div class="icon" onclick="openWin('win-game')">🏃</div>
-            <div class="icon" onclick="launch('MovieBox', 'https://moviebox.id')">🎬</div>
-        </nav>
     </div>
 
     <script>
-        let lockActive = localStorage.getItem('lockActive') === 'true';
-        let masterPass = localStorage.getItem('masterPass') || "4455";
-        let userApps = JSON.parse(localStorage.getItem('userApps')) || [];
-
-        // --- Initialization ---
-        function init() {
-            if(lockActive) {
-                document.getElementById('master-lock').style.display = 'flex';
-                document.getElementById('lock-status').innerText = "SECURITY: SECURED";
-                document.getElementById('lock-toggle').checked = true;
-            }
-            renderCustomApps();
-            initGame();
-            updateBattery();
+        function toggleAdmin() {
+            const modal = document.getElementById('owner-modal');
+            modal.style.display = (modal.style.display === 'flex') ? 'none' : 'flex';
         }
 
-        function authenticate() {
-            if(document.getElementById('pass-input').value === masterPass) {
-                document.getElementById('master-lock').style.display = 'none';
-            } else { alert("ACCESS DENIED"); }
-        }
+        function applySettings() {
+            // 1. Update Texts
+            const nameInput = document.getElementById('new-name').value;
+            const heroInput = document.getElementById('new-hero').value;
+            const mapInput = document.getElementById('new-map').value;
 
-        function updateLockConfig() {
-            lockActive = document.getElementById('lock-toggle').checked;
-            localStorage.setItem('lockActive', lockActive);
-            if(document.getElementById('new-key').value) {
-                masterPass = document.getElementById('new-key').value;
-                localStorage.setItem('masterPass', masterPass);
-            }
-            alert("Security Config Updated!");
-        }
+            if(nameInput) document.getElementById('shop-title').innerText = nameInput;
+            if(heroInput) document.getElementById('hero-heading').innerText = heroInput;
+            if(mapInput) document.getElementById('google-map').src = mapInput;
 
-        // --- Window Management ---
-        function openWin(id) { 
-            document.querySelectorAll('.window').forEach(w => w.style.display = 'none');
-            document.getElementById(id).style.display = 'flex';
-        }
-        function closeWin(id) { document.getElementById(id).style.display = 'none'; }
-        
-        function launch(name, url) {
-            document.getElementById('app-frame').src = url;
-            document.getElementById('app-name').innerText = name.toUpperCase();
-            openWin('win-app');
-        }
+            // 2. Add Product
+            const pName = document.getElementById('p-name').value;
+            const pPrice = document.getElementById('p-price').value;
+            const pImg = document.getElementById('p-img').value || 'https://via.placeholder.com/200';
 
-        function addNewApp() {
-            const n = document.getElementById('site-n').value;
-            const u = document.getElementById('site-u').value;
-            if(n && u) {
-                userApps.push({n, u});
-                localStorage.setItem('userApps', JSON.stringify(userApps));
-                renderCustomApps();
-            }
-        }
-
-        function renderCustomApps() {
-            document.getElementById('custom-apps').innerHTML = userApps.map(a => 
-                `<button class="btn-exe" style="font-size:10px;" onclick="launch('${a.n}', '${a.u}')">${a.n}</button>`
-            ).join('');
-        }
-
-        // --- CYBER SURFER ENGINE ---
-        const canvas = document.getElementById('game-canvas');
-        const ctx = canvas.getContext('2d');
-        let lvl = 1, collected = "", gameOn = true, speed = 5, lane = 1;
-        let skyNums = [];
-
-        function initGame() {
-            canvas.width = canvas.offsetWidth;
-            canvas.height = canvas.offsetHeight;
-            window.addEventListener('keydown', e => {
-                if(e.key === "ArrowLeft" && lane > 0) lane--;
-                if(e.key === "ArrowRight" && lane < 2) lane++;
-            });
-            // Touch for iPhone
-            canvas.addEventListener('touchstart', e => {
-                let x = e.touches[0].clientX;
-                if(x < window.innerWidth/2) { if(lane > 0) lane--; }
-                else { if(lane < 2) lane++; }
-            });
-            gameLoop();
-        }
-
-        function gameLoop() {
-            if(!gameOn) return;
-            ctx.clearRect(0,0, canvas.width, canvas.height);
-            
-            // Lanes
-            ctx.strokeStyle = "rgba(0, 243, 255, 0.1)";
-            for(let i=1; i<3; i++) {
-                ctx.beginPath(); ctx.moveTo(i*canvas.width/3, 0); ctx.lineTo(i*canvas.width/3, canvas.height); ctx.stroke();
+            if(pName && pPrice) {
+                const area = document.getElementById('product-area');
+                const card = document.createElement('div');
+                card.className = 'item-card';
+                card.innerHTML = `
+                    <img src="${pImg}" alt="item">
+                    <h3>${pName}</h3>
+                    <p class="price-tag">${pPrice}</p>
+                    <button class="btn-order">Add to Cart</button>
+                `;
+                area.appendChild(card);
             }
 
-            // Anime Runner (Anime boy character style)
-            ctx.fillStyle = var(--neon-alt);
-            ctx.beginPath(); 
-            ctx.arc((lane*canvas.width/3)+canvas.width/6, canvas.height-120, 35, 0, Math.PI*2); 
-            ctx.fill();
-            ctx.fillStyle = "#fff"; ctx.font = "12px Syncopate";
-            ctx.fillText("SURFER", (lane*canvas.width/3)+canvas.width/6-25, canvas.height-115);
-
-            // Sky Passkeys
-            if(Math.random() < 0.015 && skyNums.length < 3) {
-                skyNums.push({ 
-                    x: (Math.floor(Math.random()*3)*canvas.width/3)+canvas.width/6, 
-                    y: -50, 
-                    val: Math.floor(Math.random()*9) 
-                });
-            }
-
-            skyNums.forEach((n, i) => {
-                n.y += speed;
-                ctx.font = "bold 50px Rajdhani"; ctx.fillStyle = var(--neon);
-                ctx.fillText(n.val, n.x-10, n.y);
-
-                // Collision
-                if(n.y > canvas.height-150 && n.y < canvas.height-80 && (lane*canvas.width/3)+canvas.width/6 === n.x) {
-                    collected += n.val;
-                    skyNums.splice(i, 1);
-                    document.getElementById('frag').innerText = collected.length + "/3";
-                    if(collected.length >= 3) { 
-                        gameOn = false; 
-                        document.getElementById('terminal-box').style.display = 'flex'; 
-                    }
-                }
-            });
-
-            requestAnimationFrame(gameLoop);
+            toggleAdmin();
+            alert("Rifat Mini Market System Updated!");
         }
-
-        function verifyHack() {
-            if(document.getElementById('term-input').value === collected) {
-                alert("LEVEL " + lvl + " HACKED!");
-                lvl++; speed += 1.5; collected = ""; skyNums = [];
-                document.getElementById('lvl').innerText = lvl;
-                document.getElementById('terminal-box').style.display = 'none';
-                document.getElementById('term-input').value = "";
-                gameOn = true; gameLoop();
-            } else { alert("HACK FAILED! RESTARTING LEVEL"); collected = ""; skyNums = []; gameOn = true; gameLoop(); }
-        }
-
-        // --- HUD Logic ---
-        function updateBattery() {
-            navigator.getBattery().then(bat => {
-                const update = () => {
-                    document.getElementById('battery-txt').innerText = "CHARGE: " + Math.round(bat.level * 100) + "%";
-                    document.getElementById('battery-bar').style.width = (bat.level * 100) + "%";
-                };
-                update();
-                bat.addEventListener('levelchange', update);
-            });
-        }
-
-        setInterval(() => { document.getElementById('clock').innerText = new Date().toLocaleTimeString(); }, 1000);
-        window.onload = init;
     </script>
 </body>
 </html>
