@@ -3,155 +3,227 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>RXHUNT v16.0 | SECURE OS</title>
+    <title>RXHUNT v17.0 | SECURE CONTROLLER</title>
     <link href="https://fonts.googleapis.com/css2?family=Syncopate:wght@400;700&family=Rajdhani:wght@300;500;700&display=swap" rel="stylesheet">
     <style>
         :root {
-            --neon: #00ffaa;
-            --neon-alt: #0088ff;
-            --glass: rgba(0, 0, 0, 0.9);
-            --border: rgba(0, 255, 170, 0.3);
+            --neon: #00f3ff;
+            --neon-alt: #ff0055;
+            --glass: rgba(0, 0, 0, 0.85);
+            --border: rgba(0, 243, 255, 0.3);
+            --bg-glow: radial-gradient(circle at center, #001f1f 0%, #000 100%);
         }
 
-        * { box-sizing: border-box; cursor: crosshair; transition: all 0.3s ease; }
+        * { box-sizing: border-box; cursor: crosshair; transition: 0.3s cubic-bezier(0.4, 0, 0.2, 1); }
         body {
             margin: 0; background: #000; color: var(--neon);
             font-family: 'Rajdhani', sans-serif; height: 100vh; overflow: hidden;
+            background-image: var(--bg-glow);
         }
 
-        /* --- Full Screen Lock Layer --- */
+        /* --- Master Lock Screen (Password: 4455) --- */
         #master-lock {
             position: fixed; inset: 0; background: #000;
-            display: flex; flex-direction: column; justify-content: center; align-items: center;
-            z-index: 9999; backdrop-filter: blur(50px);
+            display: flex; justify-content: center; align-items: center;
+            z-index: 10000; background-image: url('https://www.transparenttextures.com/patterns/carbon-fibre.png');
         }
-        .lock-box {
-            width: 300px; padding: 30px; border: 1px solid var(--neon);
-            text-align: center; background: rgba(0, 255, 170, 0.05);
-            box-shadow: 0 0 50px rgba(0, 255, 170, 0.2);
+        .lock-card {
+            width: 320px; padding: 40px; border: 1px solid var(--neon);
+            background: rgba(0, 243, 255, 0.02); text-align: center;
+            backdrop-filter: blur(20px); box-shadow: 0 0 50px rgba(0, 243, 255, 0.1);
         }
-        .lock-box h2 { font-family: 'Syncopate'; font-size: 14px; margin-bottom: 20px; }
         .lock-input {
-            background: #000; border: 1px solid var(--neon); color: var(--neon);
-            padding: 12px; width: 100%; text-align: center; font-size: 18px; outline: none;
-            margin-bottom: 15px; letter-spacing: 5px;
+            background: transparent; border: none; border-bottom: 2px solid var(--neon);
+            color: var(--neon); font-size: 24px; text-align: center; width: 100%;
+            outline: none; margin: 20px 0; letter-spacing: 10px;
         }
-        .unlock-btn {
-            background: var(--neon); color: #000; border: none; width: 100%;
-            padding: 10px; font-weight: bold; cursor: pointer; text-transform: uppercase;
+
+        /* --- Main UI Header --- */
+        .os-header {
+            position: fixed; top: 0; width: 100%; height: 50px;
+            display: flex; justify-content: space-between; align-items: center;
+            padding: 0 40px; background: rgba(0,0,0,0.7); backdrop-filter: blur(20px);
+            border-bottom: 1px solid var(--border); z-index: 1000;
         }
-        .unlock-btn:hover { background: #fff; box-shadow: 0 0 20px var(--neon); }
 
-        /* --- Main UI (Hidden initially) --- */
-        #main-os { display: none; opacity: 0; }
+        /* --- Performance & Notification (Right Panel) --- */
+        .right-panel { position: fixed; right: 25px; top: 80px; width: 280px; display: flex; flex-direction: column; gap: 15px; z-index: 500; }
+        .glass-widget {
+            background: var(--glass); border: 1px solid var(--border);
+            padding: 18px; border-radius: 5px 25px 5px 25px;
+            backdrop-filter: blur(25px); position: relative;
+        }
+        .label { font-family: 'Syncopate'; font-size: 10px; opacity: 0.6; margin-bottom: 10px; border-bottom: 1px solid var(--border); }
 
-        /* --- Original Styles from v16.0 --- */
-        .status-header { position: fixed; top: 0; width: 100%; height: 45px; display: flex; justify-content: space-between; align-items: center; padding: 0 30px; background: rgba(0,0,0,0.6); backdrop-filter: blur(15px); border-bottom: 1px solid var(--border); z-index: 1000; }
-        .side-monitor { position: fixed; right: 20px; top: 70px; width: 260px; display: flex; flex-direction: column; gap: 15px; z-index: 500; }
-        .data-card { background: var(--glass); border: 1px solid var(--border); padding: 15px; border-radius: 5px 20px 5px 20px; backdrop-filter: blur(20px); box-shadow: 0 0 20px rgba(0, 255, 170, 0.1); }
-        .data-label { font-family: 'Syncopate'; font-size: 9px; opacity: 0.7; margin-bottom: 8px; }
-        .bar-container { height: 4px; background: #111; margin: 8px 0; border-radius: 2px; }
-        .bar-fill { height: 100%; background: var(--neon); box-shadow: 0 0 10px var(--neon); }
-        .win-terminal { position: absolute; top: 80px; left: 40px; right: 300px; bottom: 120px; background: rgba(0, 5, 5, 0.98); border: 1px solid var(--neon); display: none; flex-direction: column; overflow: hidden; border-radius: 10px; box-shadow: 0 0 40px rgba(0, 255, 170, 0.2); }
-        .win-title { padding: 12px 20px; background: rgba(0, 255, 170, 0.1); display: flex; justify-content: space-between; font-family: 'Syncopate'; font-size: 11px; }
-        iframe { width: 100%; height: 100%; border: none; background: #fff; }
-        .dock { position: fixed; bottom: 25px; left: 50%; transform: translateX(-50%); display: flex; gap: 18px; padding: 12px 25px; background: rgba(255, 255, 255, 0.08); backdrop-filter: blur(35px); border-radius: 40px; border: 1px solid rgba(255, 255, 255, 0.2); z-index: 1000; }
-        .dock-item { width: 55px; height: 55px; border-radius: 15px; display: flex; justify-content: center; align-items: center; background: #000; border: 1px solid var(--border); font-size: 22px; cursor: pointer;}
-        input[type="text"], input[type="password"] { background: #000; border: 1px solid var(--border); color: var(--neon); padding: 10px; width: 100%; margin-bottom: 10px; }
+        /* Performance Bar */
+        .bar { height: 4px; background: #111; margin: 10px 0; border-radius: 5px; overflow: hidden; }
+        .fill { height: 100%; background: var(--neon); box-shadow: 0 0 10px var(--neon); }
+
+        /* --- Universal Controller Window --- */
+        .win-container {
+            position: absolute; top: 90px; left: 50px; right: 340px; bottom: 130px;
+            background: rgba(0, 5, 5, 0.95); border: 1px solid var(--neon);
+            display: none; flex-direction: column; border-radius: 12px;
+            box-shadow: 0 0 60px rgba(0, 243, 255, 0.15); overflow: hidden;
+        }
+        .win-nav { padding: 15px 25px; background: rgba(0, 243, 255, 0.1); display: flex; justify-content: space-between; font-family: 'Syncopate'; font-size: 11px; }
+        iframe { width: 100%; height: 100%; border: none; background: white; }
+
+        /* --- Controller Interface --- */
+        .control-panel { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; padding: 20px; border: 1px dashed var(--border); margin-top: 10px; }
+        input[type="text"] { background: #000; border: 1px solid var(--border); color: var(--neon); padding: 12px; font-family: monospace; outline: none; }
+        .btn-main { background: var(--neon); color: #000; font-weight: bold; border: none; padding: 12px; cursor: pointer; text-transform: uppercase; }
+        .btn-main:hover { background: #fff; box-shadow: 0 0 20px #fff; }
+
+        /* --- iOS 26 High-Tech Dock --- */
+        .cyber-dock {
+            position: fixed; bottom: 35px; left: 50%; transform: translateX(-50%);
+            display: flex; gap: 20px; padding: 15px 30px;
+            background: rgba(255, 255, 255, 0.05); backdrop-filter: blur(40px);
+            border-radius: 50px; border: 1px solid rgba(255, 255, 255, 0.2); z-index: 2000;
+        }
+        .dock-icon {
+            width: 60px; height: 60px; border-radius: 18px;
+            display: flex; justify-content: center; align-items: center;
+            background: #000; border: 1px solid var(--border); font-size: 26px;
+        }
+        .dock-icon:hover { transform: translateY(-20px) scale(1.2); border-color: #fff; box-shadow: 0 0 30px var(--neon); }
+
+        #main-os { display: none; }
     </style>
 </head>
 <body>
 
     <div id="master-lock">
-        <div class="lock-box">
-            <div style="font-size: 40px; margin-bottom: 10px;">🔒</div>
-            <h2>SYSTEM_LOCKED</h2>
-            <input type="password" id="pass-input" class="lock-input" placeholder="••••">
-            <button class="unlock-btn" onclick="checkPass()">ACCESS_VAULT</button>
-            <p id="error-msg" style="color: red; font-size: 10px; margin-top: 10px; display: none;">ACCESS_DENIED: WRONG_KEY</p>
+        <div class="lock-card">
+            <div style="font-size: 50px;">💾</div>
+            <h2 style="font-family: 'Syncopate'; font-size: 14px; margin-top: 15px;">ENCRYPTED_OS_V17</h2>
+            <input type="password" id="passkey" class="lock-input" maxlength="4" placeholder="0000">
+            <button class="btn-main" style="width: 100%;" onclick="unlock()">INITIALIZE_ACCESS</button>
+            <p id="err" style="color: red; font-size: 12px; display: none; margin-top: 10px;">INVALID_PASSKEY</p>
         </div>
     </div>
 
     <div id="main-os">
-        <div class="status-header">
-            <span style="font-family: 'Syncopate'; font-size: 12px;">RXHUNT // SECURE_OS_v16.0</span>
-            <span id="digital-clock" style="font-size: 18px;">00:00:00</span>
-            <span style="color: var(--neon);">STATUS: ENCRYPTED</span>
-        </div>
+        <header class="os-header">
+            <span style="font-family: 'Syncopate'; font-size: 12px;">RXHUNT // SYSTEM_CONTROLLER</span>
+            <span id="os-clock" style="font-size: 20px; font-weight: bold;">00:00:00</span>
+            <span style="color: #fff;">SECURITY: <span style="color: var(--neon);">ULTRA_HIGH</span></span>
+        </header>
 
-        <div class="side-monitor">
-            <div class="data-card">
-                <div class="data-label">HARDWARE</div>
-                <div style="font-size: 11px;">BATTERY: 98%</div>
-                <div class="bar-container"><div class="bar-fill" style="width: 98%;"></div></div>
-                <div style="font-size: 11px; margin-top:10px;">CPU: 14%</div>
-                <div class="bar-container"><div class="bar-fill" style="width: 14%; background: var(--neon-alt);"></div></div>
+        <div class="right-panel">
+            <div class="glass-widget">
+                <div class="label">NOTIFICATIONS</div>
+                <div style="font-size: 11px;">• System Security: Active<br>• Controller Engine: Online<br>• Safety Level: Maximum</div>
             </div>
-            <div class="data-card">
-                <div class="data-label">ENVIRONMENT</div>
-                <div style="font-size: 18px; font-weight: bold;">SYLHET: 23°C</div>
+            
+            <div class="glass-widget">
+                <div class="label">METEOROLOGY</div>
+                <div style="font-size: 20px; font-weight: bold;">SYLHET: 24°C</div>
+                <div style="font-size: 10px; opacity: 0.7;">CONDITION: CLEAR SKY</div>
             </div>
-        </div>
 
-        <div id="win-controller" class="win-terminal" style="display: flex;">
-            <div class="win-title"><span>COMMAND_CENTER</span></div>
-            <div style="padding: 20px;">
-                <h3>UNIVERSAL CONTROLLER</h3>
-                <input id="ctrl-name" type="text" placeholder="APP_NAME">
-                <input id="ctrl-url" type="text" placeholder="URL (https://...)">
-                <button onclick="addToController()" style="background:var(--neon); color:#000; border:none; padding:10px; width:100%; cursor:pointer;">ADD_SYSTEM</button>
-                <div id="dynamic-apps" style="margin-top:20px; display: grid; grid-template-columns: repeat(3, 1fr); gap:10px;"></div>
+            <div class="glass-widget">
+                <div class="label">HARDWARE_TELEMETRY</div>
+                <div style="font-size: 11px;">LAPTOP_CHARGE: 98%</div>
+                <div class="bar"><div class="fill" style="width: 98%;"></div></div>
+                <div style="font-size: 11px; margin-top: 10px;">CORE_PERFORMANCE: 14%</div>
+                <div class="bar"><div class="fill" style="width: 14%; background: var(--neon-alt);"></div></div>
             </div>
         </div>
 
-        <div id="win-viewer" class="win-terminal">
-            <div class="win-title"><span id="viewer-name">VIEWER</span> <button onclick="closeWin('win-viewer')" style="color:red; background:none; border:none;">[EXIT]</button></div>
+        <div id="win-controller" class="win-container" style="display: flex;">
+            <div class="win-nav"><span>UNIVERSAL_CONTROLLER</span></div>
+            <div style="padding: 25px; overflow-y: auto;">
+                <h3>COMMAND CENTER</h3>
+                <p style="font-size: 12px; opacity: 0.7;">Add any website URL below to launch it as an app inside the system.</p>
+                <div class="control-panel">
+                    <input id="app-name" type="text" placeholder="APP_NAME">
+                    <input id="app-url" type="text" placeholder="URL (https://...)">
+                    <button class="btn-main" style="grid-column: span 2;" onclick="registerApp()">ADD_TO_DOCK</button>
+                </div>
+                <div id="user-apps" style="margin-top:25px; display: grid; grid-template-columns: repeat(3, 1fr); gap:12px;">
+                    </div>
+            </div>
+        </div>
+
+        <div id="win-app-view" class="win-container">
+            <div class="win-nav"><span id="active-app-name">APP_VIEWER</span> <button onclick="closeWin('win-app-view')" style="background:none; border:none; color:red; cursor:pointer;">[EXIT]</button></div>
             <iframe id="app-frame" src=""></iframe>
         </div>
 
-        <nav class="dock">
-            <div class="dock-item" onclick="openWin('win-controller')">🎮</div>
-            <div class="dock-item" onclick="launchApp('Gemini', 'https://gemini.google.com')">🧠</div>
-            <div class="dock-item" onclick="launchApp('YouTube', 'https://www.youtube.com')">📺</div>
-            <div class="dock-item" onclick="openWin('win-settings')">⚙️</div>
+        <div id="win-settings" class="win-container">
+            <div class="win-nav"><span>SAFETY_&_DESIGN</span> <button onclick="closeWin('win-settings')">X</button></div>
+            <div style="padding:25px;">
+                <h4>THEME_ENGINE</h4>
+                <button class="btn-main" onclick="changeTheme('#00f3ff')">iOS_CYAN</button>
+                <button class="btn-common" style="background:#ff0055; color:#000; padding:12px; border:none;" onclick="changeTheme('#ff0055')">STARK_RED</button>
+                <hr style="border:0.5px solid var(--border); margin: 20px 0;">
+                <h4>SAFETY_PROTOCOLS</h4>
+                <p>Encryption: AES-256 Active</p>
+                <p>Passkey: 4455 (Hardcoded)</p>
+            </div>
+        </div>
+
+        <nav class="cyber-dock">
+            <div class="dock-icon" title="Controller" onclick="openWin('win-controller')">🎮</div>
+            <div class="dock-icon" title="Gemini AI" onclick="launch('Gemini AI', 'https://gemini.google.com')">🤖</div>
+            <div class="dock-icon" title="YouTube" onclick="launch('YouTube', 'https://www.youtube.com')">📺</div>
+            <div class="dock-icon" title="Movies" onclick="launch('Movies', 'https://moviebox.id')">🎬</div>
+            <div class="dock-icon" title="Settings" onclick="openWin('win-settings')">⚙️</div>
         </nav>
     </div>
 
     <script>
-        // --- PASSKEY CONFIGURATION ---
-        const MASTER_KEY = "1234"; // এখান থেকে তুমি তোমার পাসকি পরিবর্তন করতে পারো
+        const AUTH_KEY = "4455"; 
+        let userApps = JSON.parse(localStorage.getItem('rx_v17_apps')) || [];
 
-        function checkPass() {
-            let input = document.getElementById('pass-input').value;
-            if(input === MASTER_KEY) {
+        function unlock() {
+            if(document.getElementById('passkey').value === AUTH_KEY) {
                 document.getElementById('master-lock').style.display = 'none';
                 document.getElementById('main-os').style.display = 'block';
-                setTimeout(() => { document.getElementById('main-os').style.opacity = '1'; }, 100);
             } else {
-                document.getElementById('error-msg').style.display = 'block';
-                document.getElementById('pass-input').value = "";
+                document.getElementById('err').style.display = 'block';
+                document.getElementById('passkey').value = "";
             }
         }
 
-        // --- OS Logic ---
         function openWin(id) { 
-            document.querySelectorAll('.win-terminal').forEach(w => w.style.display = 'none');
+            document.querySelectorAll('.win-container').forEach(w => w.style.display = 'none');
             document.getElementById(id).style.display = 'flex'; 
         }
         function closeWin(id) { document.getElementById(id).style.display = 'none'; }
 
-        function launchApp(name, url) {
-            document.getElementById('viewer-name').innerText = name.toUpperCase();
-            document.getElementById('app-frame').src = url;
-            openWin('win-viewer');
+        function registerApp() {
+            let name = document.getElementById('app-name').value;
+            let url = document.getElementById('app-url').value;
+            if(name && url) {
+                if(!url.startsWith('http')) url = 'https://' + url;
+                userApps.push({ name, url });
+                localStorage.setItem('rx_v17_apps', JSON.stringify(userApps));
+                renderApps();
+            }
         }
 
-        setInterval(() => { document.getElementById('digital-clock').innerText = new Date().toLocaleTimeString(); }, 1000);
+        function renderApps() {
+            document.getElementById('user-apps').innerHTML = userApps.map(app => `
+                <button class="btn-main" style="font-size:11px;" onclick="launch('${app.name}', '${app.url}')">${app.name}</button>
+            `).join('');
+        }
 
-        // Enter key support for login
-        document.getElementById("pass-input").addEventListener("keyup", function(event) {
-            if (event.keyCode === 13) { checkPass(); }
-        });
+        function launch(name, url) {
+            document.getElementById('active-app-name').innerText = name.toUpperCase();
+            document.getElementById('app-frame').src = url;
+            openWin('win-app-view');
+        }
+
+        function changeTheme(c) { document.documentElement.style.setProperty('--neon', c); }
+
+        setInterval(() => { document.getElementById('os-clock').innerText = new Date().toLocaleTimeString(); }, 1000);
+        window.onload = renderApps;
+
+        // Enter key for lock
+        document.getElementById("passkey").addEventListener("keyup", (e) => { if(e.keyCode === 13) unlock(); });
     </script>
 </body>
 </html>
