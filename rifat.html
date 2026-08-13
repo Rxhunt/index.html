@@ -1,0 +1,4752 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport"
+      content="width=device-width, initial-scale=1.0">
+
+<title>♡ Our Little Corner</title>
+
+<link rel="preconnect"
+      href="https://fonts.googleapis.com">
+
+<link rel="preconnect"
+      href="https://fonts.gstatic.com"
+      crossorigin>
+
+<link href="https://fonts.googleapis.com/css2?family=Caveat:wght@400;500;600;700&family=Nunito:wght@400;500;600;700;800&display=swap"
+      rel="stylesheet">
+
+<script src="https://www.youtube.com/iframe_api"></script>
+
+<style>
+
+/* =========================================================
+   RESET
+========================================================= */
+
+*{
+    box-sizing:border-box;
+    margin:0;
+    padding:0;
+}
+
+:root{
+    --pink:#ff83b2;
+    --pink-dark:#df638f;
+    --pink2:#ffb4cf;
+    --purple:#a993ef;
+    --cream:#fffaf4;
+    --paper:#fffdf9;
+    --text:#4c3c48;
+    --muted:#95828e;
+    --green:#68c18f;
+    --red:#f26f7f;
+    --shadow:#efd6df;
+}
+
+html{
+    scroll-behavior:smooth;
+}
+
+body{
+    min-height:100vh;
+    color:var(--text);
+    font-family:"Nunito",sans-serif;
+
+    background-color:#fff3f7;
+
+    background-image:
+        radial-gradient(#ffd9e6 1px,transparent 1px);
+
+    background-size:22px 22px;
+}
+
+button,
+input,
+textarea,
+select{
+    font:inherit;
+}
+
+button{
+    -webkit-tap-highlight-color:transparent;
+}
+
+
+/* =========================================================
+   NAV
+========================================================= */
+
+nav{
+    position:sticky;
+    top:0;
+    z-index:500;
+
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+
+    padding:12px 5%;
+
+    background:rgba(255,250,247,.92);
+    backdrop-filter:blur(15px);
+
+    border-bottom:2px dashed #f0c8d8;
+}
+
+.logo{
+    font-family:"Caveat",cursive;
+    font-size:2rem;
+    font-weight:700;
+    color:#df6093;
+}
+
+.nav-actions{
+    display:flex;
+    gap:7px;
+    flex-wrap:wrap;
+    justify-content:flex-end;
+}
+
+.nav-btn{
+    border:2px solid #f1bfd2;
+    background:white;
+    color:#d65e91;
+
+    padding:8px 14px;
+
+    border-radius:25px;
+
+    font-weight:800;
+
+    cursor:pointer;
+
+    transition:.2s;
+}
+
+.nav-btn:hover{
+    background:#fff0f5;
+    transform:translateY(-2px);
+}
+
+
+/* =========================================================
+   HERO
+========================================================= */
+
+.hero{
+    max-width:1050px;
+    margin:auto;
+
+    text-align:center;
+
+    padding:85px 20px 60px;
+
+    position:relative;
+}
+
+.hero-small{
+    font-family:"Caveat",cursive;
+    font-size:1.6rem;
+    color:#c77f9f;
+}
+
+.hero h1{
+    font-family:"Caveat",cursive;
+
+    font-size:clamp(4.2rem,11vw,8rem);
+
+    line-height:.8;
+
+    color:#e75e96;
+
+    transform:rotate(-2deg);
+}
+
+.hero h1 span{
+    color:#9c85e7;
+}
+
+.hero p{
+    max-width:680px;
+
+    margin:35px auto 25px;
+
+    color:var(--muted);
+
+    line-height:1.8;
+}
+
+.primary{
+    border:none;
+
+    background:var(--pink);
+    color:white;
+
+    padding:14px 25px;
+
+    border-radius:30px;
+
+    font-weight:900;
+
+    cursor:pointer;
+
+    box-shadow:0 7px 0 var(--pink-dark);
+
+    transition:.15s;
+}
+
+.primary:hover{
+    filter:brightness(1.03);
+    transform:translateY(-2px);
+}
+
+.primary:active{
+    transform:translateY(5px);
+    box-shadow:0 2px 0 var(--pink-dark);
+}
+
+
+/* =========================================================
+   STATUS
+========================================================= */
+
+.status-card{
+    max-width:850px;
+
+    margin:20px auto 0;
+
+    background:rgba(255,255,255,.8);
+
+    border:2px solid #f1d5df;
+
+    border-radius:22px;
+
+    padding:13px 18px;
+
+    display:flex;
+
+    justify-content:space-between;
+    align-items:center;
+
+    gap:10px;
+}
+
+.status-online{
+    color:var(--green);
+    font-weight:800;
+}
+
+
+/* =========================================================
+   SECTION
+========================================================= */
+
+.section{
+    max-width:1100px;
+    margin:auto;
+    padding:65px 18px;
+}
+
+.section-title{
+    text-align:center;
+    margin-bottom:30px;
+}
+
+.section-title h2{
+    font-family:"Caveat",cursive;
+
+    color:#d85f91;
+
+    font-size:3.2rem;
+}
+
+.section-title p{
+    color:var(--muted);
+}
+
+
+/* =========================================================
+   CHAT
+========================================================= */
+
+.chat-paper{
+    background:var(--paper);
+
+    border:2px solid #f0ccd9;
+
+    border-radius:28px;
+
+    padding:22px;
+
+    box-shadow:8px 10px 0 var(--shadow);
+
+    position:relative;
+}
+
+.chat-top{
+    display:flex;
+
+    justify-content:space-between;
+    align-items:center;
+
+    gap:10px;
+
+    padding-bottom:15px;
+
+    border-bottom:2px dashed #efd1dd;
+}
+
+.chat-title{
+    font-family:"Caveat",cursive;
+
+    font-size:2.5rem;
+
+    color:#d65e91;
+}
+
+.people{
+    display:flex;
+
+    gap:8px;
+
+    flex-wrap:wrap;
+
+    margin-top:15px;
+}
+
+.person{
+    background:#fff0f5;
+
+    border:1px solid #f3ccd9;
+
+    padding:7px 11px;
+
+    border-radius:20px;
+
+    font-size:.82rem;
+}
+
+.dot{
+    display:inline-block;
+
+    width:8px;
+    height:8px;
+
+    border-radius:50%;
+
+    background:#65c18b;
+
+    margin-right:4px;
+}
+
+.dot.offline{
+    background:#c5b8bf;
+}
+
+.chat-messages{
+    height:420px;
+
+    overflow-y:auto;
+
+    padding:20px 4px;
+
+    display:flex;
+
+    flex-direction:column;
+
+    gap:10px;
+}
+
+.msg{
+    max-width:78%;
+
+    padding:10px 14px;
+
+    border-radius:18px;
+
+    line-height:1.5;
+
+    word-break:break-word;
+}
+
+.msg.me{
+    align-self:flex-end;
+
+    background:#ffd5e4;
+
+    border-bottom-right-radius:4px;
+}
+
+.msg.other{
+    align-self:flex-start;
+
+    background:#eee8ff;
+
+    border-bottom-left-radius:4px;
+}
+
+.msg.system{
+    align-self:center;
+
+    background:#fff0c8;
+
+    color:#856d3f;
+
+    max-width:90%;
+
+    text-align:center;
+}
+
+.msg-name{
+    font-size:.72rem;
+
+    font-weight:900;
+
+    color:#927080;
+
+    margin-bottom:3px;
+}
+
+.msg-time{
+    font-size:.63rem;
+
+    color:#ad9ca5;
+
+    margin-top:3px;
+
+    text-align:right;
+}
+
+.chat-bottom{
+    display:flex;
+
+    gap:8px;
+
+    border-top:2px dashed #efd1dd;
+
+    padding-top:14px;
+}
+
+.chat-input{
+    flex:1;
+
+    border:2px solid #efd2df;
+
+    background:white;
+
+    padding:13px 15px;
+
+    border-radius:22px;
+
+    outline:none;
+
+    font-family:"Nunito";
+}
+
+.chat-input:focus{
+    border-color:#ff9fc2;
+}
+
+.send{
+    width:48px;
+    min-width:48px;
+
+    border:none;
+
+    border-radius:50%;
+
+    background:#ff86b2;
+
+    color:white;
+
+    font-size:1.1rem;
+
+    cursor:pointer;
+}
+
+.typing{
+    height:20px;
+
+    font-size:.75rem;
+
+    color:#a08c98;
+
+    padding-top:3px;
+}
+
+.empty-chat{
+    text-align:center;
+
+    color:#ad9ca5;
+
+    padding:50px 20px;
+
+    font-family:"Caveat",cursive;
+
+    font-size:1.6rem;
+}
+
+
+/* =========================================================
+   WATCH
+========================================================= */
+
+.watch-box{
+    background:var(--paper);
+
+    border:2px solid #f0ccd9;
+
+    border-radius:28px;
+
+    padding:22px;
+
+    box-shadow:8px 10px 0 var(--shadow);
+}
+
+.watch-input{
+    width:100%;
+
+    border:2px solid #efd1df;
+
+    padding:13px;
+
+    border-radius:18px;
+
+    outline:none;
+
+    font-family:"Nunito";
+}
+
+.watch-input:focus{
+    border-color:#ff9fc2;
+}
+
+.watch-actions{
+    display:flex;
+
+    gap:8px;
+
+    margin-top:8px;
+}
+
+.watch-actions button{
+    flex:1;
+}
+
+.player-wrap{
+    margin-top:18px;
+
+    width:100%;
+
+    aspect-ratio:16/9;
+
+    background:#211b27;
+
+    border-radius:20px;
+
+    overflow:hidden;
+}
+
+#player{
+    width:100%;
+    height:100%;
+}
+
+.watch-status{
+    text-align:center;
+
+    color:#9b8993;
+
+    margin-top:10px;
+
+    font-size:.85rem;
+}
+
+
+/* =========================================================
+   GAMES
+========================================================= */
+
+.games{
+    display:grid;
+
+    grid-template-columns:repeat(4,1fr);
+
+    gap:16px;
+}
+
+.game{
+    background:rgba(255,255,255,.9);
+
+    border:2px solid #f2d2df;
+
+    border-radius:25px;
+
+    padding:22px;
+
+    cursor:pointer;
+
+    transition:.2s;
+}
+
+.game:hover{
+    transform:translateY(-6px) rotate(0deg);
+
+    border-color:#eca6c1;
+}
+
+.game:nth-child(odd){
+    transform:rotate(-1deg);
+}
+
+.game:nth-child(even){
+    transform:rotate(1deg);
+}
+
+.icon{
+    font-size:2.3rem;
+}
+
+.game h3{
+    font-family:"Caveat",cursive;
+
+    font-size:1.8rem;
+
+    color:#635060;
+}
+
+.game p{
+    color:#968590;
+
+    font-size:.85rem;
+
+    line-height:1.5;
+}
+
+
+/* =========================================================
+   MODAL
+========================================================= */
+
+.modal{
+    position:fixed;
+
+    inset:0;
+
+    z-index:1000;
+
+    display:none;
+
+    justify-content:center;
+    align-items:center;
+
+    padding:18px;
+
+    background:rgba(65,48,60,.5);
+
+    backdrop-filter:blur(7px);
+}
+
+.modal.show{
+    display:flex;
+}
+
+.modal-box{
+    width:min(650px,100%);
+
+    max-height:90vh;
+
+    overflow-y:auto;
+
+    background:#fffdf9;
+
+    border:3px solid #f0c8d8;
+
+    border-radius:28px;
+
+    padding:25px;
+
+    box-shadow:9px 11px 0 #e8cbd7;
+
+    position:relative;
+}
+
+.close{
+    position:absolute;
+
+    top:10px;
+    right:12px;
+
+    width:36px;
+    height:36px;
+
+    border:none;
+
+    border-radius:50%;
+
+    background:#ffe1eb;
+
+    color:#d25d8d;
+
+    font-size:1.3rem;
+
+    cursor:pointer;
+}
+
+.modal h2{
+    font-family:"Caveat",cursive;
+
+    color:#d85e91;
+
+    font-size:2.8rem;
+
+    padding-right:40px;
+}
+
+.modal p{
+    color:#968590;
+}
+
+.modal input,
+.modal textarea,
+.modal select{
+    width:100%;
+
+    border:2px solid #efd1df;
+
+    padding:12px;
+
+    border-radius:15px;
+
+    outline:none;
+
+    margin:8px 0;
+
+    font-family:"Nunito";
+}
+
+.modal textarea{
+    min-height:100px;
+
+    resize:vertical;
+}
+
+.modal input:focus,
+.modal textarea:focus{
+    border-color:#ff9fc2;
+}
+
+.result{
+    display:none;
+
+    background:#fff0f5;
+
+    border:2px dashed #efb4cb;
+
+    border-radius:20px;
+
+    padding:18px;
+
+    margin-top:15px;
+
+    text-align:center;
+}
+
+.result.show{
+    display:block;
+}
+
+
+/* =========================================================
+   ADMIN
+========================================================= */
+
+.admin-box{
+    display:none;
+
+    background:#fff;
+
+    border:2px solid #e8cdd8;
+
+    border-radius:24px;
+
+    padding:20px;
+
+    margin-top:25px;
+}
+
+.admin-box.show{
+    display:block;
+}
+
+.admin-grid{
+    display:grid;
+
+    grid-template-columns:repeat(2,1fr);
+
+    gap:10px;
+}
+
+.admin-btn{
+    border:none;
+
+    background:#eee7ff;
+
+    color:#62528e;
+
+    padding:12px;
+
+    border-radius:14px;
+
+    font-weight:800;
+
+    cursor:pointer;
+}
+
+.admin-btn.danger{
+    background:#ffe0e5;
+
+    color:#b84e60;
+}
+
+.member-row{
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+    gap:10px;
+
+    padding:9px 0;
+
+    border-bottom:1px dashed #ead5dd;
+}
+
+.small-btn{
+    border:none;
+
+    background:#ffe4ed;
+
+    color:#c1547e;
+
+    border-radius:10px;
+
+    padding:6px 9px;
+
+    cursor:pointer;
+}
+
+
+/* =========================================================
+   SCORE
+========================================================= */
+
+.score-circle{
+    width:160px;
+    height:160px;
+
+    margin:20px auto;
+
+    border-radius:50%;
+
+    display:flex;
+
+    justify-content:center;
+    align-items:center;
+
+    background:
+        radial-gradient(circle,#fff 57%,transparent 58%),
+        conic-gradient(
+            #ff88b4 0deg,
+            #a590ed 250deg,
+            #eadfe5 250deg
+        );
+
+    font-family:"Caveat";
+
+    font-size:3rem;
+
+    color:#d65d90;
+}
+
+
+/* =========================================================
+   DON'T CLICK
+========================================================= */
+
+.big-button{
+    display:block;
+
+    margin:20px auto;
+
+    width:190px;
+    height:190px;
+
+    border-radius:50%;
+
+    border:10px solid #ffe0eb;
+
+    background:#ff719d;
+
+    color:white;
+
+    font-family:"Caveat";
+
+    font-size:2rem;
+
+    box-shadow:0 10px 0 #d75d87;
+
+    cursor:pointer;
+}
+
+.big-button:active{
+    transform:translateY(8px);
+
+    box-shadow:0 2px 0 #d75d87;
+}
+
+
+/* =========================================================
+   TOAST
+========================================================= */
+
+.toast{
+    position:fixed;
+
+    left:50%;
+
+    bottom:25px;
+
+    transform:translate(-50%,120px);
+
+    z-index:3000;
+
+    background:#4c3c48;
+
+    color:white;
+
+    padding:12px 18px;
+
+    border-radius:30px;
+
+    opacity:0;
+
+    transition:.3s;
+
+    pointer-events:none;
+
+    text-align:center;
+
+    max-width:90%;
+}
+
+.toast.show{
+    transform:translate(-50%,0);
+
+    opacity:1;
+}
+
+
+/* =========================================================
+   FOOTER
+========================================================= */
+
+footer{
+    text-align:center;
+
+    padding:50px 15px;
+
+    font-family:"Caveat";
+
+    font-size:1.5rem;
+
+    color:#9c8792;
+}
+
+
+/* =========================================================
+   MOBILE
+========================================================= */
+
+@media(max-width:850px){
+
+    .games{
+        grid-template-columns:repeat(2,1fr);
+    }
+
+}
+
+@media(max-width:600px){
+
+    nav{
+        align-items:flex-start;
+    }
+
+    .logo{
+        font-size:1.6rem;
+    }
+
+    .nav-actions{
+        max-width:190px;
+    }
+
+    .nav-btn{
+        padding:6px 9px;
+
+        font-size:.75rem;
+    }
+
+    .hero{
+        padding-top:65px;
+    }
+
+    .hero h1{
+        font-size:4.5rem;
+    }
+
+    .games{
+        grid-template-columns:1fr;
+    }
+
+    .msg{
+        max-width:88%;
+    }
+
+    .chat-messages{
+        height:370px;
+    }
+
+    .admin-grid{
+        grid-template-columns:1fr;
+    }
+
+    .status-card{
+        flex-direction:column;
+        text-align:center;
+    }
+
+    .watch-actions{
+        flex-direction:column;
+    }
+
+    .chat-bottom{
+        align-items:center;
+    }
+
+}
+
+</style>
+
+</head>
+
+
+<body>
+
+
+<!-- =========================================================
+     NAV
+========================================================= -->
+
+<nav>
+
+    <div class="logo">
+        ♡ our little corner
+    </div>
+
+    <div class="nav-actions">
+
+        <button
+            class="nav-btn"
+            onclick="go('chat')">
+
+            💌 Chat
+
+        </button>
+
+        <button
+            class="nav-btn"
+            onclick="go('watch')">
+
+            🎬 Watch
+
+        </button>
+
+        <button
+            class="nav-btn"
+            onclick="openHost()">
+
+            👑 Host
+
+        </button>
+
+    </div>
+
+</nav>
+
+
+<!-- =========================================================
+     HERO
+========================================================= -->
+
+<section class="hero">
+
+    <div class="hero-small">
+        welcome to our tiny internet home ♡
+    </div>
+
+    <h1>
+        our little<br>
+        <span>corner</span> ♡
+    </h1>
+
+    <p>
+        A cute little place for you and your
+        friends to chat, watch videos together,
+        play silly games and make memories. 🌷
+    </p>
+
+    <button
+        class="primary"
+        onclick="go('chat')">
+
+        come inside ♡
+
+    </button>
+
+
+    <div class="status-card">
+
+        <div>
+            👋 <strong id="welcomeName">
+                friend
+            </strong>
+        </div>
+
+        <div class="status-online">
+            ● <span id="onlineCount">0</span>
+            friends online
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =========================================================
+     CHAT
+========================================================= -->
+
+<section
+    class="section"
+    id="chat">
+
+    <div class="section-title">
+
+        <h2>
+            💌 little chat room
+        </h2>
+
+        <p>
+            say something silly to everyone ♡
+        </p>
+
+    </div>
+
+
+    <div class="chat-paper">
+
+        <div class="chat-top">
+
+            <div class="chat-title">
+                our tiny chat
+            </div>
+
+            <div>
+                🟢 live
+            </div>
+
+        </div>
+
+
+        <div
+            class="people"
+            id="people">
+        </div>
+
+
+        <div
+            class="chat-messages"
+            id="messages">
+
+            <div class="msg system">
+
+                🌷 Welcome to our little corner ♡
+
+            </div>
+
+        </div>
+
+
+        <div
+            class="typing"
+            id="typing">
+        </div>
+
+
+        <div class="chat-bottom">
+
+            <input
+                class="chat-input"
+                id="messageInput"
+                placeholder="write something... 💕"
+                autocomplete="off"
+                maxlength="500">
+
+            <button
+                class="send"
+                id="sendButton"
+                onclick="sendMessage()">
+
+                ➤
+
+            </button>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =========================================================
+     WATCH TOGETHER
+========================================================= -->
+
+<section
+    class="section"
+    id="watch">
+
+    <div class="section-title">
+
+        <h2>
+            🎬 watch together
+        </h2>
+
+        <p>
+            one video — everyone watches together 🍿
+        </p>
+
+    </div>
+
+
+    <div class="watch-box">
+
+        <input
+            class="watch-input"
+            id="youtubeInput"
+            placeholder="Paste YouTube link here..."
+            autocomplete="off">
+
+
+        <div class="watch-actions">
+
+            <button
+                class="primary"
+                onclick="loadVideo()">
+
+                🎬 Load Video
+
+            </button>
+
+            <button
+                class="primary"
+                onclick="syncNow()">
+
+                🔄 Sync Me
+
+            </button>
+
+        </div>
+
+
+        <div class="player-wrap">
+
+            <div id="player"></div>
+
+        </div>
+
+
+        <div
+            class="watch-status"
+            id="watchStatus">
+
+            Waiting for a video... ♡
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =========================================================
+     GAMES
+========================================================= -->
+
+<section
+    class="section"
+    id="games">
+
+    <div class="section-title">
+
+        <h2>
+            🎀 little games
+        </h2>
+
+        <p>
+            friendship becomes dangerous here 😂
+        </p>
+
+    </div>
+
+
+    <div class="games">
+
+
+        <div class="game" onclick="game('prank')">
+
+            <div class="icon">😈</div>
+
+            <h3>Prank</h3>
+
+            <p>
+                harmless fake results.
+            </p>
+
+        </div>
+
+
+        <div class="game" onclick="game('roast')">
+
+            <div class="icon">🔥</div>
+
+            <h3>Roast</h3>
+
+            <p>
+                cute but savage.
+            </p>
+
+        </div>
+
+
+        <div class="game" onclick="game('truth')">
+
+            <div class="icon">🎲</div>
+
+            <h3>Truth or Dare</h3>
+
+            <p>
+                choose your fate.
+            </p>
+
+        </div>
+
+
+        <div class="game" onclick="game('score')">
+
+            <div class="icon">❤️</div>
+
+            <h3>Friendship Score</h3>
+
+            <p>
+                100% fake science.
+            </p>
+
+        </div>
+
+
+        <div class="game" onclick="game('quiz')">
+
+            <div class="icon">🧠</div>
+
+            <h3>Who Knows Me?</h3>
+
+            <p>
+                test your bestie.
+            </p>
+
+        </div>
+
+
+        <div class="game" onclick="game('hack')">
+
+            <div class="icon">💻</div>
+
+            <h3>Fake Hacker</h3>
+
+            <p>
+                scary looking. harmless.
+            </p>
+
+        </div>
+
+
+        <div class="game" onclick="game('guess')">
+
+            <div class="icon">👀</div>
+
+            <h3>Guess Friend</h3>
+
+            <p>
+                give a mysterious clue.
+            </p>
+
+        </div>
+
+
+        <div class="game" onclick="game('nothing')">
+
+            <div class="icon">😂</div>
+
+            <h3>Don't Click</h3>
+
+            <p>
+                seriously don't.
+            </p>
+
+        </div>
+
+
+    </div>
+
+</section>
+
+
+<!-- =========================================================
+     HOST PANEL
+========================================================= -->
+
+<section class="section">
+
+    <div
+        class="admin-box"
+        id="hostPanel">
+
+        <h2 style="
+            font-family:Caveat;
+            font-size:2.6rem;
+            color:#d85f91;
+        ">
+            👑 host control
+        </h2>
+
+        <p>
+            You are the host. Control your little corner.
+        </p>
+
+        <br>
+
+        <div class="admin-grid">
+
+            <button
+                class="admin-btn"
+                onclick="announcement()">
+
+                📢 Announcement
+
+            </button>
+
+            <button
+                class="admin-btn danger"
+                onclick="clearChat()">
+
+                🧹 Clear Chat
+
+            </button>
+
+        </div>
+
+        <br>
+
+        <h3>
+            👥 Friends in room
+        </h3>
+
+        <div id="memberList">
+        </div>
+
+    </div>
+
+</section>
+
+
+<footer>
+
+    made with love, chaos & friendship ♡
+
+</footer>
+
+
+<!-- =========================================================
+     MODAL
+========================================================= -->
+
+<div
+    class="modal"
+    id="modal">
+
+    <div class="modal-box">
+
+        <button
+            class="close"
+            onclick="closeModal()">
+
+            ×
+
+        </button>
+
+        <div id="modalContent"></div>
+
+    </div>
+
+</div>
+
+
+<div
+    class="toast"
+    id="toast">
+</div>
+
+
+<!-- =========================================================
+     FIREBASE
+========================================================= -->
+
+<script type="module">
+
+import {
+    initializeApp
+}
+from
+"https://www.gstatic.com/firebasejs/12.1.0/firebase-app.js";
+
+
+import {
+    getDatabase,
+    ref,
+    push,
+    set,
+    update,
+    remove,
+    onValue,
+    onDisconnect,
+    serverTimestamp,
+    query,
+    orderByChild,
+    limitToLast
+}
+from
+"https://www.gstatic.com/firebasejs/12.1.0/firebase-database.js";
+
+
+import {
+    getAuth,
+    signInAnonymously,
+    onAuthStateChanged
+}
+from
+"https://www.gstatic.com/firebasejs/12.1.0/firebase-auth.js";
+
+
+/* =========================================================
+   🔴 FIREBASE CONFIG
+   নিজের Firebase config এখানে বসাও
+========================================================= */
+
+const firebaseConfig = {
+
+    apiKey:
+        "PASTE_API_KEY",
+
+    authDomain:
+        "PASTE_AUTH_DOMAIN",
+
+    databaseURL:
+        "PASTE_DATABASE_URL",
+
+    projectId:
+        "PASTE_PROJECT_ID",
+
+    storageBucket:
+        "PASTE_STORAGE_BUCKET",
+
+    messagingSenderId:
+        "PASTE_MESSAGING_SENDER_ID",
+
+    appId:
+        "PASTE_APP_ID"
+
+};
+
+
+/* =========================================================
+   FIREBASE START
+========================================================= */
+
+let firebaseStarted = false;
+
+let app;
+let db;
+let auth;
+
+try{
+
+    app =
+        initializeApp(
+            firebaseConfig
+        );
+
+    db =
+        getDatabase(app);
+
+    auth =
+        getAuth(app);
+
+    firebaseStarted = true;
+
+}
+
+catch(error){
+
+    console.error(
+        "Firebase initialization error:",
+        error
+    );
+
+    showToast(
+        "Firebase config ঠিক করে বসাও 💕"
+    );
+
+}
+
+
+/* =========================================================
+   USER NAME
+========================================================= */
+
+let myName =
+    localStorage.getItem(
+        "friendName"
+    );
+
+
+if(!myName){
+
+    myName =
+        prompt(
+            "তোমার নাম কী? 💕"
+        ) ||
+        "Anonymous";
+
+    myName =
+        myName
+            .trim()
+            .slice(0,30) ||
+        "Anonymous";
+
+    localStorage.setItem(
+        "friendName",
+        myName
+    );
+
+}
+
+
+document
+    .getElementById("welcomeName")
+    .textContent =
+    myName;
+
+
+/* =========================================================
+   GLOBAL FIREBASE VARIABLES
+========================================================= */
+
+let uid = null;
+
+let messagesRef = null;
+let usersRef = null;
+let watchRef = null;
+let settingsRef = null;
+
+
+/* =========================================================
+   AUTH
+========================================================= */
+
+if(firebaseStarted){
+
+    signInAnonymously(auth)
+    .then(function(){
+
+        console.log(
+            "Anonymous Firebase login started."
+        );
+
+    })
+    .catch(function(error){
+
+        console.error(error);
+
+        showToast(
+            "Firebase Anonymous Login enable করো 💕"
+        );
+
+    });
+
+
+    onAuthStateChanged(
+        auth,
+        function(user){
+
+            if(!user){
+
+                return;
+
+            }
+
+
+            uid =
+                user.uid;
+
+
+            messagesRef =
+                query(
+                    ref(
+                        db,
+                        "friendsHub/messages"
+                    ),
+                    orderByChild("time"),
+                    limitToLast(100)
+                );
+
+
+            usersRef =
+                ref(
+                    db,
+                    "friendsHub/users"
+                );
+
+
+            watchRef =
+                ref(
+                    db,
+                    "friendsHub/watch"
+                );
+
+
+            settingsRef =
+                ref(
+                    db,
+                    "friendsHub/settings"
+                );
+
+
+            setupPresence();
+
+            listenMessages();
+
+            listenUsers();
+
+            listenWatch();
+
+            listenSettings();
+
+        }
+    );
+
+}
+
+
+/* =========================================================
+   PRESENCE
+========================================================= */
+
+function setupPresence(){
+
+    if(!uid){
+
+        return;
+
+    }
+
+
+    const myUserRef =
+        ref(
+            db,
+            "friendsHub/users/" +
+            uid
+        );
+
+
+    set(
+        myUserRef,
+        {
+
+            name:
+                myName,
+
+            online:
+                true,
+
+            joinedAt:
+                serverTimestamp(),
+
+            lastSeen:
+                serverTimestamp()
+
+        }
+    )
+    .catch(function(error){
+
+        console.error(
+            "Presence error:",
+            error
+        );
+
+    });
+
+
+    onDisconnect(
+        myUserRef
+    )
+    .update({
+
+        online:false,
+
+        lastSeen:
+            serverTimestamp()
+
+    });
+
+}
+
+
+/* =========================================================
+   USERS
+========================================================= */
+
+function listenUsers(){
+
+    onValue(
+        usersRef,
+        function(snapshot){
+
+            const people =
+                document.getElementById(
+                    "people"
+                );
+
+
+            const memberList =
+                document.getElementById(
+                    "memberList"
+                );
+
+
+            people.innerHTML = "";
+
+            memberList.innerHTML = "";
+
+
+            let count = 0;
+
+
+            snapshot.forEach(
+                function(child){
+
+                    const user =
+                        child.val() || {};
+
+
+                    if(
+                        user.online === true
+                    ){
+
+                        count++;
+
+                    }
+
+
+                    const pill =
+                        document.createElement(
+                            "div"
+                        );
+
+
+                    pill.className =
+                        "person";
+
+
+                    const dot =
+                        document.createElement(
+                            "span"
+                        );
+
+
+                    dot.className =
+                        "dot " +
+                        (
+                            user.online
+                            ? ""
+                            : "offline"
+                        );
+
+
+                    pill.appendChild(
+                        dot
+                    );
+
+
+                    const name =
+                        document.createTextNode(
+                            user.name ||
+                            "Anonymous"
+                        );
+
+
+                    pill.appendChild(
+                        name
+                    );
+
+
+                    people.appendChild(
+                        pill
+                    );
+
+
+                    const row =
+                        document.createElement(
+                            "div"
+                        );
+
+
+                    row.className =
+                        "member-row";
+
+
+                    const left =
+                        document.createElement(
+                            "span"
+                        );
+
+
+                    left.textContent =
+                        (
+                            user.online
+                            ? "🟢 "
+                            : "⚪ "
+                        ) +
+                        (
+                            user.name ||
+                            "Anonymous"
+                        );
+
+
+                    const right =
+                        document.createElement(
+                            "span"
+                        );
+
+
+                    right.textContent =
+                        user.online
+                        ? "online"
+                        : "offline";
+
+
+                    row.appendChild(left);
+
+                    row.appendChild(right);
+
+                    memberList.appendChild(
+                        row
+                    );
+
+                }
+            );
+
+
+            document
+                .getElementById(
+                    "onlineCount"
+                )
+                .textContent =
+                count;
+
+        },
+        function(error){
+
+            console.error(
+                "Users listener error:",
+                error
+            );
+
+        }
+    );
+
+}
+
+
+/* =========================================================
+   SEND MESSAGE
+========================================================= */
+
+window.sendMessage =
+function(){
+
+    if(!uid){
+
+        showToast(
+            "Chat connect হচ্ছে... একটু অপেক্ষা করো ♡"
+        );
+
+        return;
+
+    }
+
+
+    const input =
+        document.getElementById(
+            "messageInput"
+        );
+
+
+    const text =
+        input.value.trim();
+
+
+    if(!text){
+
+        return;
+
+    }
+
+
+    if(text.length > 500){
+
+        showToast(
+            "Message 500 characters-এর মধ্যে রাখো."
+        );
+
+        return;
+
+    }
+
+
+    const messagesRoot =
+        ref(
+            db,
+            "friendsHub/messages"
+        );
+
+
+    push(
+        messagesRoot,
+        {
+
+            uid:
+                uid,
+
+            name:
+                myName,
+
+            text:
+                text,
+
+            time:
+                serverTimestamp(),
+
+            type:
+                "message"
+
+        }
+    )
+    .then(function(){
+
+        input.value = "";
+
+    })
+    .catch(function(error){
+
+        console.error(
+            "Message error:",
+            error
+        );
+
+        showToast(
+            "Message send হয়নি. Firebase Rules check করো."
+        );
+
+    });
+
+};
+
+
+/* =========================================================
+   ENTER SEND
+========================================================= */
+
+document
+    .getElementById("messageInput")
+    .addEventListener(
+        "keydown",
+        function(event){
+
+            if(
+                event.key === "Enter" &&
+                !event.shiftKey
+            ){
+
+                event.preventDefault();
+
+                sendMessage();
+
+            }
+
+        }
+    );
+
+
+/* =========================================================
+   LISTEN MESSAGES
+========================================================= */
+
+function listenMessages(){
+
+    onValue(
+        messagesRef,
+        function(snapshot){
+
+            const box =
+                document.getElementById(
+                    "messages"
+                );
+
+
+            box.innerHTML = "";
+
+
+            if(!snapshot.exists()){
+
+                const empty =
+                    document.createElement(
+                        "div"
+                    );
+
+
+                empty.className =
+                    "empty-chat";
+
+
+                empty.textContent =
+                    "No messages yet... be the first one ♡";
+
+
+                box.appendChild(
+                    empty
+                );
+
+                return;
+
+            }
+
+
+            snapshot.forEach(
+                function(child){
+
+                    const data =
+                        child.val() || {};
+
+
+                    const div =
+                        document.createElement(
+                            "div"
+                        );
+
+
+                    if(
+                        data.type === "announcement" ||
+                        data.uid === "HOST"
+                    ){
+
+                        div.className =
+                            "msg system";
+
+                    }
+
+                    else{
+
+                        div.className =
+                            "msg " +
+                            (
+                                data.uid === uid
+                                ? "me"
+                                : "other"
+                            );
+
+                    }
+
+
+                    const name =
+                        document.createElement(
+                            "div"
+                        );
+
+
+                    name.className =
+                        "msg-name";
+
+
+                    name.textContent =
+                        data.uid === uid
+                        ? "You"
+                        : (
+                            data.name ||
+                            "Anonymous"
+                        );
+
+
+                    const text =
+                        document.createElement(
+                            "div"
+                        );
+
+
+                    text.textContent =
+                        data.text ||
+                        "";
+
+
+                    const time =
+                        document.createElement(
+                            "div"
+                        );
+
+
+                    time.className =
+                        "msg-time";
+
+
+                    let messageTime =
+                        "now";
+
+
+                    if(
+                        typeof data.time ===
+                        "number"
+                    ){
+
+                        messageTime =
+                            new Date(
+                                data.time
+                            ).toLocaleTimeString(
+                                [],
+                                {
+                                    hour:"2-digit",
+                                    minute:"2-digit"
+                                }
+                            );
+
+                    }
+
+
+                    time.textContent =
+                        messageTime;
+
+
+                    div.appendChild(
+                        name
+                    );
+
+                    div.appendChild(
+                        text
+                    );
+
+                    div.appendChild(
+                        time
+                    );
+
+
+                    box.appendChild(
+                        div
+                    );
+
+                }
+            );
+
+
+            box.scrollTop =
+                box.scrollHeight;
+
+        },
+        function(error){
+
+            console.error(
+                "Message listener error:",
+                error
+            );
+
+            showToast(
+                "Chat read করা যাচ্ছে না. Database Rules check করো."
+            );
+
+        }
+    );
+
+}
+
+
+/* =========================================================
+   HOST
+========================================================= */
+
+/*
+   IMPORTANT:
+   এই PIN frontend-এ আছে।
+   এটি high-security admin authentication নয়।
+*/
+
+const HOST_PIN =
+    "BESTIES2026";
+
+
+let isHost =
+    sessionStorage.getItem(
+        "isHost"
+    ) === "true";
+
+
+window.openHost =
+function(){
+
+    if(isHost){
+
+        showHost();
+
+        return;
+
+    }
+
+
+    const pin =
+        prompt(
+            "👑 Host PIN:"
+        );
+
+
+    if(
+        pin === HOST_PIN
+    ){
+
+        isHost = true;
+
+        sessionStorage.setItem(
+            "isHost",
+            "true"
+        );
+
+
+        showHost();
+
+        showToast(
+            "Welcome, Host 👑"
+        );
+
+    }
+
+    else{
+
+        showToast(
+            "Wrong host PIN 😭"
+        );
+
+    }
+
+};
+
+
+function showHost(){
+
+    const panel =
+        document.getElementById(
+            "hostPanel"
+        );
+
+
+    panel.classList.add(
+        "show"
+    );
+
+
+    panel.scrollIntoView({
+        behavior:"smooth"
+    });
+
+}
+
+
+/* =========================================================
+   ANNOUNCEMENT
+========================================================= */
+
+window.announcement =
+function(){
+
+    if(!isHost){
+
+        return;
+
+    }
+
+
+    if(!uid){
+
+        showToast(
+            "Firebase connect হয়নি."
+        );
+
+        return;
+
+    }
+
+
+    const text =
+        prompt(
+            "📢 Announcement লিখো:"
+        );
+
+
+    if(!text){
+
+        return;
+
+    }
+
+
+    const cleanText =
+        text
+            .trim()
+            .slice(0,500);
+
+
+    if(!cleanText){
+
+        return;
+
+    }
+
+
+    push(
+        ref(
+            db,
+            "friendsHub/messages"
+        ),
+        {
+
+            uid:
+                "HOST",
+
+            name:
+                "👑 HOST",
+
+            text:
+                "📢 " + cleanText,
+
+            time:
+                serverTimestamp(),
+
+            type:
+                "announcement"
+
+        }
+    )
+    .catch(function(error){
+
+        console.error(error);
+
+        showToast(
+            "Announcement send হয়নি."
+        );
+
+    });
+
+
+    update(
+        ref(
+            db,
+            "friendsHub/settings"
+        ),
+        {
+
+            announcement:
+                cleanText,
+
+            updatedAt:
+                serverTimestamp()
+
+        }
+    );
+
+};
+
+
+/* =========================================================
+   CLEAR CHAT
+========================================================= */
+
+window.clearChat =
+function(){
+
+    if(!isHost){
+
+        return;
+
+    }
+
+
+    const ok =
+        confirm(
+            "সব chat message delete করতে চাও?"
+        );
+
+
+    if(!ok){
+
+        return;
+
+    }
+
+
+    remove(
+        ref(
+            db,
+            "friendsHub/messages"
+        )
+    )
+    .then(function(){
+
+        showToast(
+            "Chat cleared 🧹"
+        );
+
+    })
+    .catch(function(error){
+
+        console.error(error);
+
+        showToast(
+            "Chat clear হয়নি."
+        );
+
+    });
+
+};
+
+
+/* =========================================================
+   WATCH TOGETHER
+========================================================= */
+
+let player = null;
+
+let currentVideo = null;
+
+let youtubeReady = false;
+
+let playerCreating = false;
+
+let remoteAction = false;
+
+let lastRemoteUpdate = 0;
+
+
+/* =========================================================
+   YOUTUBE READY
+========================================================= */
+
+window.onYouTubeIframeAPIReady =
+function(){
+
+    youtubeReady = true;
+
+    console.log(
+        "YouTube API ready."
+    );
+
+};
+
+
+/* =========================================================
+   GET YOUTUBE VIDEO ID
+========================================================= */
+
+function getVideoID(url){
+
+    if(!url){
+
+        return null;
+
+    }
+
+
+    try{
+
+        const u =
+            new URL(
+                url
+            );
+
+
+        const host =
+            u.hostname
+                .toLowerCase()
+                .replace(
+                    "www.",
+                    ""
+                );
+
+
+        /* youtu.be */
+
+        if(
+            host === "youtu.be"
+        ){
+
+            const id =
+                u.pathname
+                    .split("/")
+                    .filter(Boolean)[0];
+
+
+            return cleanVideoID(id);
+
+        }
+
+
+        /* youtube.com */
+
+        if(
+            host === "youtube.com" ||
+            host === "m.youtube.com"
+        ){
+
+            const v =
+                u.searchParams.get(
+                    "v"
+                );
+
+
+            if(v){
+
+                return cleanVideoID(v);
+
+            }
+
+
+            const parts =
+                u.pathname
+                    .split("/")
+                    .filter(Boolean);
+
+
+            const index =
+                parts.indexOf(
+                    "shorts"
+                );
+
+
+            if(
+                index !== -1 &&
+                parts[index + 1]
+            ){
+
+                return cleanVideoID(
+                    parts[index + 1]
+                );
+
+            }
+
+
+            const embedIndex =
+                parts.indexOf(
+                    "embed"
+                );
+
+
+            if(
+                embedIndex !== -1 &&
+                parts[embedIndex + 1]
+            ){
+
+                return cleanVideoID(
+                    parts[embedIndex + 1]
+                );
+
+            }
+
+        }
+
+    }
+
+    catch(error){
+
+        return null;
+
+    }
+
+
+    return null;
+
+}
+
+
+function cleanVideoID(id){
+
+    if(!id){
+
+        return null;
+
+    }
+
+
+    const clean =
+        id
+            .trim()
+            .replace(
+                /[^a-zA-Z0-9_-]/g,
+                ""
+            );
+
+
+    if(
+        clean.length !== 11
+    ){
+
+        return null;
+
+    }
+
+
+    return clean;
+
+}
+
+
+/* =========================================================
+   LOAD VIDEO
+========================================================= */
+
+window.loadVideo =
+function(){
+
+    if(!uid){
+
+        showToast(
+            "Firebase connect হচ্ছে... একটু অপেক্ষা করো."
+        );
+
+        return;
+
+    }
+
+
+    const input =
+        document.getElementById(
+            "youtubeInput"
+        );
+
+
+    const id =
+        getVideoID(
+            input.value.trim()
+        );
+
+
+    if(!id){
+
+        showToast(
+            "Valid YouTube link দাও 😭"
+        );
+
+        return;
+
+    }
+
+
+    currentVideo =
+        id;
+
+
+    const watchData = {
+
+        videoId:
+            id,
+
+        time:
+            0,
+
+        state:
+            "pause",
+
+        by:
+            myName,
+
+        updatedAt:
+            Date.now()
+
+    };
+
+
+    set(
+        ref(
+            db,
+            "friendsHub/watch"
+        ),
+        watchData
+    )
+    .then(function(){
+
+        createPlayer(
+            id,
+            0,
+            false
+        );
+
+    })
+    .catch(function(error){
+
+        console.error(error);
+
+        showToast(
+            "Video sync হয়নি. Firebase Rules check করো."
+        );
+
+    });
+
+};
+
+
+/* =========================================================
+   CREATE YOUTUBE PLAYER
+========================================================= */
+
+function createPlayer(
+    videoId,
+    startTime,
+    autoPlay
+){
+
+    if(!youtubeReady){
+
+        setTimeout(
+            function(){
+
+                createPlayer(
+                    videoId,
+                    startTime,
+                    autoPlay
+                );
+
+            },
+            300
+        );
+
+        return;
+
+    }
+
+
+    if(playerCreating){
+
+        return;
+
+    }
+
+
+    if(player){
+
+        remoteAction = true;
+
+        player.loadVideoById({
+
+            videoId:
+                videoId,
+
+            startSeconds:
+                Number(
+                    startTime || 0
+                )
+
+        });
+
+
+        if(autoPlay){
+
+            player.playVideo();
+
+        }
+
+        else{
+
+            player.pauseVideo();
+
+        }
+
+
+        setTimeout(
+            function(){
+
+                remoteAction = false;
+
+            },
+            1200
+        );
+
+
+        return;
+
+    }
+
+
+    playerCreating = true;
+
+
+    player =
+        new YT.Player(
+            "player",
+            {
+
+                videoId:
+                    videoId,
+
+                playerVars:{
+
+                    controls:1,
+
+                    rel:0,
+
+                    modestbranding:1,
+
+                    playsinline:1
+
+                },
+
+                events:{
+
+                    onReady:function(){
+
+                        playerCreating =
+                            false;
+
+
+                        if(
+                            Number(
+                                startTime || 0
+                            ) > 0
+                        ){
+
+                            player.seekTo(
+                                Number(
+                                    startTime
+                                ),
+                                true
+                            );
+
+                        }
+
+
+                        if(autoPlay){
+
+                            player.playVideo();
+
+                        }
+
+                    },
+
+                    onStateChange:
+                        playerStateChanged,
+
+                    onError:function(event){
+
+                        console.error(
+                            "YouTube error:",
+                            event.data
+                        );
+
+                        document
+                            .getElementById(
+                                "watchStatus"
+                            )
+                            .textContent =
+                            "YouTube could not play this video ♡";
+
+                    }
+
+                }
+
+            }
+        );
+
+}
+
+
+/* =========================================================
+   PLAYER STATE CHANGE
+========================================================= */
+
+function playerStateChanged(event){
+
+    if(
+        remoteAction ||
+        !player ||
+        !currentVideo ||
+        !uid
+    ){
+
+        return;
+
+    }
+
+
+    let state =
+        "pause";
+
+
+    if(
+        event.data ===
+        YT.PlayerState.PLAYING
+    ){
+
+        state =
+            "play";
+
+    }
+
+    else if(
+        event.data ===
+        YT.PlayerState.PAUSED
+    ){
+
+        state =
+            "pause";
+
+    }
+
+    else if(
+        event.data ===
+        YT.PlayerState.ENDED
+    ){
+
+        state =
+            "ended";
+
+    }
+
+    else{
+
+        return;
+
+    }
+
+
+    const time =
+        player.getCurrentTime();
+
+
+    const now =
+        Date.now();
+
+
+    if(
+        now - lastRemoteUpdate <
+        500
+    ){
+
+        return;
+
+    }
+
+
+    update(
+        ref(
+            db,
+            "friendsHub/watch"
+        ),
+        {
+
+            videoId:
+                currentVideo,
+
+            time:
+                time,
+
+            state:
+                state,
+
+            by:
+                myName,
+
+            updatedAt:
+                now
+
+        }
+    );
+
+}
+
+
+/* =========================================================
+   WATCH LISTENER
+========================================================= */
+
+function listenWatch(){
+
+    onValue(
+        watchRef,
+        function(snapshot){
+
+            const data =
+                snapshot.val();
+
+
+            if(
+                !data ||
+                !data.videoId
+            ){
+
+                document
+                    .getElementById(
+                        "watchStatus"
+                    )
+                    .textContent =
+                    "Waiting for a video... ♡";
+
+                return;
+
+            }
+
+
+            currentVideo =
+                data.videoId;
+
+
+            const status =
+                document.getElementById(
+                    "watchStatus"
+                );
+
+
+            status.textContent =
+                `🎬 ${data.by || "Someone"} is controlling the room ♡`;
+
+
+            const remoteTime =
+                Number(
+                    data.time || 0
+                );
+
+
+            const shouldPlay =
+                data.state ===
+                "play";
+
+
+            /* No player */
+
+            if(!player){
+
+                lastRemoteUpdate =
+                    Date.now();
+
+                remoteAction =
+                    true;
+
+
+                createPlayer(
+                    data.videoId,
+                    remoteTime,
+                    shouldPlay
+                );
+
+
+                setTimeout(
+                    function(){
+
+                        remoteAction =
+                            false;
+
+                    },
+                    1500
+                );
+
+
+                return;
+
+            }
+
+
+            let playerVideoId = "";
+
+
+            try{
+
+                playerVideoId =
+                    player
+                        .getVideoData()
+                        .video_id || "";
+
+            }
+
+            catch(error){
+
+                playerVideoId = "";
+
+            }
+
+
+            /* Different video */
+
+            if(
+                playerVideoId !==
+                data.videoId
+            ){
+
+                lastRemoteUpdate =
+                    Date.now();
+
+                remoteAction =
+                    true;
+
+
+                createPlayer(
+                    data.videoId,
+                    remoteTime,
+                    shouldPlay
+                );
+
+
+                setTimeout(
+                    function(){
+
+                        remoteAction =
+                            false;
+
+                    },
+                    1500
+                );
+
+
+                return;
+
+            }
+
+
+            /* Same video */
+
+            const localTime =
+                player.getCurrentTime();
+
+
+            const difference =
+                Math.abs(
+                    localTime -
+                    remoteTime
+                );
+
+
+            /*
+               Only seek if difference is
+               bigger than 2 seconds.
+            */
+
+            remoteAction =
+                true;
+
+            lastRemoteUpdate =
+                Date.now();
+
+
+            if(
+                difference > 2
+            ){
+
+                player.seekTo(
+                    remoteTime,
+                    true
+                );
+
+            }
+
+
+            if(shouldPlay){
+
+                player.playVideo();
+
+            }
+
+            else if(
+                data.state === "pause" ||
+                data.state === "ended"
+            ){
+
+                player.pauseVideo();
+
+            }
+
+
+            setTimeout(
+                function(){
+
+                    remoteAction =
+                        false;
+
+                },
+                1000
+            );
+
+        },
+        function(error){
+
+            console.error(
+                "Watch listener error:",
+                error
+            );
+
+        }
+    );
+
+}
+
+
+/* =========================================================
+   MANUAL SYNC
+========================================================= */
+
+window.syncNow =
+function(){
+
+    if(
+        !player ||
+        !currentVideo
+    ){
+
+        showToast(
+            "আগে একটা video load করো."
+        );
+
+        return;
+
+    }
+
+
+    if(!uid){
+
+        showToast(
+            "Firebase connect হয়নি."
+        );
+
+        return;
+
+    }
+
+
+    const time =
+        player.getCurrentTime();
+
+
+    let state =
+        "pause";
+
+
+    const playerState =
+        player.getPlayerState();
+
+
+    if(
+        playerState ===
+        YT.PlayerState.PLAYING
+    ){
+
+        state =
+            "play";
+
+    }
+
+    else if(
+        playerState ===
+        YT.PlayerState.ENDED
+    ){
+
+        state =
+            "ended";
+
+    }
+
+
+    lastRemoteUpdate =
+        Date.now();
+
+
+    set(
+        ref(
+            db,
+            "friendsHub/watch"
+        ),
+        {
+
+            videoId:
+                currentVideo,
+
+            time:
+                time,
+
+            state:
+                state,
+
+            by:
+                myName,
+
+            updatedAt:
+                Date.now()
+
+        }
+    )
+    .then(function(){
+
+        showToast(
+            "Synced ♡"
+        );
+
+    });
+
+};
+
+
+/* =========================================================
+   SETTINGS LISTENER
+========================================================= */
+
+function listenSettings(){
+
+    onValue(
+        settingsRef,
+        function(snapshot){
+
+            const data =
+                snapshot.val();
+
+
+            if(
+                data &&
+                data.announcement
+            ){
+
+                document.title =
+                    "♡ " +
+                    data.announcement;
+
+            }
+
+        }
+    );
+
+}
+
+
+/* =========================================================
+   GLOBAL UTILITY
+========================================================= */
+
+window.showToast =
+function(message){
+
+    const toast =
+        document.getElementById(
+            "toast"
+        );
+
+
+    toast.textContent =
+        message;
+
+
+    toast.classList.add(
+        "show"
+    );
+
+
+    clearTimeout(
+        window.__toastTimer
+    );
+
+
+    window.__toastTimer =
+        setTimeout(
+            function(){
+
+                toast.classList.remove(
+                    "show"
+                );
+
+            },
+            2500
+        );
+
+};
+
+
+</script>
+
+
+<!-- =========================================================
+     GAME JAVASCRIPT
+========================================================= -->
+
+<script>
+
+/* =========================================================
+   MODAL
+========================================================= */
+
+const modal =
+    document.getElementById(
+        "modal"
+    );
+
+
+const modalContent =
+    document.getElementById(
+        "modalContent"
+    );
+
+
+function go(id){
+
+    const element =
+        document.getElementById(
+            id
+        );
+
+
+    if(!element){
+
+        return;
+
+    }
+
+
+    element.scrollIntoView({
+        behavior:"smooth"
+    });
+
+}
+
+
+function closeModal(){
+
+    modal.classList.remove(
+        "show"
+    );
+
+    modalContent.innerHTML = "";
+
+}
+
+
+modal.addEventListener(
+    "click",
+    function(event){
+
+        if(
+            event.target === modal
+        ){
+
+            closeModal();
+
+        }
+
+    }
+);
+
+
+document.addEventListener(
+    "keydown",
+    function(event){
+
+        if(
+            event.key === "Escape"
+        ){
+
+            closeModal();
+
+        }
+
+    }
+);
+
+
+/* =========================================================
+   GAME OPEN
+========================================================= */
+
+function game(type){
+
+    modal.classList.add(
+        "show"
+    );
+
+
+    switch(type){
+
+        case "prank":
+            prank();
+            break;
+
+        case "roast":
+            roast();
+            break;
+
+        case "truth":
+            truth();
+            break;
+
+        case "score":
+            score();
+            break;
+
+        case "quiz":
+            quiz();
+            break;
+
+        case "hack":
+            hacker();
+            break;
+
+        case "guess":
+            guess();
+            break;
+
+        case "nothing":
+            nothing();
+            break;
+
+    }
+
+}
+
+
+/* =========================================================
+   PRANK
+========================================================= */
+
+function prank(){
+
+    modalContent.innerHTML = `
+
+        <h2>😈 prank generator</h2>
+
+        <p>
+            harmless chaos only ♡
+        </p>
+
+        <input
+            id="pname"
+            placeholder="friend's name"
+            maxlength="40">
+
+        <button
+            class="primary"
+            style="width:100%;margin-top:8px;"
+            onclick="doPrank()">
+
+            generate 😂
+
+        </button>
+
+        <div
+            class="result"
+            id="presult">
+        </div>
+
+    `;
+
+}
+
+
+function doPrank(){
+
+    const name =
+        document
+            .getElementById("pname")
+            .value
+            .trim();
+
+
+    if(!name){
+
+        return alert(
+            "name dao 😭"
+        );
+
+    }
+
+
+    const arr = [
+
+        `${name} officially won the award for sleeping too much 😴`,
+
+        `${name}-এর brain এখনো loading... 1% 😂`,
+
+        `Breaking News 🚨 ${name} আজও কোনো কাজ করেনি!`,
+
+        `${name} একটি invisible Lamborghini জিতেছে 🏎️`,
+
+        `${name} is officially the CEO of procrastination 👑`
+
+    ];
+
+
+    showResult(
+        "presult",
+        arr[
+            Math.floor(
+                Math.random() *
+                arr.length
+            )
+        ]
+    );
+
+}
+
+
+/* =========================================================
+   ROAST
+========================================================= */
+
+function roast(){
+
+    modalContent.innerHTML = `
+
+        <h2>🔥 roast my friend</h2>
+
+        <p>
+            cute savage mode ♡
+        </p>
+
+        <input
+            id="rname"
+            placeholder="friend's name"
+            maxlength="40">
+
+        <button
+            class="primary"
+            style="width:100%;"
+            onclick="doRoast()">
+
+            roast 🔥
+
+        </button>
+
+        <div
+            class="result"
+            id="rresult">
+        </div>
+
+    `;
+
+}
+
+
+function doRoast(){
+
+    const name =
+        document
+            .getElementById("rname")
+            .value
+            .trim();
+
+
+    if(!name){
+
+        return;
+
+    }
+
+
+    const arr = [
+
+        `${name}-এর confidence এত বেশি যে talent-এর দরকার পড়ে না 💀`,
+
+        `${name} যখন বলে "আমি আসছি", calendar ভয় পায় 😂`,
+
+        `${name}-এর brain Wi-Fi-এর মতো: signal আছে, connection নেই.`,
+
+        `${name} এত special যে duplicate বানানো নিষিদ্ধ হওয়া উচিত 😂`
+
+    ];
+
+
+    showResult(
+        "rresult",
+        arr[
+            Math.floor(
+                Math.random() *
+                arr.length
+            )
+        ]
+    );
+
+}
+
+
+/* =========================================================
+   TRUTH OR DARE
+========================================================= */
+
+function truth(){
+
+    modalContent.innerHTML = `
+
+        <h2>🎲 truth or dare</h2>
+
+        <p>
+            choose your fate 😈
+        </p>
+
+        <div style="
+            display:flex;
+            gap:8px;
+            margin-top:12px;
+        ">
+
+            <button
+                class="primary"
+                style="width:50%;"
+                onclick="truthResult()">
+
+                TRUTH
+
+            </button>
+
+            <button
+                class="primary"
+                style="width:50%;"
+                onclick="dareResult()">
+
+                DARE
+
+            </button>
+
+        </div>
+
+        <div
+            class="result show"
+            id="td">
+
+            choose one ♡
+
+        </div>
+
+    `;
+
+}
+
+
+function truthResult(){
+
+    const arr = [
+
+        "তোমার সবচেয়ে embarrassing moment কী? 😂",
+
+        "Friend group-এ সবচেয়ে annoying কে?",
+
+        "তোমার secret crush কে?",
+
+        "তোমার সবচেয়ে weird habit কী?",
+
+        "শেষ কবে মিথ্যা বলেছিলে?"
+
+    ];
+
+
+    document
+        .getElementById("td")
+        .textContent =
+        "🧠 " +
+        arr[
+            Math.floor(
+                Math.random() *
+                arr.length
+            )
+        ];
+
+}
+
+
+function dareResult(){
+
+    const arr = [
+
+        "৩০ সেকেন্ড funny dance করো 💃",
+
+        "একটা dramatic voice note পাঠাও 😂",
+
+        "robot-এর মতো ১ মিনিট কথা বলো 🤖",
+
+        "একটা terrible joke বলো.",
+
+        "একটা funny selfie তোলো 🤳"
+
+    ];
+
+
+    document
+        .getElementById("td")
+        .textContent =
+        "🔥 " +
+        arr[
+            Math.floor(
+                Math.random() *
+                arr.length
+            )
+        ];
+
+}
+
+
+/* =========================================================
+   FRIENDSHIP SCORE
+========================================================= */
+
+function score(){
+
+    modalContent.innerHTML = `
+
+        <h2>❤️ friendship score</h2>
+
+        <p>
+            scientifically fake 😂
+        </p>
+
+        <input
+            id="sa"
+            placeholder="friend 1"
+            maxlength="40">
+
+        <input
+            id="sb"
+            placeholder="friend 2"
+            maxlength="40">
+
+        <button
+            class="primary"
+            style="width:100%;"
+            onclick="doScore()">
+
+            calculate ♡
+
+        </button>
+
+        <div
+            class="result"
+            id="sresult">
+        </div>
+
+    `;
+
+}
+
+
+function doScore(){
+
+    const a =
+        document
+            .getElementById("sa")
+            .value
+            .trim();
+
+
+    const b =
+        document
+            .getElementById("sb")
+            .value
+            .trim();
+
+
+    if(!a || !b){
+
+        return;
+
+    }
+
+
+    let hash = 0;
+
+
+    const text =
+        (
+            a +
+            "|" +
+            b
+        ).toLowerCase();
+
+
+    for(
+        let i=0;
+        i<text.length;
+        i++
+    ){
+
+        hash =
+            (
+                (hash << 5) -
+                hash
+            ) +
+            text.charCodeAt(i);
+
+        hash |= 0;
+
+    }
+
+
+    const value =
+        Math.abs(hash) % 101;
+
+
+    const box =
+        document.getElementById(
+            "sresult"
+        );
+
+
+    box.innerHTML = `
+
+        <div class="score-circle">
+            ${value}%
+        </div>
+
+        <h3>
+            ${escapeText(a)}
+            ♡
+            ${escapeText(b)}
+        </h3>
+
+        <p>
+            ${
+                value > 85
+                ?
+                "BESTIES FOREVER 🥹"
+                :
+                value > 60
+                ?
+                "pretty good duo 😎"
+                :
+                "friendship needs snacks 😂"
+            }
+        </p>
+
+    `;
+
+
+    box.classList.add(
+        "show"
+    );
+
+}
+
+
+/* =========================================================
+   QUIZ
+========================================================= */
+
+let qi = 0;
+
+let qs = 0;
+
+
+const quizData = [
+
+    {
+        q:
+            "আমি সবচেয়ে বেশি কী করতে পছন্দ করি?",
+
+        o:[
+            "ঘুমানো 😴",
+            "Gaming 🎮",
+            "খাওয়া 🍔",
+            "ঘুরতে যাওয়া ✈️"
+        ],
+
+        a:0
+    },
+
+    {
+        q:
+            "আমার favourite food?",
+
+        o:[
+            "Pizza 🍕",
+            "Burger 🍔",
+            "Biryani 🍛",
+            "Noodles 🍜"
+        ],
+
+        a:2
+    },
+
+    {
+        q:
+            "আমি সকালে কেমন?",
+
+        o:[
+            "খুব active 😎",
+            "কষ্ট করে উঠি 😭",
+            "উঠিই না 💀",
+            "ভুলে যাই 😂"
+        ],
+
+        a:2
+    }
+
+];
+
+
+function quiz(){
+
+    qi = 0;
+
+    qs = 0;
+
+    showQuestion();
+
+}
+
+
+function showQuestion(){
+
+    const q =
+        quizData[qi];
+
+
+    modalContent.innerHTML = `
+
+        <h2>🧠 who knows me?</h2>
+
+        <p>
+            Question ${qi + 1}/${quizData.length}
+        </p>
+
+        <br>
+
+        <h3>
+            ${escapeText(q.q)}
+        </h3>
+
+        <br>
+
+        <div id="qoptions"></div>
+
+    `;
+
+
+    const box =
+        document.getElementById(
+            "qoptions"
+        );
+
+
+    q.o.forEach(
+        function(option,index){
+
+            const button =
+                document.createElement(
+                    "button"
+                );
+
+
+            button.className =
+                "primary";
+
+
+            button.style.width =
+                "100%";
+
+
+            button.style.marginBottom =
+                "8px";
+
+
+            button.textContent =
+                option;
+
+
+            button.onclick =
+                function(){
+
+                    if(
+                        index === q.a
+                    ){
+
+                        qs++;
+
+                    }
+
+
+                    qi++;
+
+
+                    if(
+                        qi >=
+                        quizData.length
+                    ){
+
+                        const percent =
+                            Math.round(
+                                (
+                                    qs /
+                                    quizData.length
+                                ) * 100
+                            );
+
+
+                        modalContent.innerHTML = `
+
+                            <h2>
+                                🎀 finished!
+                            </h2>
+
+                            <div
+                                class="result show">
+
+                                <div
+                                    class="score-circle">
+
+                                    ${percent}%
+
+                                </div>
+
+                                You got
+                                ${qs}
+                                /
+                                ${quizData.length}
+
+                                <br><br>
+
+                                <button
+                                    class="primary"
+                                    onclick="quiz()">
+
+                                    play again
+
+                                </button>
+
+                            </div>
+
+                        `;
+
+                    }
+
+                    else{
+
+                        showQuestion();
+
+                    }
+
+                };
+
+
+            box.appendChild(
+                button
+            );
+
+        }
+    );
+
+}
+
+
+/* =========================================================
+   FAKE HACKER
+========================================================= */
+
+function hacker(){
+
+    modalContent.innerHTML = `
+
+        <h2>💻 fake hacker</h2>
+
+        <p>
+            completely fake visual prank ♡
+        </p>
+
+        <input
+            id="hname"
+            placeholder="friend's name"
+            maxlength="40">
+
+        <button
+            class="primary"
+            style="width:100%;"
+            onclick="startHack()">
+
+            start 😈
+
+        </button>
+
+        <div
+            id="terminal"
+            style="
+                background:#201a25;
+                color:#8dffae;
+                padding:15px;
+                margin-top:15px;
+                min-height:180px;
+                border-radius:15px;
+                font-family:monospace;
+                overflow:auto;
+            ">
+
+            >
+
+        </div>
+
+    `;
+
+}
+
+
+function startHack(){
+
+    const name =
+        document
+            .getElementById("hname")
+            .value
+            .trim()
+        ||
+        "TARGET";
+
+
+    const safeName =
+        escapeText(name);
+
+
+    const terminal =
+        document.getElementById(
+            "terminal"
+        );
+
+
+    terminal.innerHTML =
+        "";
+
+
+    const lines = [
+
+        `> connecting to ${safeName}...`,
+
+        "> scanning memes...",
+
+        "> searching embarrassing photos...",
+
+        "> downloading absolutely nothing...",
+
+        "> friendship virus detected...",
+
+        "> ERROR: target too cute to hack 😂",
+
+        "> GOTCHA! nothing was hacked ♡"
+
+    ];
+
+
+    let index = 0;
+
+
+    const interval =
+        setInterval(
+            function(){
+
+                const line =
+                    document.createElement(
+                        "div"
+                    );
+
+
+                line.textContent =
+                    lines[index];
+
+
+                terminal.appendChild(
+                    line
+                );
+
+
+                terminal.scrollTop =
+                    terminal.scrollHeight;
+
+
+                index++;
+
+
+                if(
+                    index >=
+                    lines.length
+                ){
+
+                    clearInterval(
+                        interval
+                    );
+
+                }
+
+            },
+            600
+        );
+
+}
+
+
+/* =========================================================
+   GUESS FRIEND
+========================================================= */
+
+function guess(){
+
+    modalContent.innerHTML = `
+
+        <h2>👀 guess the friend</h2>
+
+        <input
+            id="gname"
+            placeholder="correct friend's name"
+            maxlength="40">
+
+        <textarea
+            id="gclue"
+            placeholder="funny clue..."
+            maxlength="300"></textarea>
+
+        <button
+            class="primary"
+            style="width:100%;"
+            onclick="makeGuess()">
+
+            create mystery 👀
+
+        </button>
+
+        <div
+            class="result"
+            id="gresult">
+        </div>
+
+    `;
+
+}
+
+
+function makeGuess(){
+
+    const name =
+        document
+            .getElementById("gname")
+            .value
+            .trim();
+
+
+    const clue =
+        document
+            .getElementById("gclue")
+            .value
+            .trim();
+
+
+    if(!name){
+
+        return;
+
+    }
+
+
+    const box =
+        document.getElementById(
+            "gresult"
+        );
+
+
+    const title =
+        document.createElement(
+            "h2"
+        );
+
+
+    title.textContent =
+        "WHO IS IT? 👀";
+
+
+    const clueText =
+        document.createElement(
+            "p"
+        );
+
+
+    clueText.textContent =
+        clue ||
+        "Someone in this group...";
+
+
+    const reveal =
+        document.createElement(
+            "button"
+        );
+
+
+    reveal.className =
+        "primary";
+
+
+    reveal.style.marginTop =
+        "15px";
+
+
+    reveal.textContent =
+        "reveal";
+
+
+    const answer =
+        document.createElement(
+            "h3"
+        );
+
+
+    answer.style.marginTop =
+        "15px";
+
+
+    answer.style.fontFamily =
+        "Caveat";
+
+
+    answer.style.fontSize =
+        "2rem";
+
+
+    reveal.onclick =
+        function(){
+
+            answer.textContent =
+                "😂 It was " +
+                name +
+                "!";
+
+        };
+
+
+    box.innerHTML = "";
+
+
+    box.appendChild(
+        title
+    );
+
+    box.appendChild(
+        clueText
+    );
+
+    box.appendChild(
+        reveal
+    );
+
+    box.appendChild(
+        answer
+    );
+
+
+    box.classList.add(
+        "show"
+    );
+
+}
+
+
+/* =========================================================
+   DON'T CLICK
+========================================================= */
+
+let clicks = 0;
+
+
+function nothing(){
+
+    clicks = 0;
+
+
+    modalContent.innerHTML = `
+
+        <div style="text-align:center">
+
+            <h2>
+                😂 DON'T CLICK
+            </h2>
+
+            <p>
+                seriously.
+            </p>
+
+            <button
+                class="big-button"
+                onclick="nothingClick()">
+
+                DON'T<br>CLICK
+
+            </button>
+
+            <div
+                id="nothingText"
+                style="
+                    font-family:Caveat;
+                    font-size:1.6rem;
+                    color:#d65d90;
+                ">
+
+                I warned you.
+
+            </div>
+
+        </div>
+
+    `;
+
+}
+
+
+function nothingClick(){
+
+    clicks++;
+
+
+    const arr = [
+
+        "I told you 😭",
+
+        "WHY 😂",
+
+        "bro stop.",
+
+        "the button is judging you.",
+
+        "you have too much free time 💀",
+
+        "professional clicker 🏆",
+
+        "okay seriously now.",
+
+        "NO MORE."
+
+    ];
+
+
+    const text =
+        arr[
+            Math.min(
+                clicks - 1,
+                arr.length - 1
+            )
+        ];
+
+
+    document
+        .getElementById(
+            "nothingText"
+        )
+        .textContent =
+        text;
+
+}
+
+
+/* =========================================================
+   GAME HELPERS
+========================================================= */
+
+function showResult(
+    id,
+    text
+){
+
+    const box =
+        document.getElementById(
+            id
+        );
+
+
+    if(!box){
+
+        return;
+
+    }
+
+
+    box.textContent =
+        text;
+
+
+    box.classList.add(
+        "show"
+    );
+
+}
+
+
+function escapeText(text){
+
+    return String(text)
+
+        .replaceAll(
+            "&",
+            "&amp;"
+        )
+
+        .replaceAll(
+            "<",
+            "&lt;"
+        )
+
+        .replaceAll(
+            ">",
+            "&gt;"
+        )
+
+        .replaceAll(
+            '"',
+            "&quot;"
+        )
+
+        .replaceAll(
+            "'",
+            "&#039;"
+        );
+
+}
+
+</script>
+
+
+</body>
+</html>
