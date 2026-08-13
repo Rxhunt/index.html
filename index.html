@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
 
 <meta charset="UTF-8">
@@ -8,7 +7,7 @@
 <meta name="viewport"
       content="width=device-width, initial-scale=1.0">
 
-<title>♡ Our Little Corner ♡</title>
+<title>♡ Our Little Corner</title>
 
 <link rel="preconnect"
       href="https://fonts.googleapis.com">
@@ -20,11 +19,13 @@
 <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@400;500;600;700&family=Nunito:wght@400;500;600;700;800&display=swap"
       rel="stylesheet">
 
+<script src="https://www.youtube.com/iframe_api"></script>
+
 <style>
 
-/* =========================================
-   BASIC
-========================================= */
+/* =========================================================
+   RESET
+========================================================= */
 
 *{
     box-sizing:border-box;
@@ -32,119 +33,92 @@
     padding:0;
 }
 
+:root{
+    --pink:#ff83b2;
+    --pink-dark:#df638f;
+    --pink2:#ffb4cf;
+    --purple:#a993ef;
+    --cream:#fffaf4;
+    --paper:#fffdf9;
+    --text:#4c3c48;
+    --muted:#95828e;
+    --green:#68c18f;
+    --red:#f26f7f;
+    --shadow:#efd6df;
+}
+
 html{
     scroll-behavior:smooth;
 }
 
 body{
-
     min-height:100vh;
-
+    color:var(--text);
     font-family:"Nunito",sans-serif;
 
-    color:#51434d;
-
-    background-color:#fff5f8;
+    background-color:#fff3f7;
 
     background-image:
-        radial-gradient(
-            #ffdce8 1px,
-            transparent 1px
-        );
+        radial-gradient(#ffd9e6 1px,transparent 1px);
 
     background-size:22px 22px;
 }
 
+button,
+input,
+textarea,
+select{
+    font:inherit;
+}
 
-/* =========================================
-   VARIABLES
-========================================= */
-
-:root{
-
-    --pink:#ff8eb8;
-    --pink-dark:#e85d91;
-    --purple:#a68be9;
-
-    --cream:#fffdf8;
-    --paper:#fffaf4;
-
-    --text:#51434d;
-    --muted:#9b8992;
-
-    --line:#f1cedb;
-
-    --green:#68bd8c;
+button{
+    -webkit-tap-highlight-color:transparent;
 }
 
 
-/* =========================================
-   NAVBAR
-========================================= */
+/* =========================================================
+   NAV
+========================================================= */
 
 nav{
-
     position:sticky;
-
     top:0;
-
-    z-index:100;
+    z-index:500;
 
     display:flex;
-
     justify-content:space-between;
-
     align-items:center;
 
-    padding:13px 6%;
+    padding:12px 5%;
 
-    background:rgba(
-        255,
-        250,
-        246,
-        .92
-    );
-
+    background:rgba(255,250,247,.92);
     backdrop-filter:blur(15px);
 
-    border-bottom:
-        2px dashed #f4c8d8;
+    border-bottom:2px dashed #f0c8d8;
 }
 
 .logo{
-
     font-family:"Caveat",cursive;
-
     font-size:2rem;
-
     font-weight:700;
-
-    color:var(--pink-dark);
+    color:#df6093;
 }
 
-.nav-buttons{
-
+.nav-actions{
     display:flex;
-
-    gap:8px;
-
+    gap:7px;
     flex-wrap:wrap;
-
     justify-content:flex-end;
 }
 
 .nav-btn{
-
-    border:
-        2px solid #f3b8cd;
-
+    border:2px solid #f1bfd2;
     background:white;
+    color:#d65e91;
 
-    color:#dc5d90;
+    padding:8px 14px;
 
-    padding:8px 15px;
-
-    border-radius:30px;
+    border-radius:25px;
 
     font-weight:800;
 
@@ -154,642 +128,535 @@ nav{
 }
 
 .nav-btn:hover{
-
-    transform:translateY(-2px);
-
     background:#fff0f5;
+    transform:translateY(-2px);
 }
 
 
-/* =========================================
+/* =========================================================
    HERO
-========================================= */
+========================================================= */
 
 .hero{
-
     max-width:1050px;
-
     margin:auto;
 
-    padding:
-        85px 20px
-        70px;
-
     text-align:center;
+
+    padding:85px 20px 60px;
 
     position:relative;
 }
 
 .hero-small{
-
     font-family:"Caveat",cursive;
-
-    color:#d282a1;
-
     font-size:1.6rem;
-
-    margin-bottom:8px;
+    color:#c77f9f;
 }
 
 .hero h1{
-
     font-family:"Caveat",cursive;
 
-    font-size:
-        clamp(
-            4.2rem,
-            11vw,
-            8rem
-        );
+    font-size:clamp(4.2rem,11vw,8rem);
 
-    line-height:.82;
+    line-height:.8;
 
-    color:var(--pink-dark);
+    color:#e75e96;
 
     transform:rotate(-2deg);
 }
 
 .hero h1 span{
-
-    color:var(--purple);
+    color:#9c85e7;
 }
 
-.hero-description{
+.hero p{
+    max-width:680px;
 
-    max-width:650px;
-
-    margin:30px auto;
-
-    line-height:1.8;
+    margin:35px auto 25px;
 
     color:var(--muted);
 
-    font-size:1.05rem;
+    line-height:1.8;
 }
 
-.main-button{
-
+.primary{
     border:none;
 
     background:var(--pink);
-
     color:white;
 
-    padding:14px 28px;
+    padding:14px 25px;
 
-    border-radius:40px;
+    border-radius:30px;
 
-    font-weight:800;
+    font-weight:900;
 
     cursor:pointer;
 
-    box-shadow:
-        0 7px 0 #df6995;
+    box-shadow:0 7px 0 var(--pink-dark);
 
-    transition:.2s;
+    transition:.15s;
 }
 
-.main-button:hover{
-
-    transform:translateY(-3px);
-
-    box-shadow:
-        0 10px 0 #df6995;
+.primary:hover{
+    filter:brightness(1.03);
+    transform:translateY(-2px);
 }
 
-
-/* =========================================
-   DOODLES
-========================================= */
-
-.doodle{
-
-    position:absolute;
-
-    font-family:"Caveat",cursive;
-
-    color:#d39ab2;
-
-    font-size:1.5rem;
-
-    pointer-events:none;
-}
-
-.doodle.one{
-
-    left:5%;
-
-    top:22%;
-
-    transform:rotate(-12deg);
-}
-
-.doodle.two{
-
-    right:5%;
-
-    top:28%;
-
-    transform:rotate(12deg);
-}
-
-.doodle.three{
-
-    left:15%;
-
-    bottom:10%;
+.primary:active{
+    transform:translateY(5px);
+    box-shadow:0 2px 0 var(--pink-dark);
 }
 
 
-/* =========================================
-   SECTION
-========================================= */
+/* =========================================================
+   STATUS
+========================================================= */
 
-.section{
+.status-card{
+    max-width:850px;
 
-    max-width:1150px;
+    margin:20px auto 0;
 
-    margin:auto;
+    background:rgba(255,255,255,.8);
 
-    padding:
-        70px 20px;
-}
+    border:2px solid #f1d5df;
 
-.section-title{
+    border-radius:22px;
 
-    text-align:center;
-
-    margin-bottom:35px;
-}
-
-.section-title h2{
-
-    font-family:"Caveat",cursive;
-
-    color:#d65f91;
-
-    font-size:3.3rem;
-}
-
-.section-title p{
-
-    color:var(--muted);
-
-    margin-top:4px;
-}
-
-
-/* =========================================
-   CHAT
-========================================= */
-
-.chat-section{
-
-    max-width:920px;
-
-    margin:auto;
-
-    padding:
-        65px 20px;
-}
-
-.paper{
-
-    position:relative;
-
-    background:var(--cream);
-
-    border:
-        2px solid var(--line);
-
-    border-radius:28px;
-
-    padding:26px;
-
-    box-shadow:
-        8px 10px 0 #f5dbe5;
-}
-
-.tape{
-
-    position:absolute;
-
-    width:95px;
-
-    height:25px;
-
-    top:-13px;
-
-    left:50%;
-
-    transform:
-        translateX(-50%)
-        rotate(-2deg);
-
-    background:#ffdeea;
-
-    opacity:.85;
-}
-
-.paper-header{
+    padding:13px 18px;
 
     display:flex;
 
+    justify-content:space-between;
     align-items:center;
 
-    justify-content:space-between;
-
-    padding-bottom:17px;
-
-    border-bottom:
-        2px dashed var(--line);
+    gap:10px;
 }
 
-.paper-title{
-
-    font-family:"Caveat",cursive;
-
-    color:#d65f91;
-
-    font-size:2.4rem;
-}
-
-.status{
-
+.status-online{
     color:var(--green);
-
-    font-size:.82rem;
-
     font-weight:800;
 }
 
-.chat-messages{
 
-    height:390px;
+/* =========================================================
+   SECTION
+========================================================= */
+
+.section{
+    max-width:1100px;
+    margin:auto;
+    padding:65px 18px;
+}
+
+.section-title{
+    text-align:center;
+    margin-bottom:30px;
+}
+
+.section-title h2{
+    font-family:"Caveat",cursive;
+
+    color:#d85f91;
+
+    font-size:3.2rem;
+}
+
+.section-title p{
+    color:var(--muted);
+}
+
+
+/* =========================================================
+   CHAT
+========================================================= */
+
+.chat-paper{
+    background:var(--paper);
+
+    border:2px solid #f0ccd9;
+
+    border-radius:28px;
+
+    padding:22px;
+
+    box-shadow:8px 10px 0 var(--shadow);
+
+    position:relative;
+}
+
+.chat-top{
+    display:flex;
+
+    justify-content:space-between;
+    align-items:center;
+
+    gap:10px;
+
+    padding-bottom:15px;
+
+    border-bottom:2px dashed #efd1dd;
+}
+
+.chat-title{
+    font-family:"Caveat",cursive;
+
+    font-size:2.5rem;
+
+    color:#d65e91;
+}
+
+.people{
+    display:flex;
+
+    gap:8px;
+
+    flex-wrap:wrap;
+
+    margin-top:15px;
+}
+
+.person{
+    background:#fff0f5;
+
+    border:1px solid #f3ccd9;
+
+    padding:7px 11px;
+
+    border-radius:20px;
+
+    font-size:.82rem;
+}
+
+.dot{
+    display:inline-block;
+
+    width:8px;
+    height:8px;
+
+    border-radius:50%;
+
+    background:#65c18b;
+
+    margin-right:4px;
+}
+
+.dot.offline{
+    background:#c5b8bf;
+}
+
+.chat-messages{
+    height:420px;
 
     overflow-y:auto;
+
+    padding:20px 4px;
 
     display:flex;
 
     flex-direction:column;
 
-    gap:12px;
-
-    padding:
-        20px 5px;
+    gap:10px;
 }
 
-.message{
-
+.msg{
     max-width:78%;
 
-    padding:
-        10px 14px;
+    padding:10px 14px;
 
     border-radius:18px;
 
     line-height:1.5;
+
+    word-break:break-word;
 }
 
-.message.me{
-
+.msg.me{
     align-self:flex-end;
 
     background:#ffd5e4;
 
-    border-bottom-right-radius:5px;
+    border-bottom-right-radius:4px;
 }
 
-.message.other{
-
+.msg.other{
     align-self:flex-start;
 
-    background:#eee7ff;
+    background:#eee8ff;
 
-    border-bottom-left-radius:5px;
+    border-bottom-left-radius:4px;
 }
 
-.message-name{
+.msg.system{
+    align-self:center;
 
-    color:#966f81;
+    background:#fff0c8;
 
+    color:#856d3f;
+
+    max-width:90%;
+
+    text-align:center;
+}
+
+.msg-name{
     font-size:.72rem;
 
-    font-weight:800;
+    font-weight:900;
 
-    margin-bottom:2px;
+    color:#927080;
+
+    margin-bottom:3px;
 }
 
-.message-time{
+.msg-time{
+    font-size:.63rem;
 
-    color:#ad9ba5;
-
-    font-size:.65rem;
-
-    text-align:right;
+    color:#ad9ca5;
 
     margin-top:3px;
+
+    text-align:right;
 }
 
-.chat-form{
-
+.chat-bottom{
     display:flex;
 
     gap:8px;
 
-    padding-top:15px;
+    border-top:2px dashed #efd1dd;
 
-    border-top:
-        2px dashed var(--line);
+    padding-top:14px;
 }
 
-.text-input{
-
+.chat-input{
     flex:1;
 
-    border:
-        2px solid #efd5df;
+    border:2px solid #efd2df;
+
+    background:white;
+
+    padding:13px 15px;
 
     border-radius:22px;
 
-    padding:
-        12px 15px;
-
     outline:none;
 
-    font-family:"Nunito",sans-serif;
+    font-family:"Nunito";
+}
 
-    background:white;
+.chat-input:focus{
+    border-color:#ff9fc2;
 }
 
 .send{
-
-    width:50px;
-
-    height:50px;
+    width:48px;
+    min-width:48px;
 
     border:none;
 
     border-radius:50%;
 
-    background:var(--pink);
+    background:#ff86b2;
 
     color:white;
 
+    font-size:1.1rem;
+
     cursor:pointer;
+}
 
-    font-size:1.15rem;
+.typing{
+    height:20px;
+
+    font-size:.75rem;
+
+    color:#a08c98;
+
+    padding-top:3px;
+}
+
+.empty-chat{
+    text-align:center;
+
+    color:#ad9ca5;
+
+    padding:50px 20px;
+
+    font-family:"Caveat",cursive;
+
+    font-size:1.6rem;
 }
 
 
-/* =========================================
-   WATCH TOGETHER
-========================================= */
+/* =========================================================
+   WATCH
+========================================================= */
 
-.watch-section{
+.watch-box{
+    background:var(--paper);
 
-    max-width:920px;
+    border:2px solid #f0ccd9;
 
-    margin:auto;
+    border-radius:28px;
 
-    padding:
-        60px 20px;
+    padding:22px;
+
+    box-shadow:8px 10px 0 var(--shadow);
 }
 
-.watch-controls{
+.watch-input{
+    width:100%;
 
+    border:2px solid #efd1df;
+
+    padding:13px;
+
+    border-radius:18px;
+
+    outline:none;
+
+    font-family:"Nunito";
+}
+
+.watch-input:focus{
+    border-color:#ff9fc2;
+}
+
+.watch-actions{
     display:flex;
 
     gap:8px;
 
-    margin-top:20px;
+    margin-top:8px;
 }
 
-.watch-input{
-
+.watch-actions button{
     flex:1;
-
-    border:
-        2px solid #efd5df;
-
-    border-radius:20px;
-
-    padding:
-        13px 15px;
-
-    outline:none;
-
-    font-family:"Nunito",sans-serif;
 }
 
-.watch-load{
-
-    border:none;
-
-    background:var(--pink);
-
-    color:white;
-
-    border-radius:20px;
-
-    padding:
-        0 20px;
-
-    font-weight:800;
-
-    cursor:pointer;
-}
-
-.video-wrapper{
+.player-wrap{
+    margin-top:18px;
 
     width:100%;
 
     aspect-ratio:16/9;
 
-    margin-top:20px;
-
-    background:#29232c;
+    background:#211b27;
 
     border-radius:20px;
 
     overflow:hidden;
 }
 
-#youtubePlayer{
-
+#player{
     width:100%;
-
     height:100%;
 }
 
 .watch-status{
-
     text-align:center;
 
-    color:var(--muted);
+    color:#9b8993;
+
+    margin-top:10px;
 
     font-size:.85rem;
-
-    margin-top:13px;
-}
-
-.watch-tip{
-
-    background:#fff1f6;
-
-    border:
-        2px dashed #efb6cb;
-
-    border-radius:15px;
-
-    padding:12px;
-
-    margin-top:15px;
-
-    text-align:center;
-
-    color:#a17f8e;
-
-    font-size:.82rem;
 }
 
 
-/* =========================================
+/* =========================================================
    GAMES
-========================================= */
+========================================================= */
 
 .games{
-
     display:grid;
 
-    grid-template-columns:
-        repeat(4,1fr);
+    grid-template-columns:repeat(4,1fr);
 
-    gap:18px;
+    gap:16px;
 }
 
-.game-card{
+.game{
+    background:rgba(255,255,255,.9);
 
-    background:
-        rgba(
-            255,
-            255,
-            255,
-            .88
-        );
-
-    border:
-        2px solid #f4d4df;
+    border:2px solid #f2d2df;
 
     border-radius:25px;
 
-    padding:23px;
+    padding:22px;
 
     cursor:pointer;
 
-    transition:.25s;
-
-    box-shadow:
-        0 8px 20px
-        rgba(
-            180,
-            110,
-            140,
-            .08
-        );
+    transition:.2s;
 }
 
-.game-card:nth-child(odd){
+.game:hover{
+    transform:translateY(-6px) rotate(0deg);
 
+    border-color:#eca6c1;
+}
+
+.game:nth-child(odd){
     transform:rotate(-1deg);
 }
 
-.game-card:nth-child(even){
-
+.game:nth-child(even){
     transform:rotate(1deg);
 }
 
-.game-card:hover{
-
-    transform:
-        translateY(-7px)
-        rotate(0);
-
-    border-color:#efa4c0;
+.icon{
+    font-size:2.3rem;
 }
 
-.game-icon{
-
-    font-size:2.5rem;
-
-    margin-bottom:10px;
-}
-
-.game-card h3{
-
+.game h3{
     font-family:"Caveat",cursive;
-
-    color:#665263;
 
     font-size:1.8rem;
 
-    margin-bottom:5px;
+    color:#635060;
 }
 
-.game-card p{
+.game p{
+    color:#968590;
 
-    color:#998690;
-
-    font-size:.86rem;
+    font-size:.85rem;
 
     line-height:1.5;
 }
 
 
-/* =========================================
+/* =========================================================
    MODAL
-========================================= */
+========================================================= */
 
 .modal{
-
     position:fixed;
 
     inset:0;
 
     z-index:1000;
 
-    background:
-        rgba(
-            70,
-            50,
-            65,
-            .48
-        );
-
-    backdrop-filter:blur(7px);
-
     display:none;
 
     justify-content:center;
-
     align-items:center;
 
     padding:18px;
+
+    background:rgba(65,48,60,.5);
+
+    backdrop-filter:blur(7px);
 }
 
 .modal.show{
-
     display:flex;
 }
 
 .modal-box{
-
-    position:relative;
-
-    width:min(
-        650px,
-        100%
-    );
+    width:min(650px,100%);
 
     max-height:90vh;
 
@@ -797,342 +664,319 @@ nav{
 
     background:#fffdf9;
 
-    border:
-        3px solid #f0c9d8;
+    border:3px solid #f0c8d8;
 
     border-radius:28px;
 
-    padding:28px;
+    padding:25px;
 
-    box-shadow:
-        10px 12px 0 #ecced9;
+    box-shadow:9px 11px 0 #e8cbd7;
 
-    animation:
-        popup .25s ease;
-}
-
-@keyframes popup{
-
-    from{
-        opacity:0;
-        transform:
-            scale(.9)
-            rotate(-2deg);
-    }
-
-    to{
-        opacity:1;
-        transform:
-            scale(1)
-            rotate(0);
-    }
+    position:relative;
 }
 
 .close{
-
     position:absolute;
 
-    right:14px;
-
-    top:12px;
+    top:10px;
+    right:12px;
 
     width:36px;
-
     height:36px;
 
     border:none;
 
     border-radius:50%;
 
-    background:#ffe3ec;
+    background:#ffe1eb;
 
-    color:#d35d8d;
+    color:#d25d8d;
 
-    font-size:1.2rem;
+    font-size:1.3rem;
 
     cursor:pointer;
 }
 
-.modal-box h2{
-
+.modal h2{
     font-family:"Caveat",cursive;
 
-    color:#d65f91;
+    color:#d85e91;
 
     font-size:2.8rem;
 
-    margin-bottom:5px;
+    padding-right:40px;
 }
 
-.modal-sub{
-
-    color:var(--muted);
-
-    margin-bottom:20px;
+.modal p{
+    color:#968590;
 }
 
-.modal-box input,
-.modal-box select,
-.modal-box textarea{
-
+.modal input,
+.modal textarea,
+.modal select{
     width:100%;
 
-    border:
-        2px solid #efd4df;
+    border:2px solid #efd1df;
 
-    background:white;
-
-    padding:
-        12px 14px;
+    padding:12px;
 
     border-radius:15px;
 
-    margin-bottom:10px;
-
     outline:none;
 
-    font-family:"Nunito",sans-serif;
+    margin:8px 0;
+
+    font-family:"Nunito";
 }
 
-.modal-box textarea{
-
-    min-height:90px;
+.modal textarea{
+    min-height:100px;
 
     resize:vertical;
 }
 
-.action{
+.modal input:focus,
+.modal textarea:focus{
+    border-color:#ff9fc2;
+}
 
-    width:100%;
+.result{
+    display:none;
 
+    background:#fff0f5;
+
+    border:2px dashed #efb4cb;
+
+    border-radius:20px;
+
+    padding:18px;
+
+    margin-top:15px;
+
+    text-align:center;
+}
+
+.result.show{
+    display:block;
+}
+
+
+/* =========================================================
+   ADMIN
+========================================================= */
+
+.admin-box{
+    display:none;
+
+    background:#fff;
+
+    border:2px solid #e8cdd8;
+
+    border-radius:24px;
+
+    padding:20px;
+
+    margin-top:25px;
+}
+
+.admin-box.show{
+    display:block;
+}
+
+.admin-grid{
+    display:grid;
+
+    grid-template-columns:repeat(2,1fr);
+
+    gap:10px;
+}
+
+.admin-btn{
     border:none;
 
-    background:var(--pink);
+    background:#eee7ff;
 
-    color:white;
+    color:#62528e;
 
-    padding:13px;
+    padding:12px;
 
-    border-radius:15px;
+    border-radius:14px;
 
     font-weight:800;
 
     cursor:pointer;
 }
 
-.result{
+.admin-btn.danger{
+    background:#ffe0e5;
 
-    display:none;
-
-    margin-top:18px;
-
-    padding:20px;
-
-    background:#fff0f5;
-
-    border:
-        2px dashed #efb6cb;
-
-    border-radius:20px;
-
-    text-align:center;
+    color:#b84e60;
 }
 
-.result.show{
-
-    display:block;
-}
-
-
-/* =========================================
-   TRUTH DARE
-========================================= */
-
-.td-grid{
-
-    display:grid;
-
-    grid-template-columns:1fr 1fr;
-
-    gap:10px;
-}
-
-.truth-btn{
-
-    background:#9b85e6;
-}
-
-.dare-btn{
-
-    background:#ff759f;
-}
-
-.td-result{
-
-    min-height:120px;
-
+.member-row{
     display:flex;
+
+    justify-content:space-between;
 
     align-items:center;
 
-    justify-content:center;
+    gap:10px;
 
-    font-family:"Caveat",cursive;
+    padding:9px 0;
 
-    font-size:2rem;
+    border-bottom:1px dashed #ead5dd;
+}
+
+.small-btn{
+    border:none;
+
+    background:#ffe4ed;
+
+    color:#c1547e;
+
+    border-radius:10px;
+
+    padding:6px 9px;
+
+    cursor:pointer;
 }
 
 
-/* =========================================
-   TERMINAL
-========================================= */
-
-.terminal{
-
-    background:#211a27;
-
-    color:#9cffbf;
-
-    border-radius:15px;
-
-    min-height:250px;
-
-    padding:18px;
-
-    font-family:monospace;
-
-    line-height:1.7;
-
-    overflow:auto;
-}
-
-
-/* =========================================
+/* =========================================================
    SCORE
-========================================= */
+========================================================= */
 
 .score-circle{
+    width:160px;
+    height:160px;
 
-    width:170px;
-
-    height:170px;
-
-    margin:
-        20px auto;
+    margin:20px auto;
 
     border-radius:50%;
 
     display:flex;
 
+    justify-content:center;
     align-items:center;
 
-    justify-content:center;
+    background:
+        radial-gradient(circle,#fff 57%,transparent 58%),
+        conic-gradient(
+            #ff88b4 0deg,
+            #a590ed 250deg,
+            #eadfe5 250deg
+        );
 
-    font-family:"Caveat",cursive;
+    font-family:"Caveat";
 
     font-size:3rem;
 
-    color:#d85f92;
-
-    background:
-        radial-gradient(
-            circle,
-            #fffdf9 58%,
-            transparent 59%
-        ),
-        conic-gradient(
-            #ff8fb9 0deg,
-            #a48bea 230deg,
-            #eadce4 230deg
-        );
+    color:#d65d90;
 }
 
 
-/* =========================================
+/* =========================================================
    DON'T CLICK
-========================================= */
-
-.nothing{
-
-    text-align:center;
-}
+========================================================= */
 
 .big-button{
+    display:block;
 
-    width:210px;
+    margin:20px auto;
 
-    height:210px;
+    width:190px;
+    height:190px;
 
     border-radius:50%;
 
-    border:
-        10px solid #ffe1eb;
+    border:10px solid #ffe0eb;
 
-    background:#ff769f;
+    background:#ff719d;
 
     color:white;
 
-    font-family:"Caveat",cursive;
+    font-family:"Caveat";
 
     font-size:2rem;
 
-    font-weight:700;
+    box-shadow:0 10px 0 #d75d87;
 
     cursor:pointer;
-
-    box-shadow:
-        0 12px 0 #d75d86;
 }
 
 .big-button:active{
-
     transform:translateY(8px);
 
-    box-shadow:
-        0 4px 0 #d75d86;
-}
-
-.nothing-message{
-
-    font-family:"Caveat",cursive;
-
-    color:#d65d8c;
-
-    font-size:1.6rem;
-
-    margin-top:20px;
+    box-shadow:0 2px 0 #d75d87;
 }
 
 
-/* =========================================
-   FOOTER
-========================================= */
+/* =========================================================
+   TOAST
+========================================================= */
 
-footer{
+.toast{
+    position:fixed;
+
+    left:50%;
+
+    bottom:25px;
+
+    transform:translate(-50%,120px);
+
+    z-index:3000;
+
+    background:#4c3c48;
+
+    color:white;
+
+    padding:12px 18px;
+
+    border-radius:30px;
+
+    opacity:0;
+
+    transition:.3s;
+
+    pointer-events:none;
 
     text-align:center;
 
-    padding:
-        50px 20px;
+    max-width:90%;
+}
 
-    color:#9d8792;
+.toast.show{
+    transform:translate(-50%,0);
 
-    font-family:"Caveat",cursive;
-
-    font-size:1.5rem;
+    opacity:1;
 }
 
 
-/* =========================================
-   MOBILE
-========================================= */
+/* =========================================================
+   FOOTER
+========================================================= */
 
-@media(max-width:900px){
+footer{
+    text-align:center;
+
+    padding:50px 15px;
+
+    font-family:"Caveat";
+
+    font-size:1.5rem;
+
+    color:#9c8792;
+}
+
+
+/* =========================================================
+   MOBILE
+========================================================= */
+
+@media(max-width:850px){
 
     .games{
-
-        grid-template-columns:
-            repeat(2,1fr);
+        grid-template-columns:repeat(2,1fr);
     }
 
 }
@@ -1140,68 +984,58 @@ footer{
 @media(max-width:600px){
 
     nav{
-
-        padding:
-            12px 4%;
+        align-items:flex-start;
     }
 
     .logo{
-
         font-size:1.6rem;
     }
 
+    .nav-actions{
+        max-width:190px;
+    }
+
     .nav-btn{
+        padding:6px 9px;
 
-        padding:
-            7px 11px;
-
-        font-size:.78rem;
+        font-size:.75rem;
     }
 
     .hero{
-
         padding-top:65px;
     }
 
     .hero h1{
-
         font-size:4.5rem;
     }
 
     .games{
-
         grid-template-columns:1fr;
     }
 
-    .paper{
-
-        padding:18px;
+    .msg{
+        max-width:88%;
     }
 
     .chat-messages{
-
-        height:350px;
+        height:370px;
     }
 
-    .message{
-
-        max-width:87%;
+    .admin-grid{
+        grid-template-columns:1fr;
     }
 
-    .watch-controls{
+    .status-card{
+        flex-direction:column;
+        text-align:center;
+    }
 
+    .watch-actions{
         flex-direction:column;
     }
 
-    .watch-load{
-
-        padding:12px;
-    }
-
-    .modal-box{
-
-        padding:
-            24px 17px;
+    .chat-bottom{
+        align-items:center;
     }
 
 }
@@ -1214,9 +1048,9 @@ footer{
 <body>
 
 
-<!-- =========================================
-     NAVIGATION
-========================================= -->
+<!-- =========================================================
+     NAV
+========================================================= -->
 
 <nav>
 
@@ -1224,11 +1058,11 @@ footer{
         ♡ our little corner
     </div>
 
-    <div class="nav-buttons">
+    <div class="nav-actions">
 
         <button
             class="nav-btn"
-            onclick="goChat()">
+            onclick="go('chat')">
 
             💌 Chat
 
@@ -1236,7 +1070,7 @@ footer{
 
         <button
             class="nav-btn"
-            onclick="goWatch()">
+            onclick="go('watch')">
 
             🎬 Watch
 
@@ -1244,9 +1078,9 @@ footer{
 
         <button
             class="nav-btn"
-            onclick="goGames()">
+            onclick="openHost()">
 
-            🎀 Games
+            👑 Host
 
         </button>
 
@@ -1255,23 +1089,11 @@ footer{
 </nav>
 
 
-<!-- =========================================
+<!-- =========================================================
      HERO
-========================================= -->
+========================================================= -->
 
 <section class="hero">
-
-    <div class="doodle one">
-        hehe ♡
-    </div>
-
-    <div class="doodle two">
-        besties ✿
-    </div>
-
-    <div class="doodle three">
-        ★ ★ ★
-    </div>
 
     <div class="hero-small">
         welcome to our tiny internet home ♡
@@ -1282,32 +1104,45 @@ footer{
         <span>corner</span> ♡
     </h1>
 
-    <p class="hero-description">
-
-        A cute little place for you and
-        your besties to chat, laugh,
-        watch videos together and play
-        stupidly fun games. 🌷
-
+    <p>
+        A cute little place for you and your
+        friends to chat, watch videos together,
+        play silly games and make memories. 🌷
     </p>
 
     <button
-        class="main-button"
-        onclick="goChat()">
+        class="primary"
+        onclick="go('chat')">
 
         come inside ♡
 
     </button>
 
+
+    <div class="status-card">
+
+        <div>
+            👋 <strong id="welcomeName">
+                friend
+            </strong>
+        </div>
+
+        <div class="status-online">
+            ● <span id="onlineCount">0</span>
+            friends online
+        </div>
+
+    </div>
+
 </section>
 
 
-<!-- =========================================
+<!-- =========================================================
      CHAT
-========================================= -->
+========================================================= -->
 
 <section
-    class="chat-section"
+    class="section"
     id="chat">
 
     <div class="section-title">
@@ -1317,26 +1152,30 @@ footer{
         </h2>
 
         <p>
-            everyone in the room can talk here ♡
+            say something silly to everyone ♡
         </p>
 
     </div>
 
 
-    <div class="paper">
+    <div class="chat-paper">
 
-        <div class="tape"></div>
+        <div class="chat-top">
 
-        <div class="paper-header">
-
-            <div class="paper-title">
-                our tiny chat ♡
+            <div class="chat-title">
+                our tiny chat
             </div>
 
-            <div class="status">
-                ● friends room
+            <div>
+                🟢 live
             </div>
 
+        </div>
+
+
+        <div
+            class="people"
+            id="people">
         </div>
 
 
@@ -1344,34 +1183,33 @@ footer{
             class="chat-messages"
             id="messages">
 
-            <div class="message other">
+            <div class="msg system">
 
-                <div class="message-name">
-                    🌷 System
-                </div>
-
-                Welcome to your little
-                friends room ♡
-
-                <div class="message-time">
-                    now
-                </div>
+                🌷 Welcome to our little corner ♡
 
             </div>
 
         </div>
 
 
-        <div class="chat-form">
+        <div
+            class="typing"
+            id="typing">
+        </div>
+
+
+        <div class="chat-bottom">
 
             <input
+                class="chat-input"
                 id="messageInput"
-                class="text-input"
-                placeholder="write something cute... 💕"
-                autocomplete="off">
+                placeholder="write something... 💕"
+                autocomplete="off"
+                maxlength="500">
 
             <button
                 class="send"
+                id="sendButton"
                 onclick="sendMessage()">
 
                 ➤
@@ -1385,12 +1223,12 @@ footer{
 </section>
 
 
-<!-- =========================================
+<!-- =========================================================
      WATCH TOGETHER
-========================================= -->
+========================================================= -->
 
 <section
-    class="watch-section"
+    class="section"
     id="watch">
 
     <div class="section-title">
@@ -1400,51 +1238,45 @@ footer{
         </h2>
 
         <p>
-            paste a YouTube video and
-            watch it with your besties 🍿
+            one video — everyone watches together 🍿
         </p>
 
     </div>
 
 
-    <div class="paper">
+    <div class="watch-box">
 
-        <div class="tape"></div>
-
-        <div class="paper-header">
-
-            <div class="paper-title">
-                movie night ♡
-            </div>
-
-            <div class="status">
-                ● watch party
-            </div>
-
-        </div>
+        <input
+            class="watch-input"
+            id="youtubeInput"
+            placeholder="Paste YouTube link here..."
+            autocomplete="off">
 
 
-        <div class="watch-controls">
-
-            <input
-                id="youtubeInput"
-                class="watch-input"
-                placeholder="Paste YouTube link here... 🎬">
+        <div class="watch-actions">
 
             <button
-                class="watch-load"
-                onclick="loadYouTubeVideo()">
+                class="primary"
+                onclick="loadVideo()">
 
-                🎬 Play
+                🎬 Load Video
+
+            </button>
+
+            <button
+                class="primary"
+                onclick="syncNow()">
+
+                🔄 Sync Me
 
             </button>
 
         </div>
 
 
-        <div class="video-wrapper">
+        <div class="player-wrap">
 
-            <div id="youtubePlayer"></div>
+            <div id="player"></div>
 
         </div>
 
@@ -1453,17 +1285,7 @@ footer{
             class="watch-status"
             id="watchStatus">
 
-            🍿 Waiting for a video...
-
-        </div>
-
-
-        <div class="watch-tip">
-
-            💡 একজন video load/play/pause করলে
-            অন্যদের room-এও সেটা sync হবে।
-            <br>
-            কিছু YouTube video embedding allow নাও করতে পারে।
+            Waiting for a video... ♡
 
         </div>
 
@@ -1472,9 +1294,9 @@ footer{
 </section>
 
 
-<!-- =========================================
+<!-- =========================================================
      GAMES
-========================================= -->
+========================================================= -->
 
 <section
     class="section"
@@ -1487,8 +1309,7 @@ footer{
         </h2>
 
         <p>
-            because normal conversations
-            are boring hehe
+            friendship becomes dangerous here 😂
         </p>
 
     </div>
@@ -1497,159 +1318,166 @@ footer{
     <div class="games">
 
 
-        <div
-            class="game-card"
-            onclick="openGame('prank')">
+        <div class="game" onclick="game('prank')">
 
-            <div class="game-icon">
-                😈
-            </div>
+            <div class="icon">😈</div>
 
-            <h3>
-                prank me
-            </h3>
+            <h3>Prank</h3>
 
             <p>
-                harmless fake results
-                for your friends.
+                harmless fake results.
             </p>
 
         </div>
 
 
-        <div
-            class="game-card"
-            onclick="openGame('roast')">
+        <div class="game" onclick="game('roast')">
 
-            <div class="game-icon">
-                🔥
-            </div>
+            <div class="icon">🔥</div>
 
-            <h3>
-                roast my friend
-            </h3>
+            <h3>Roast</h3>
 
             <p>
-                cute little savage roasts.
+                cute but savage.
             </p>
 
         </div>
 
 
-        <div
-            class="game-card"
-            onclick="openGame('quiz')">
+        <div class="game" onclick="game('truth')">
 
-            <div class="game-icon">
-                🧠
-            </div>
+            <div class="icon">🎲</div>
 
-            <h3>
-                who knows me?
-            </h3>
+            <h3>Truth or Dare</h3>
 
             <p>
-                see who actually knows you.
+                choose your fate.
             </p>
 
         </div>
 
 
-        <div
-            class="game-card"
-            onclick="openGame('truth')">
+        <div class="game" onclick="game('score')">
 
-            <div class="game-icon">
-                🎲
-            </div>
+            <div class="icon">❤️</div>
 
-            <h3>
-                truth or dare
-            </h3>
+            <h3>Friendship Score</h3>
 
             <p>
-                choose your fate hehe.
+                100% fake science.
             </p>
 
         </div>
 
 
-        <div
-            class="game-card"
-            onclick="openGame('hacker')">
+        <div class="game" onclick="game('quiz')">
 
-            <div class="game-icon">
-                💻
-            </div>
+            <div class="icon">🧠</div>
 
-            <h3>
-                fake hacker
-            </h3>
+            <h3>Who Knows Me?</h3>
 
             <p>
-                scary looking,
-                completely fake.
+                test your bestie.
             </p>
 
         </div>
 
 
-        <div
-            class="game-card"
-            onclick="openGame('score')">
+        <div class="game" onclick="game('hack')">
 
-            <div class="game-icon">
-                ❤️
-            </div>
+            <div class="icon">💻</div>
 
-            <h3>
-                friendship score
-            </h3>
+            <h3>Fake Hacker</h3>
 
             <p>
-                scientifically inaccurate,
-                emotionally accurate.
+                scary looking. harmless.
             </p>
 
         </div>
 
 
-        <div
-            class="game-card"
-            onclick="openGame('guess')">
+        <div class="game" onclick="game('guess')">
 
-            <div class="game-icon">
-                👀
-            </div>
+            <div class="icon">👀</div>
 
-            <h3>
-                guess the friend
-            </h3>
+            <h3>Guess Friend</h3>
 
             <p>
-                give a clue and let them guess.
+                give a mysterious clue.
             </p>
 
         </div>
 
 
-        <div
-            class="game-card"
-            onclick="openGame('nothing')">
+        <div class="game" onclick="game('nothing')">
 
-            <div class="game-icon">
-                😂
-            </div>
+            <div class="icon">😂</div>
 
-            <h3>
-                don't click
-            </h3>
+            <h3>Don't Click</h3>
 
             <p>
-                seriously...
-                don't click it.
+                seriously don't.
             </p>
 
+        </div>
+
+
+    </div>
+
+</section>
+
+
+<!-- =========================================================
+     HOST PANEL
+========================================================= -->
+
+<section class="section">
+
+    <div
+        class="admin-box"
+        id="hostPanel">
+
+        <h2 style="
+            font-family:Caveat;
+            font-size:2.6rem;
+            color:#d85f91;
+        ">
+            👑 host control
+        </h2>
+
+        <p>
+            You are the host. Control your little corner.
+        </p>
+
+        <br>
+
+        <div class="admin-grid">
+
+            <button
+                class="admin-btn"
+                onclick="announcement()">
+
+                📢 Announcement
+
+            </button>
+
+            <button
+                class="admin-btn danger"
+                onclick="clearChat()">
+
+                🧹 Clear Chat
+
+            </button>
+
+        </div>
+
+        <br>
+
+        <h3>
+            👥 Friends in room
+        </h3>
+
+        <div id="memberList">
         </div>
 
     </div>
@@ -1659,15 +1487,14 @@ footer{
 
 <footer>
 
-    made with too much love
-    & zero seriousness ♡
+    made with love, chaos & friendship ♡
 
 </footer>
 
 
-<!-- =========================================
-     GAME MODAL
-========================================= -->
+<!-- =========================================================
+     MODAL
+========================================================= -->
 
 <div
     class="modal"
@@ -1677,55 +1504,28 @@ footer{
 
         <button
             class="close"
-            onclick="closeGame()">
+            onclick="closeModal()">
 
             ×
 
         </button>
 
-        <div id="gameContent"></div>
+        <div id="modalContent"></div>
 
     </div>
 
 </div>
 
 
-<!-- =========================================
-     YOUTUBE API
-========================================= -->
-
-<script>
-
-var youtubePlayer = null;
-
-var youtubeAPIReady = false;
+<div
+    class="toast"
+    id="toast">
+</div>
 
 
-/*
-YouTube API callback
-*/
-
-window.onYouTubeIframeAPIReady = function(){
-
-    youtubeAPIReady = true;
-
-    console.log(
-        "YouTube API ready ♡"
-    );
-
-};
-
-</script>
-
-
-<script
-    src="https://www.youtube.com/iframe_api">
-</script>
-
-
-<!-- =========================================
-     FIREBASE + APP
-========================================= -->
+<!-- =========================================================
+     FIREBASE
+========================================================= -->
 
 <script type="module">
 
@@ -1741,69 +1541,107 @@ import {
     ref,
     push,
     set,
-    onValue
+    update,
+    remove,
+    onValue,
+    onDisconnect,
+    serverTimestamp,
+    query,
+    orderByChild,
+    limitToLast
 }
 from
 "https://www.gstatic.com/firebasejs/12.1.0/firebase-database.js";
 
 
-/*
-================================================
-🔥🔥🔥 PUT YOUR FIREBASE CONFIG HERE 🔥🔥🔥
-================================================
+import {
+    getAuth,
+    signInAnonymously,
+    onAuthStateChanged
+}
+from
+"https://www.gstatic.com/firebasejs/12.1.0/firebase-auth.js";
 
-Firebase Console থেকে যেটা পাবে,
-সেটা এখানে বসাবে।
-*/
+
+/* =========================================================
+   🔴 FIREBASE CONFIG
+   নিজের Firebase config এখানে বসাও
+========================================================= */
 
 const firebaseConfig = {
 
     apiKey:
-        "PASTE_YOUR_API_KEY",
+        "PASTE_API_KEY",
 
     authDomain:
-        "PASTE_YOUR_AUTH_DOMAIN",
+        "PASTE_AUTH_DOMAIN",
 
     databaseURL:
-        "PASTE_YOUR_DATABASE_URL",
+        "PASTE_DATABASE_URL",
 
     projectId:
-        "PASTE_YOUR_PROJECT_ID",
+        "PASTE_PROJECT_ID",
 
     storageBucket:
-        "PASTE_YOUR_STORAGE_BUCKET",
+        "PASTE_STORAGE_BUCKET",
 
     messagingSenderId:
-        "PASTE_YOUR_MESSAGING_SENDER_ID",
+        "PASTE_MESSAGING_SENDER_ID",
 
     appId:
-        "PASTE_YOUR_APP_ID"
+        "PASTE_APP_ID"
 
 };
 
 
-/*
-================================================
-INITIALIZE
-================================================
-*/
+/* =========================================================
+   FIREBASE START
+========================================================= */
 
-const app =
-    initializeApp(firebaseConfig);
+let firebaseStarted = false;
 
-const db =
-    getDatabase(app);
+let app;
+let db;
+let auth;
+
+try{
+
+    app =
+        initializeApp(
+            firebaseConfig
+        );
+
+    db =
+        getDatabase(app);
+
+    auth =
+        getAuth(app);
+
+    firebaseStarted = true;
+
+}
+
+catch(error){
+
+    console.error(
+        "Firebase initialization error:",
+        error
+    );
+
+    showToast(
+        "Firebase config ঠিক করে বসাও 💕"
+    );
+
+}
 
 
-/*
-================================================
-ASK NAME
-================================================
-*/
+/* =========================================================
+   USER NAME
+========================================================= */
 
 let myName =
     localStorage.getItem(
-        "friendsFunName"
+        "friendName"
     );
 
 
@@ -1812,57 +1650,376 @@ if(!myName){
     myName =
         prompt(
             "তোমার নাম কী? 💕"
-        );
-
-    if(
-        !myName ||
-        !myName.trim()
-    ){
-
-        myName =
-            "Anonymous";
-
-    }
+        ) ||
+        "Anonymous";
 
     myName =
-        myName.trim();
+        myName
+            .trim()
+            .slice(0,30) ||
+        "Anonymous";
 
     localStorage.setItem(
-        "friendsFunName",
+        "friendName",
         myName
     );
 
 }
 
 
-/*
-================================================
-DATABASE REFERENCES
-================================================
-*/
+document
+    .getElementById("welcomeName")
+    .textContent =
+    myName;
 
-const chatRef =
-    ref(
-        db,
-        "friendsFunChat"
+
+/* =========================================================
+   GLOBAL FIREBASE VARIABLES
+========================================================= */
+
+let uid = null;
+
+let messagesRef = null;
+let usersRef = null;
+let watchRef = null;
+let settingsRef = null;
+
+
+/* =========================================================
+   AUTH
+========================================================= */
+
+if(firebaseStarted){
+
+    signInAnonymously(auth)
+    .then(function(){
+
+        console.log(
+            "Anonymous Firebase login started."
+        );
+
+    })
+    .catch(function(error){
+
+        console.error(error);
+
+        showToast(
+            "Firebase Anonymous Login enable করো 💕"
+        );
+
+    });
+
+
+    onAuthStateChanged(
+        auth,
+        function(user){
+
+            if(!user){
+
+                return;
+
+            }
+
+
+            uid =
+                user.uid;
+
+
+            messagesRef =
+                query(
+                    ref(
+                        db,
+                        "friendsHub/messages"
+                    ),
+                    orderByChild("time"),
+                    limitToLast(100)
+                );
+
+
+            usersRef =
+                ref(
+                    db,
+                    "friendsHub/users"
+                );
+
+
+            watchRef =
+                ref(
+                    db,
+                    "friendsHub/watch"
+                );
+
+
+            settingsRef =
+                ref(
+                    db,
+                    "friendsHub/settings"
+                );
+
+
+            setupPresence();
+
+            listenMessages();
+
+            listenUsers();
+
+            listenWatch();
+
+            listenSettings();
+
+        }
     );
 
+}
 
-const watchRef =
-    ref(
-        db,
-        "friendsFunWatch"
+
+/* =========================================================
+   PRESENCE
+========================================================= */
+
+function setupPresence(){
+
+    if(!uid){
+
+        return;
+
+    }
+
+
+    const myUserRef =
+        ref(
+            db,
+            "friendsHub/users/" +
+            uid
+        );
+
+
+    set(
+        myUserRef,
+        {
+
+            name:
+                myName,
+
+            online:
+                true,
+
+            joinedAt:
+                serverTimestamp(),
+
+            lastSeen:
+                serverTimestamp()
+
+        }
+    )
+    .catch(function(error){
+
+        console.error(
+            "Presence error:",
+            error
+        );
+
+    });
+
+
+    onDisconnect(
+        myUserRef
+    )
+    .update({
+
+        online:false,
+
+        lastSeen:
+            serverTimestamp()
+
+    });
+
+}
+
+
+/* =========================================================
+   USERS
+========================================================= */
+
+function listenUsers(){
+
+    onValue(
+        usersRef,
+        function(snapshot){
+
+            const people =
+                document.getElementById(
+                    "people"
+                );
+
+
+            const memberList =
+                document.getElementById(
+                    "memberList"
+                );
+
+
+            people.innerHTML = "";
+
+            memberList.innerHTML = "";
+
+
+            let count = 0;
+
+
+            snapshot.forEach(
+                function(child){
+
+                    const user =
+                        child.val() || {};
+
+
+                    if(
+                        user.online === true
+                    ){
+
+                        count++;
+
+                    }
+
+
+                    const pill =
+                        document.createElement(
+                            "div"
+                        );
+
+
+                    pill.className =
+                        "person";
+
+
+                    const dot =
+                        document.createElement(
+                            "span"
+                        );
+
+
+                    dot.className =
+                        "dot " +
+                        (
+                            user.online
+                            ? ""
+                            : "offline"
+                        );
+
+
+                    pill.appendChild(
+                        dot
+                    );
+
+
+                    const name =
+                        document.createTextNode(
+                            user.name ||
+                            "Anonymous"
+                        );
+
+
+                    pill.appendChild(
+                        name
+                    );
+
+
+                    people.appendChild(
+                        pill
+                    );
+
+
+                    const row =
+                        document.createElement(
+                            "div"
+                        );
+
+
+                    row.className =
+                        "member-row";
+
+
+                    const left =
+                        document.createElement(
+                            "span"
+                        );
+
+
+                    left.textContent =
+                        (
+                            user.online
+                            ? "🟢 "
+                            : "⚪ "
+                        ) +
+                        (
+                            user.name ||
+                            "Anonymous"
+                        );
+
+
+                    const right =
+                        document.createElement(
+                            "span"
+                        );
+
+
+                    right.textContent =
+                        user.online
+                        ? "online"
+                        : "offline";
+
+
+                    row.appendChild(left);
+
+                    row.appendChild(right);
+
+                    memberList.appendChild(
+                        row
+                    );
+
+                }
+            );
+
+
+            document
+                .getElementById(
+                    "onlineCount"
+                )
+                .textContent =
+                count;
+
+        },
+        function(error){
+
+            console.error(
+                "Users listener error:",
+                error
+            );
+
+        }
     );
 
+}
 
-/*
-================================================
-CHAT
-================================================
-*/
+
+/* =========================================================
+   SEND MESSAGE
+========================================================= */
 
 window.sendMessage =
 function(){
+
+    if(!uid){
+
+        showToast(
+            "Chat connect হচ্ছে... একটু অপেক্ষা করো ♡"
+        );
+
+        return;
+
+    }
+
 
     const input =
         document.getElementById(
@@ -1881,40 +2038,82 @@ function(){
     }
 
 
+    if(text.length > 500){
+
+        showToast(
+            "Message 500 characters-এর মধ্যে রাখো."
+        );
+
+        return;
+
+    }
+
+
+    const messagesRoot =
+        ref(
+            db,
+            "friendsHub/messages"
+        );
+
+
     push(
-        chatRef,
+        messagesRoot,
         {
+
+            uid:
+                uid,
 
             name:
                 myName,
 
-            message:
+            text:
                 text,
 
             time:
-                Date.now()
+                serverTimestamp(),
+
+            type:
+                "message"
 
         }
-    );
+    )
+    .then(function(){
 
+        input.value = "";
 
-    input.value = "";
+    })
+    .catch(function(error){
+
+        console.error(
+            "Message error:",
+            error
+        );
+
+        showToast(
+            "Message send হয়নি. Firebase Rules check করো."
+        );
+
+    });
 
 };
 
 
+/* =========================================================
+   ENTER SEND
+========================================================= */
+
 document
-    .getElementById(
-        "messageInput"
-    )
+    .getElementById("messageInput")
     .addEventListener(
         "keydown",
         function(event){
 
             if(
-                event.key ===
-                "Enter"
+                event.key === "Enter" &&
+                !event.shiftKey
             ){
+
+                event.preventDefault();
 
                 sendMessage();
 
@@ -1924,228 +2123,582 @@ document
     );
 
 
-/*
-================================================
-ESCAPE HTML
-================================================
-*/
+/* =========================================================
+   LISTEN MESSAGES
+========================================================= */
 
-function escapeHTML(text){
+function listenMessages(){
 
-    return String(text)
+    onValue(
+        messagesRef,
+        function(snapshot){
 
-        .replace(
-            /&/g,
-            "&amp;"
-        )
-
-        .replace(
-            /</g,
-            "&lt;"
-        )
-
-        .replace(
-            />/g,
-            "&gt;"
-        )
-
-        .replace(
-            /"/g,
-            "&quot;"
-        )
-
-        .replace(
-            /'/g,
-            "&#039;"
-        );
-
-}
+            const box =
+                document.getElementById(
+                    "messages"
+                );
 
 
-/*
-================================================
-LOAD CHAT
-================================================
-*/
-
-onValue(
-    chatRef,
-    function(snapshot){
-
-        const container =
-            document.getElementById(
-                "messages"
-            );
+            box.innerHTML = "";
 
 
-        container.innerHTML = "";
+            if(!snapshot.exists()){
 
-
-        snapshot.forEach(
-            function(child){
-
-                const data =
-                    child.val();
-
-
-                const div =
+                const empty =
                     document.createElement(
                         "div"
                     );
 
 
-                div.className =
-                    "message " +
-                    (
-                        data.name === myName
-                        ?
-                        "me"
-                        :
-                        "other"
-                    );
+                empty.className =
+                    "empty-chat";
 
 
-                const date =
-                    new Date(
-                        data.time
-                    );
+                empty.textContent =
+                    "No messages yet... be the first one ♡";
 
 
-                const time =
-                    date.toLocaleTimeString(
-                        [],
-                        {
-                            hour:"2-digit",
-                            minute:"2-digit"
-                        }
-                    );
-
-
-                div.innerHTML = `
-
-                    <div class="message-name">
-
-                        ${escapeHTML(data.name)}
-
-                    </div>
-
-                    ${escapeHTML(data.message)}
-
-                    <div class="message-time">
-
-                        ${time}
-
-                    </div>
-
-                `;
-
-
-                container.appendChild(
-                    div
+                box.appendChild(
+                    empty
                 );
 
+                return;
+
             }
+
+
+            snapshot.forEach(
+                function(child){
+
+                    const data =
+                        child.val() || {};
+
+
+                    const div =
+                        document.createElement(
+                            "div"
+                        );
+
+
+                    if(
+                        data.type === "announcement" ||
+                        data.uid === "HOST"
+                    ){
+
+                        div.className =
+                            "msg system";
+
+                    }
+
+                    else{
+
+                        div.className =
+                            "msg " +
+                            (
+                                data.uid === uid
+                                ? "me"
+                                : "other"
+                            );
+
+                    }
+
+
+                    const name =
+                        document.createElement(
+                            "div"
+                        );
+
+
+                    name.className =
+                        "msg-name";
+
+
+                    name.textContent =
+                        data.uid === uid
+                        ? "You"
+                        : (
+                            data.name ||
+                            "Anonymous"
+                        );
+
+
+                    const text =
+                        document.createElement(
+                            "div"
+                        );
+
+
+                    text.textContent =
+                        data.text ||
+                        "";
+
+
+                    const time =
+                        document.createElement(
+                            "div"
+                        );
+
+
+                    time.className =
+                        "msg-time";
+
+
+                    let messageTime =
+                        "now";
+
+
+                    if(
+                        typeof data.time ===
+                        "number"
+                    ){
+
+                        messageTime =
+                            new Date(
+                                data.time
+                            ).toLocaleTimeString(
+                                [],
+                                {
+                                    hour:"2-digit",
+                                    minute:"2-digit"
+                                }
+                            );
+
+                    }
+
+
+                    time.textContent =
+                        messageTime;
+
+
+                    div.appendChild(
+                        name
+                    );
+
+                    div.appendChild(
+                        text
+                    );
+
+                    div.appendChild(
+                        time
+                    );
+
+
+                    box.appendChild(
+                        div
+                    );
+
+                }
+            );
+
+
+            box.scrollTop =
+                box.scrollHeight;
+
+        },
+        function(error){
+
+            console.error(
+                "Message listener error:",
+                error
+            );
+
+            showToast(
+                "Chat read করা যাচ্ছে না. Database Rules check করো."
+            );
+
+        }
+    );
+
+}
+
+
+/* =========================================================
+   HOST
+========================================================= */
+
+/*
+   IMPORTANT:
+   এই PIN frontend-এ আছে।
+   এটি high-security admin authentication নয়।
+*/
+
+const HOST_PIN =
+    "BESTIES2026";
+
+
+let isHost =
+    sessionStorage.getItem(
+        "isHost"
+    ) === "true";
+
+
+window.openHost =
+function(){
+
+    if(isHost){
+
+        showHost();
+
+        return;
+
+    }
+
+
+    const pin =
+        prompt(
+            "👑 Host PIN:"
         );
 
 
-        container.scrollTop =
-            container.scrollHeight;
+    if(
+        pin === HOST_PIN
+    ){
+
+        isHost = true;
+
+        sessionStorage.setItem(
+            "isHost",
+            "true"
+        );
+
+
+        showHost();
+
+        showToast(
+            "Welcome, Host 👑"
+        );
 
     }
-);
+
+    else{
+
+        showToast(
+            "Wrong host PIN 😭"
+        );
+
+    }
+
+};
 
 
-/*
-================================================
-YOUTUBE ID
-================================================
-*/
+function showHost(){
 
-function getYouTubeID(url){
+    const panel =
+        document.getElementById(
+            "hostPanel"
+        );
+
+
+    panel.classList.add(
+        "show"
+    );
+
+
+    panel.scrollIntoView({
+        behavior:"smooth"
+    });
+
+}
+
+
+/* =========================================================
+   ANNOUNCEMENT
+========================================================= */
+
+window.announcement =
+function(){
+
+    if(!isHost){
+
+        return;
+
+    }
+
+
+    if(!uid){
+
+        showToast(
+            "Firebase connect হয়নি."
+        );
+
+        return;
+
+    }
+
+
+    const text =
+        prompt(
+            "📢 Announcement লিখো:"
+        );
+
+
+    if(!text){
+
+        return;
+
+    }
+
+
+    const cleanText =
+        text
+            .trim()
+            .slice(0,500);
+
+
+    if(!cleanText){
+
+        return;
+
+    }
+
+
+    push(
+        ref(
+            db,
+            "friendsHub/messages"
+        ),
+        {
+
+            uid:
+                "HOST",
+
+            name:
+                "👑 HOST",
+
+            text:
+                "📢 " + cleanText,
+
+            time:
+                serverTimestamp(),
+
+            type:
+                "announcement"
+
+        }
+    )
+    .catch(function(error){
+
+        console.error(error);
+
+        showToast(
+            "Announcement send হয়নি."
+        );
+
+    });
+
+
+    update(
+        ref(
+            db,
+            "friendsHub/settings"
+        ),
+        {
+
+            announcement:
+                cleanText,
+
+            updatedAt:
+                serverTimestamp()
+
+        }
+    );
+
+};
+
+
+/* =========================================================
+   CLEAR CHAT
+========================================================= */
+
+window.clearChat =
+function(){
+
+    if(!isHost){
+
+        return;
+
+    }
+
+
+    const ok =
+        confirm(
+            "সব chat message delete করতে চাও?"
+        );
+
+
+    if(!ok){
+
+        return;
+
+    }
+
+
+    remove(
+        ref(
+            db,
+            "friendsHub/messages"
+        )
+    )
+    .then(function(){
+
+        showToast(
+            "Chat cleared 🧹"
+        );
+
+    })
+    .catch(function(error){
+
+        console.error(error);
+
+        showToast(
+            "Chat clear হয়নি."
+        );
+
+    });
+
+};
+
+
+/* =========================================================
+   WATCH TOGETHER
+========================================================= */
+
+let player = null;
+
+let currentVideo = null;
+
+let youtubeReady = false;
+
+let playerCreating = false;
+
+let remoteAction = false;
+
+let lastRemoteUpdate = 0;
+
+
+/* =========================================================
+   YOUTUBE READY
+========================================================= */
+
+window.onYouTubeIframeAPIReady =
+function(){
+
+    youtubeReady = true;
+
+    console.log(
+        "YouTube API ready."
+    );
+
+};
+
+
+/* =========================================================
+   GET YOUTUBE VIDEO ID
+========================================================= */
+
+function getVideoID(url){
+
+    if(!url){
+
+        return null;
+
+    }
+
 
     try{
 
-        const parsed =
-            new URL(url);
+        const u =
+            new URL(
+                url
+            );
 
 
-        /*
-        youtube.com/watch?v=
-        */
+        const host =
+            u.hostname
+                .toLowerCase()
+                .replace(
+                    "www.",
+                    ""
+                );
+
+
+        /* youtu.be */
 
         if(
-            parsed.hostname
-                .includes(
-                    "youtube.com"
-                )
+            host === "youtu.be"
         ){
 
             const id =
-                parsed.searchParams
-                    .get("v");
+                u.pathname
+                    .split("/")
+                    .filter(Boolean)[0];
 
 
-            if(id){
-
-                return id;
-
-            }
-
-
-            /*
-            youtube.com/shorts/ID
-            */
-
-            if(
-                parsed.pathname
-                    .includes(
-                        "/shorts/"
-                    )
-            ){
-
-                return parsed.pathname
-                    .split("/shorts/")[1]
-                    .split("/")[0];
-
-            }
-
-
-            /*
-            youtube.com/embed/ID
-            */
-
-            if(
-                parsed.pathname
-                    .includes(
-                        "/embed/"
-                    )
-            ){
-
-                return parsed.pathname
-                    .split("/embed/")[1]
-                    .split("/")[0];
-
-            }
+            return cleanVideoID(id);
 
         }
 
 
-        /*
-        youtu.be/ID
-        */
+        /* youtube.com */
 
         if(
-            parsed.hostname
-                .includes(
-                    "youtu.be"
-                )
+            host === "youtube.com" ||
+            host === "m.youtube.com"
         ){
 
-            return parsed.pathname
-                .replace(
-                    "/",
-                    ""
+            const v =
+                u.searchParams.get(
+                    "v"
                 );
+
+
+            if(v){
+
+                return cleanVideoID(v);
+
+            }
+
+
+            const parts =
+                u.pathname
+                    .split("/")
+                    .filter(Boolean);
+
+
+            const index =
+                parts.indexOf(
+                    "shorts"
+                );
+
+
+            if(
+                index !== -1 &&
+                parts[index + 1]
+            ){
+
+                return cleanVideoID(
+                    parts[index + 1]
+                );
+
+            }
+
+
+            const embedIndex =
+                parts.indexOf(
+                    "embed"
+                );
+
+
+            if(
+                embedIndex !== -1 &&
+                parts[embedIndex + 1]
+            ){
+
+                return cleanVideoID(
+                    parts[embedIndex + 1]
+                );
+
+            }
 
         }
 
@@ -2163,33 +2716,49 @@ function getYouTubeID(url){
 }
 
 
-/*
-================================================
-LOAD YOUTUBE VIDEO
-================================================
-*/
+function cleanVideoID(id){
 
-window.loadYouTubeVideo =
+    if(!id){
+
+        return null;
+
+    }
+
+
+    const clean =
+        id
+            .trim()
+            .replace(
+                /[^a-zA-Z0-9_-]/g,
+                ""
+            );
+
+
+    if(
+        clean.length !== 11
+    ){
+
+        return null;
+
+    }
+
+
+    return clean;
+
+}
+
+
+/* =========================================================
+   LOAD VIDEO
+========================================================= */
+
+window.loadVideo =
 function(){
 
-    const input =
-        document.getElementById(
-            "youtubeInput"
-        );
+    if(!uid){
 
-
-    const url =
-        input.value.trim();
-
-
-    const videoId =
-        getYouTubeID(url);
-
-
-    if(!videoId){
-
-        alert(
-            "Please একটা valid YouTube link দাও 😭"
+        showToast(
+            "Firebase connect হচ্ছে... একটু অপেক্ষা করো."
         );
 
         return;
@@ -2197,38 +2766,101 @@ function(){
     }
 
 
-    loadVideo(
-        videoId,
-        0,
-        true
-    );
+    const input =
+        document.getElementById(
+            "youtubeInput"
+        );
+
+
+    const id =
+        getVideoID(
+            input.value.trim()
+        );
+
+
+    if(!id){
+
+        showToast(
+            "Valid YouTube link দাও 😭"
+        );
+
+        return;
+
+    }
+
+
+    currentVideo =
+        id;
+
+
+    const watchData = {
+
+        videoId:
+            id,
+
+        time:
+            0,
+
+        state:
+            "pause",
+
+        by:
+            myName,
+
+        updatedAt:
+            Date.now()
+
+    };
+
+
+    set(
+        ref(
+            db,
+            "friendsHub/watch"
+        ),
+        watchData
+    )
+    .then(function(){
+
+        createPlayer(
+            id,
+            0,
+            false
+        );
+
+    })
+    .catch(function(error){
+
+        console.error(error);
+
+        showToast(
+            "Video sync হয়নি. Firebase Rules check করো."
+        );
+
+    });
 
 };
 
 
-/*
-================================================
-LOAD PLAYER
-================================================
-*/
+/* =========================================================
+   CREATE YOUTUBE PLAYER
+========================================================= */
 
-function loadVideo(
+function createPlayer(
     videoId,
     startTime,
-    localAction
+    autoPlay
 ){
 
-    if(
-        !youtubeAPIReady
-    ){
+    if(!youtubeReady){
 
         setTimeout(
             function(){
 
-                loadVideo(
+                createPlayer(
                     videoId,
                     startTime,
-                    localAction
+                    autoPlay
                 );
 
             },
@@ -2240,49 +2872,64 @@ function loadVideo(
     }
 
 
-    /*
-    Player already exists
-    */
-
-    if(youtubePlayer){
-
-        if(
-            localAction
-        ){
-
-            youtubePlayer.loadVideoById(
-                {
-                    videoId:
-                        videoId,
-
-                    startSeconds:
-                        startTime || 0
-                }
-            );
-
-        }
-
-        else{
-
-            youtubePlayer.cueVideoById(
-                videoId,
-                startTime || 0
-            );
-
-        }
+    if(playerCreating){
 
         return;
 
     }
 
 
-    /*
-    Create player
-    */
+    if(player){
 
-    youtubePlayer =
+        remoteAction = true;
+
+        player.loadVideoById({
+
+            videoId:
+                videoId,
+
+            startSeconds:
+                Number(
+                    startTime || 0
+                )
+
+        });
+
+
+        if(autoPlay){
+
+            player.playVideo();
+
+        }
+
+        else{
+
+            player.pauseVideo();
+
+        }
+
+
+        setTimeout(
+            function(){
+
+                remoteAction = false;
+
+            },
+            1200
+        );
+
+
+        return;
+
+    }
+
+
+    playerCreating = true;
+
+
+    player =
         new YT.Player(
-            "youtubePlayer",
+            "player",
             {
 
                 videoId:
@@ -2290,42 +2937,66 @@ function loadVideo(
 
                 playerVars:{
 
-                    autoplay:
-                        localAction
-                        ?
-                        1
-                        :
-                        0,
-
                     controls:1,
 
                     rel:0,
 
-                    modestbranding:1
+                    modestbranding:1,
+
+                    playsinline:1
 
                 },
 
                 events:{
 
-                    onReady:
-                    function(){
+                    onReady:function(){
+
+                        playerCreating =
+                            false;
+
 
                         if(
-                            startTime
+                            Number(
+                                startTime || 0
+                            ) > 0
                         ){
 
-                            youtubePlayer
-                                .seekTo(
-                                    startTime,
-                                    true
-                                );
+                            player.seekTo(
+                                Number(
+                                    startTime
+                                ),
+                                true
+                            );
+
+                        }
+
+
+                        if(autoPlay){
+
+                            player.playVideo();
 
                         }
 
                     },
 
                     onStateChange:
-                        onYouTubeState
+                        playerStateChanged,
+
+                    onError:function(event){
+
+                        console.error(
+                            "YouTube error:",
+                            event.data
+                        );
+
+                        document
+                            .getElementById(
+                                "watchStatus"
+                            )
+                            .textContent =
+                            "YouTube could not play this video ♡";
+
+                    }
 
                 }
 
@@ -2335,30 +3006,17 @@ function loadVideo(
 }
 
 
-/*
-================================================
-YOUTUBE STATE
-================================================
-*/
+/* =========================================================
+   PLAYER STATE CHANGE
+========================================================= */
 
-function onYouTubeState(event){
+function playerStateChanged(event){
 
     if(
-        !youtubePlayer
-    ){
-
-        return;
-
-    }
-
-
-    /*
-    Remote state change
-    হলে Firebase-এ আবার পাঠাবে না।
-    */
-
-    if(
-        window.remoteChanging
+        remoteAction ||
+        !player ||
+        !currentVideo ||
+        !uid
     ){
 
         return;
@@ -2380,8 +3038,7 @@ function onYouTubeState(event){
 
     }
 
-
-    if(
+    else if(
         event.data ===
         YT.PlayerState.PAUSED
     ){
@@ -2391,8 +3048,7 @@ function onYouTubeState(event){
 
     }
 
-
-    if(
+    else if(
         event.data ===
         YT.PlayerState.ENDED
     ){
@@ -2402,425 +3058,471 @@ function onYouTubeState(event){
 
     }
 
-
-    let videoId =
-        "";
-
-
-    try{
-
-        videoId =
-            youtubePlayer
-                .getVideoData()
-                .video_id;
-
-    }
-
-    catch(error){
+    else{
 
         return;
 
     }
 
 
-    if(!videoId){
+    const time =
+        player.getCurrentTime();
+
+
+    const now =
+        Date.now();
+
+
+    if(
+        now - lastRemoteUpdate <
+        500
+    ){
 
         return;
 
     }
 
 
-    const currentTime =
-        youtubePlayer.getCurrentTime();
-
-
-    set(
-        watchRef,
+    update(
+        ref(
+            db,
+            "friendsHub/watch"
+        ),
         {
 
             videoId:
-                videoId,
+                currentVideo,
 
             time:
-                currentTime,
+                time,
 
             state:
                 state,
 
-            updatedBy:
+            by:
+                myName,
+
+            updatedAt:
+                now
+
+        }
+    );
+
+}
+
+
+/* =========================================================
+   WATCH LISTENER
+========================================================= */
+
+function listenWatch(){
+
+    onValue(
+        watchRef,
+        function(snapshot){
+
+            const data =
+                snapshot.val();
+
+
+            if(
+                !data ||
+                !data.videoId
+            ){
+
+                document
+                    .getElementById(
+                        "watchStatus"
+                    )
+                    .textContent =
+                    "Waiting for a video... ♡";
+
+                return;
+
+            }
+
+
+            currentVideo =
+                data.videoId;
+
+
+            const status =
+                document.getElementById(
+                    "watchStatus"
+                );
+
+
+            status.textContent =
+                `🎬 ${data.by || "Someone"} is controlling the room ♡`;
+
+
+            const remoteTime =
+                Number(
+                    data.time || 0
+                );
+
+
+            const shouldPlay =
+                data.state ===
+                "play";
+
+
+            /* No player */
+
+            if(!player){
+
+                lastRemoteUpdate =
+                    Date.now();
+
+                remoteAction =
+                    true;
+
+
+                createPlayer(
+                    data.videoId,
+                    remoteTime,
+                    shouldPlay
+                );
+
+
+                setTimeout(
+                    function(){
+
+                        remoteAction =
+                            false;
+
+                    },
+                    1500
+                );
+
+
+                return;
+
+            }
+
+
+            let playerVideoId = "";
+
+
+            try{
+
+                playerVideoId =
+                    player
+                        .getVideoData()
+                        .video_id || "";
+
+            }
+
+            catch(error){
+
+                playerVideoId = "";
+
+            }
+
+
+            /* Different video */
+
+            if(
+                playerVideoId !==
+                data.videoId
+            ){
+
+                lastRemoteUpdate =
+                    Date.now();
+
+                remoteAction =
+                    true;
+
+
+                createPlayer(
+                    data.videoId,
+                    remoteTime,
+                    shouldPlay
+                );
+
+
+                setTimeout(
+                    function(){
+
+                        remoteAction =
+                            false;
+
+                    },
+                    1500
+                );
+
+
+                return;
+
+            }
+
+
+            /* Same video */
+
+            const localTime =
+                player.getCurrentTime();
+
+
+            const difference =
+                Math.abs(
+                    localTime -
+                    remoteTime
+                );
+
+
+            /*
+               Only seek if difference is
+               bigger than 2 seconds.
+            */
+
+            remoteAction =
+                true;
+
+            lastRemoteUpdate =
+                Date.now();
+
+
+            if(
+                difference > 2
+            ){
+
+                player.seekTo(
+                    remoteTime,
+                    true
+                );
+
+            }
+
+
+            if(shouldPlay){
+
+                player.playVideo();
+
+            }
+
+            else if(
+                data.state === "pause" ||
+                data.state === "ended"
+            ){
+
+                player.pauseVideo();
+
+            }
+
+
+            setTimeout(
+                function(){
+
+                    remoteAction =
+                        false;
+
+                },
+                1000
+            );
+
+        },
+        function(error){
+
+            console.error(
+                "Watch listener error:",
+                error
+            );
+
+        }
+    );
+
+}
+
+
+/* =========================================================
+   MANUAL SYNC
+========================================================= */
+
+window.syncNow =
+function(){
+
+    if(
+        !player ||
+        !currentVideo
+    ){
+
+        showToast(
+            "আগে একটা video load করো."
+        );
+
+        return;
+
+    }
+
+
+    if(!uid){
+
+        showToast(
+            "Firebase connect হয়নি."
+        );
+
+        return;
+
+    }
+
+
+    const time =
+        player.getCurrentTime();
+
+
+    let state =
+        "pause";
+
+
+    const playerState =
+        player.getPlayerState();
+
+
+    if(
+        playerState ===
+        YT.PlayerState.PLAYING
+    ){
+
+        state =
+            "play";
+
+    }
+
+    else if(
+        playerState ===
+        YT.PlayerState.ENDED
+    ){
+
+        state =
+            "ended";
+
+    }
+
+
+    lastRemoteUpdate =
+        Date.now();
+
+
+    set(
+        ref(
+            db,
+            "friendsHub/watch"
+        ),
+        {
+
+            videoId:
+                currentVideo,
+
+            time:
+                time,
+
+            state:
+                state,
+
+            by:
                 myName,
 
             updatedAt:
                 Date.now()
 
         }
-    );
+    )
+    .then(function(){
+
+        showToast(
+            "Synced ♡"
+        );
+
+    });
+
+};
 
 
-    updateWatchStatus(
-        state === "play"
-        ?
-        `▶️ ${myName} is playing ♡`
-        :
-        `⏸️ ${myName} paused the video`
+/* =========================================================
+   SETTINGS LISTENER
+========================================================= */
+
+function listenSettings(){
+
+    onValue(
+        settingsRef,
+        function(snapshot){
+
+            const data =
+                snapshot.val();
+
+
+            if(
+                data &&
+                data.announcement
+            ){
+
+                document.title =
+                    "♡ " +
+                    data.announcement;
+
+            }
+
+        }
     );
 
 }
 
 
-/*
-================================================
-WATCH TOGETHER LISTENER
-================================================
-*/
-
-onValue(
-    watchRef,
-    function(snapshot){
-
-        const data =
-            snapshot.val();
-
-
-        if(!data){
-
-            return;
-
-        }
-
-
-        if(
-            data.updatedBy ===
-            myName
-        ){
-
-            return;
-
-        }
-
-
-        if(
-            !data.videoId
-        ){
-
-            return;
-
-        }
-
-
-        /*
-        If no player yet
-        */
-
-        if(
-            !youtubePlayer
-        ){
-
-            createRemotePlayer(
-                data
-            );
-
-            return;
-
-        }
-
-
-        /*
-        Current video
-        */
-
-        let currentVideo =
-            "";
-
-
-        try{
-
-            currentVideo =
-                youtubePlayer
-                    .getVideoData()
-                    .video_id;
-
-        }
-
-        catch(error){
-
-            return;
-
-        }
-
-
-        /*
-        Different video
-        */
-
-        if(
-            currentVideo !==
-            data.videoId
-        ){
-
-            window.remoteChanging =
-                true;
-
-
-            youtubePlayer.loadVideoById(
-                {
-                    videoId:
-                        data.videoId,
-
-                    startSeconds:
-                        Number(
-                            data.time || 0
-                        )
-                }
-            );
-
-
-            setTimeout(
-                function(){
-
-                    window.remoteChanging =
-                        false;
-
-                },
-                1200
-            );
-
-
-            return;
-
-        }
-
-
-        /*
-        Same video:
-        play/pause sync
-        */
-
-        window.remoteChanging =
-            true;
-
-
-        const target =
-            Number(
-                data.time || 0
-            );
-
-
-        try{
-
-            youtubePlayer.seekTo(
-                target,
-                true
-            );
-
-        }
-
-        catch(error){}
-
-
-        if(
-            data.state ===
-            "play"
-        ){
-
-            youtubePlayer.playVideo();
-
-            updateWatchStatus(
-                `▶️ ${data.updatedBy} started the video ♡`
-            );
-
-        }
-
-
-        else if(
-            data.state ===
-            "pause"
-        ){
-
-            youtubePlayer.pauseVideo();
-
-            updateWatchStatus(
-                `⏸️ ${data.updatedBy} paused the video`
-            );
-
-        }
-
-
-        setTimeout(
-            function(){
-
-                window.remoteChanging =
-                    false;
-
-            },
-            900
+/* =========================================================
+   GLOBAL UTILITY
+========================================================= */
+
+window.showToast =
+function(message){
+
+    const toast =
+        document.getElementById(
+            "toast"
         );
 
-    }
-);
+
+    toast.textContent =
+        message;
 
 
-/*
-================================================
-CREATE REMOTE PLAYER
-================================================
-*/
+    toast.classList.add(
+        "show"
+    );
 
-function createRemotePlayer(data){
 
-    if(
-        !youtubeAPIReady
-    ){
+    clearTimeout(
+        window.__toastTimer
+    );
 
+
+    window.__toastTimer =
         setTimeout(
             function(){
 
-                createRemotePlayer(
-                    data
+                toast.classList.remove(
+                    "show"
                 );
 
             },
-            300
+            2500
         );
-
-        return;
-
-    }
-
-
-    youtubePlayer =
-        new YT.Player(
-            "youtubePlayer",
-            {
-
-                videoId:
-                    data.videoId,
-
-                playerVars:{
-
-                    autoplay:0,
-
-                    controls:1,
-
-                    rel:0,
-
-                    modestbranding:1
-
-                },
-
-                events:{
-
-                    onReady:
-                    function(){
-
-                        youtubePlayer
-                            .seekTo(
-                                Number(
-                                    data.time || 0
-                                ),
-                                true
-                            );
-
-
-                        if(
-                            data.state ===
-                            "play"
-                        ){
-
-                            youtubePlayer
-                                .playVideo();
-
-                        }
-
-
-                        updateWatchStatus(
-                            `🎬 ${data.updatedBy} loaded a video ♡`
-                        );
-
-                    },
-
-                    onStateChange:
-                        onYouTubeState
-
-                }
-
-            }
-        );
-
-}
-
-
-/*
-================================================
-STATUS
-================================================
-*/
-
-function updateWatchStatus(text){
-
-    const element =
-        document.getElementById(
-            "watchStatus"
-        );
-
-
-    if(element){
-
-        element.textContent =
-            text;
-
-    }
-
-}
-
-
-/*
-================================================
-NAVIGATION
-================================================
-*/
-
-window.goChat =
-function(){
-
-    document
-        .getElementById("chat")
-        .scrollIntoView({
-            behavior:"smooth"
-        });
 
 };
 
 
-window.goWatch =
-function(){
-
-    document
-        .getElementById("watch")
-        .scrollIntoView({
-            behavior:"smooth"
-        });
-
-};
+</script>
 
 
-window.goGames =
-function(){
+<!-- =========================================================
+     GAME JAVASCRIPT
+========================================================= -->
 
-    document
-        .getElementById("games")
-        .scrollIntoView({
-            behavior:"smooth"
-        });
+<script>
 
-};
-
-
-/*
-================================================
-GAME MODAL
-================================================
-*/
+/* =========================================================
+   MODAL
+========================================================= */
 
 const modal =
     document.getElementById(
@@ -2828,116 +3530,158 @@ const modal =
     );
 
 
-const gameContent =
+const modalContent =
     document.getElementById(
-        "gameContent"
+        "modalContent"
     );
 
 
-window.openGame =
-function(game){
+function go(id){
+
+    const element =
+        document.getElementById(
+            id
+        );
+
+
+    if(!element){
+
+        return;
+
+    }
+
+
+    element.scrollIntoView({
+        behavior:"smooth"
+    });
+
+}
+
+
+function closeModal(){
+
+    modal.classList.remove(
+        "show"
+    );
+
+    modalContent.innerHTML = "";
+
+}
+
+
+modal.addEventListener(
+    "click",
+    function(event){
+
+        if(
+            event.target === modal
+        ){
+
+            closeModal();
+
+        }
+
+    }
+);
+
+
+document.addEventListener(
+    "keydown",
+    function(event){
+
+        if(
+            event.key === "Escape"
+        ){
+
+            closeModal();
+
+        }
+
+    }
+);
+
+
+/* =========================================================
+   GAME OPEN
+========================================================= */
+
+function game(type){
 
     modal.classList.add(
         "show"
     );
 
 
-    if(
-        game === "prank"
-    )
-        prankGame();
+    switch(type){
+
+        case "prank":
+            prank();
+            break;
+
+        case "roast":
+            roast();
+            break;
+
+        case "truth":
+            truth();
+            break;
+
+        case "score":
+            score();
+            break;
+
+        case "quiz":
+            quiz();
+            break;
+
+        case "hack":
+            hacker();
+            break;
+
+        case "guess":
+            guess();
+            break;
+
+        case "nothing":
+            nothing();
+            break;
+
+    }
+
+}
 
 
-    if(
-        game === "roast"
-    )
-        roastGame();
+/* =========================================================
+   PRANK
+========================================================= */
 
+function prank(){
 
-    if(
-        game === "quiz"
-    )
-        quizGame();
+    modalContent.innerHTML = `
 
+        <h2>😈 prank generator</h2>
 
-    if(
-        game === "truth"
-    )
-        truthGame();
-
-
-    if(
-        game === "hacker"
-    )
-        hackerGame();
-
-
-    if(
-        game === "score"
-    )
-        scoreGame();
-
-
-    if(
-        game === "guess"
-    )
-        guessGame();
-
-
-    if(
-        game === "nothing"
-    )
-        nothingGame();
-
-};
-
-
-window.closeGame =
-function(){
-
-    modal.classList.remove(
-        "show"
-    );
-
-    gameContent.innerHTML =
-        "";
-
-};
-
-
-/*
-================================================
-PRANK
-================================================
-*/
-
-function prankGame(){
-
-    gameContent.innerHTML = `
-
-        <h2>
-            😈 prank generator
-        </h2>
-
-        <p class="modal-sub">
-            harmless little fake results ♡
+        <p>
+            harmless chaos only ♡
         </p>
 
         <input
-            id="prankName"
-            placeholder="friend's name...">
+            id="pname"
+            placeholder="friend's name"
+            maxlength="40">
 
         <button
-            class="action"
-            onclick="generatePrank()">
+            class="primary"
+            style="width:100%;margin-top:8px;"
+            onclick="doPrank()">
 
-            generate ✨
+            generate 😂
 
         </button>
 
         <div
             class="result"
-            id="prankResult">
+            id="presult">
         </div>
 
     `;
@@ -2945,134 +3689,83 @@ function prankGame(){
 }
 
 
-window.generatePrank =
-function(){
+function doPrank(){
 
     const name =
         document
-            .getElementById(
-                "prankName"
-            )
+            .getElementById("pname")
             .value
             .trim();
 
 
     if(!name){
 
-        alert(
-            "name ta dao naaa 😭"
+        return alert(
+            "name dao 😭"
         );
-
-        return;
 
     }
 
 
-    const results = [
+    const arr = [
 
-        `🎀 Congratulations ${name}! তুমি officially group-এর সবচেয়ে বেশি ঘুমানো মানুষ!`,
+        `${name} officially won the award for sleeping too much 😴`,
 
-        `🏆 ${name} আজ "professional procrastinator" award পেয়েছে!`,
+        `${name}-এর brain এখনো loading... 1% 😂`,
 
-        `😂 Breaking news: ${name} আবারও কোনো কাজ করেনি!`,
+        `Breaking News 🚨 ${name} আজও কোনো কাজ করেনি!`,
 
-        `🚨 ${name}-এর brain এখনো loading...`,
+        `${name} একটি invisible Lamborghini জিতেছে 🏎️`,
 
-        `🎁 ${name} একটা invisible Lamborghini জিতেছে!`,
-
-        `👑 ${name} officially group-এর drama department!`,
-
-        `💀 ${name}-এর brain বলছে "please try again later".`
+        `${name} is officially the CEO of procrastination 👑`
 
     ];
 
 
-    const result =
-        results[
+    showResult(
+        "presult",
+        arr[
             Math.floor(
                 Math.random() *
-                results.length
+                arr.length
             )
-        ];
-
-
-    const box =
-        document.getElementById(
-            "prankResult"
-        );
-
-
-    box.innerHTML = `
-
-        <h2>
-            GOTCHA! 😂
-        </h2>
-
-        <br>
-
-        <p>
-            ${result}
-        </p>
-
-    `;
-
-
-    box.classList.add(
-        "show"
+        ]
     );
 
-};
+}
 
 
-/*
-================================================
-ROAST
-================================================
-*/
+/* =========================================================
+   ROAST
+========================================================= */
 
-function roastGame(){
+function roast(){
 
-    gameContent.innerHTML = `
+    modalContent.innerHTML = `
 
-        <h2>
-            🔥 roast my friend
-        </h2>
+        <h2>🔥 roast my friend</h2>
 
-        <p class="modal-sub">
-            harmless roast only hehe ♡
+        <p>
+            cute savage mode ♡
         </p>
 
         <input
-            id="roastName"
-            placeholder="friend's name...">
-
-        <select id="roastLevel">
-
-            <option value="mild">
-                cute roast 😇
-            </option>
-
-            <option value="savage">
-                savage 🔥
-            </option>
-
-            <option value="crispy">
-                extra crispy 💀
-            </option>
-
-        </select>
+            id="rname"
+            placeholder="friend's name"
+            maxlength="40">
 
         <button
-            class="action"
-            onclick="generateRoast()">
+            class="primary"
+            style="width:100%;"
+            onclick="doRoast()">
 
-            roast them 🔥
+            roast 🔥
 
         </button>
 
         <div
             class="result"
-            id="roastResult">
+            id="rresult">
         </div>
 
     `;
@@ -3080,188 +3773,91 @@ function roastGame(){
 }
 
 
-window.generateRoast =
-function(){
+function doRoast(){
 
     const name =
         document
-            .getElementById(
-                "roastName"
-            )
+            .getElementById("rname")
             .value
             .trim();
 
 
-    const level =
-        document
-            .getElementById(
-                "roastLevel"
-            )
-            .value;
-
-
     if(!name){
-
-        alert(
-            "friend-er naam dao 😂"
-        );
 
         return;
 
     }
 
 
-    const roasts = {
+    const arr = [
 
-        mild:[
+        `${name}-এর confidence এত বেশি যে talent-এর দরকার পড়ে না 💀`,
 
-            `${name}, তুমি খারাপ না... শুধু একটু বেশি confusing 😂`,
+        `${name} যখন বলে "আমি আসছি", calendar ভয় পায় 😂`,
 
-            `${name}-এর সাথে কথা বললে Google-ও confused হয়ে যায়।`,
+        `${name}-এর brain Wi-Fi-এর মতো: signal আছে, connection নেই.`,
 
-            `${name} alarm দিয়ে আবার alarm-এর উপর রাগ করে।`
+        `${name} এত special যে duplicate বানানো নিষিদ্ধ হওয়া উচিত 😂`
 
-        ],
-
-        savage:[
-
-            `${name}-এর confidence এত বেশি যে talent-এর দরকারই পড়ে না 💀`,
-
-            `${name} যখন বলে "আমি আসছি", calendar ভয় পেয়ে যায়।`,
-
-            `${name}-এর brain Wi-Fi-এর মতো — signal আছে, connection নেই।`
-
-        ],
-
-        crispy:[
-
-            `${name}-এর life এত chaotic যে Netflix script reject করবে 😂`,
-
-            `${name} এত special যে পৃথিবীতে আরেকজন না থাকাই ভালো 💀`,
-
-            `NASA ${name}-এর logic খুঁজতে নতুন satellite launch করেছে ☢️`
-
-        ]
-
-    };
+    ];
 
 
-    const list =
-        roasts[level];
-
-
-    const roast =
-        list[
+    showResult(
+        "rresult",
+        arr[
             Math.floor(
                 Math.random() *
-                list.length
+                arr.length
             )
-        ];
-
-
-    const box =
-        document.getElementById(
-            "roastResult"
-        );
-
-
-    box.innerHTML = `
-
-        <h2>
-            🔥 roasted!
-        </h2>
-
-        <br>
-
-        <p>
-            ${roast}
-        </p>
-
-    `;
-
-
-    box.classList.add(
-        "show"
+        ]
     );
 
-};
+}
 
 
-/*
-================================================
-TRUTH OR DARE
-================================================
-*/
+/* =========================================================
+   TRUTH OR DARE
+========================================================= */
 
-const truths = [
+function truth(){
 
-    "তোমার সবচেয়ে embarrassing moment কী? 😂",
+    modalContent.innerHTML = `
 
-    "Friend group-এ সবচেয়ে annoying কে?",
+        <h2>🎲 truth or dare</h2>
 
-    "তোমার secret crush কে?",
-
-    "তোমার সবচেয়ে weird habit কী?",
-
-    "শেষ কবে মিথ্যা বলেছিলে?",
-
-    "তোমার সবচেয়ে বড় fear কী?"
-
-];
-
-
-const dares = [
-
-    "৩০ সেকেন্ড funny dance করো 💃",
-
-    "একটা dramatic voice note পাঠাও 😂",
-
-    "robot-এর মতো ১ মিনিট কথা বলো 🤖",
-
-    "একটা terrible joke বলো।",
-
-    "একটা funny selfie তোলো 🤳",
-
-    "২ মিনিট শুধু গান গেয়ে কথা বলো 🎤"
-
-];
-
-
-function truthGame(){
-
-    gameContent.innerHTML = `
-
-        <h2>
-            🎲 truth or dare
-        </h2>
-
-        <p class="modal-sub">
-            choose your fate hehe
+        <p>
+            choose your fate 😈
         </p>
 
-        <div class="td-grid">
+        <div style="
+            display:flex;
+            gap:8px;
+            margin-top:12px;
+        ">
 
             <button
-                class="action truth-btn"
-                onclick="showTruth()">
+                class="primary"
+                style="width:50%;"
+                onclick="truthResult()">
 
-                TRUTH 🧠
+                TRUTH
 
             </button>
 
             <button
-                class="action dare-btn"
-                onclick="showDare()">
+                class="primary"
+                style="width:50%;"
+                onclick="dareResult()">
 
-                DARE 🔥
+                DARE
 
             </button>
 
         </div>
 
         <div
-            class="result show td-result"
-            id="tdResult">
+            class="result show"
+            id="td">
 
             choose one ♡
 
@@ -3272,39 +3868,885 @@ function truthGame(){
 }
 
 
-window.showTruth =
-function(){
+function truthResult(){
 
-    const item =
-        truths[
+    const arr = [
+
+        "তোমার সবচেয়ে embarrassing moment কী? 😂",
+
+        "Friend group-এ সবচেয়ে annoying কে?",
+
+        "তোমার secret crush কে?",
+
+        "তোমার সবচেয়ে weird habit কী?",
+
+        "শেষ কবে মিথ্যা বলেছিলে?"
+
+    ];
+
+
+    document
+        .getElementById("td")
+        .textContent =
+        "🧠 " +
+        arr[
             Math.floor(
                 Math.random() *
-                truths.length
+                arr.length
+            )
+        ];
+
+}
+
+
+function dareResult(){
+
+    const arr = [
+
+        "৩০ সেকেন্ড funny dance করো 💃",
+
+        "একটা dramatic voice note পাঠাও 😂",
+
+        "robot-এর মতো ১ মিনিট কথা বলো 🤖",
+
+        "একটা terrible joke বলো.",
+
+        "একটা funny selfie তোলো 🤳"
+
+    ];
+
+
+    document
+        .getElementById("td")
+        .textContent =
+        "🔥 " +
+        arr[
+            Math.floor(
+                Math.random() *
+                arr.length
+            )
+        ];
+
+}
+
+
+/* =========================================================
+   FRIENDSHIP SCORE
+========================================================= */
+
+function score(){
+
+    modalContent.innerHTML = `
+
+        <h2>❤️ friendship score</h2>
+
+        <p>
+            scientifically fake 😂
+        </p>
+
+        <input
+            id="sa"
+            placeholder="friend 1"
+            maxlength="40">
+
+        <input
+            id="sb"
+            placeholder="friend 2"
+            maxlength="40">
+
+        <button
+            class="primary"
+            style="width:100%;"
+            onclick="doScore()">
+
+            calculate ♡
+
+        </button>
+
+        <div
+            class="result"
+            id="sresult">
+        </div>
+
+    `;
+
+}
+
+
+function doScore(){
+
+    const a =
+        document
+            .getElementById("sa")
+            .value
+            .trim();
+
+
+    const b =
+        document
+            .getElementById("sb")
+            .value
+            .trim();
+
+
+    if(!a || !b){
+
+        return;
+
+    }
+
+
+    let hash = 0;
+
+
+    const text =
+        (
+            a +
+            "|" +
+            b
+        ).toLowerCase();
+
+
+    for(
+        let i=0;
+        i<text.length;
+        i++
+    ){
+
+        hash =
+            (
+                (hash << 5) -
+                hash
+            ) +
+            text.charCodeAt(i);
+
+        hash |= 0;
+
+    }
+
+
+    const value =
+        Math.abs(hash) % 101;
+
+
+    const box =
+        document.getElementById(
+            "sresult"
+        );
+
+
+    box.innerHTML = `
+
+        <div class="score-circle">
+            ${value}%
+        </div>
+
+        <h3>
+            ${escapeText(a)}
+            ♡
+            ${escapeText(b)}
+        </h3>
+
+        <p>
+            ${
+                value > 85
+                ?
+                "BESTIES FOREVER 🥹"
+                :
+                value > 60
+                ?
+                "pretty good duo 😎"
+                :
+                "friendship needs snacks 😂"
+            }
+        </p>
+
+    `;
+
+
+    box.classList.add(
+        "show"
+    );
+
+}
+
+
+/* =========================================================
+   QUIZ
+========================================================= */
+
+let qi = 0;
+
+let qs = 0;
+
+
+const quizData = [
+
+    {
+        q:
+            "আমি সবচেয়ে বেশি কী করতে পছন্দ করি?",
+
+        o:[
+            "ঘুমানো 😴",
+            "Gaming 🎮",
+            "খাওয়া 🍔",
+            "ঘুরতে যাওয়া ✈️"
+        ],
+
+        a:0
+    },
+
+    {
+        q:
+            "আমার favourite food?",
+
+        o:[
+            "Pizza 🍕",
+            "Burger 🍔",
+            "Biryani 🍛",
+            "Noodles 🍜"
+        ],
+
+        a:2
+    },
+
+    {
+        q:
+            "আমি সকালে কেমন?",
+
+        o:[
+            "খুব active 😎",
+            "কষ্ট করে উঠি 😭",
+            "উঠিই না 💀",
+            "ভুলে যাই 😂"
+        ],
+
+        a:2
+    }
+
+];
+
+
+function quiz(){
+
+    qi = 0;
+
+    qs = 0;
+
+    showQuestion();
+
+}
+
+
+function showQuestion(){
+
+    const q =
+        quizData[qi];
+
+
+    modalContent.innerHTML = `
+
+        <h2>🧠 who knows me?</h2>
+
+        <p>
+            Question ${qi + 1}/${quizData.length}
+        </p>
+
+        <br>
+
+        <h3>
+            ${escapeText(q.q)}
+        </h3>
+
+        <br>
+
+        <div id="qoptions"></div>
+
+    `;
+
+
+    const box =
+        document.getElementById(
+            "qoptions"
+        );
+
+
+    q.o.forEach(
+        function(option,index){
+
+            const button =
+                document.createElement(
+                    "button"
+                );
+
+
+            button.className =
+                "primary";
+
+
+            button.style.width =
+                "100%";
+
+
+            button.style.marginBottom =
+                "8px";
+
+
+            button.textContent =
+                option;
+
+
+            button.onclick =
+                function(){
+
+                    if(
+                        index === q.a
+                    ){
+
+                        qs++;
+
+                    }
+
+
+                    qi++;
+
+
+                    if(
+                        qi >=
+                        quizData.length
+                    ){
+
+                        const percent =
+                            Math.round(
+                                (
+                                    qs /
+                                    quizData.length
+                                ) * 100
+                            );
+
+
+                        modalContent.innerHTML = `
+
+                            <h2>
+                                🎀 finished!
+                            </h2>
+
+                            <div
+                                class="result show">
+
+                                <div
+                                    class="score-circle">
+
+                                    ${percent}%
+
+                                </div>
+
+                                You got
+                                ${qs}
+                                /
+                                ${quizData.length}
+
+                                <br><br>
+
+                                <button
+                                    class="primary"
+                                    onclick="quiz()">
+
+                                    play again
+
+                                </button>
+
+                            </div>
+
+                        `;
+
+                    }
+
+                    else{
+
+                        showQuestion();
+
+                    }
+
+                };
+
+
+            box.appendChild(
+                button
+            );
+
+        }
+    );
+
+}
+
+
+/* =========================================================
+   FAKE HACKER
+========================================================= */
+
+function hacker(){
+
+    modalContent.innerHTML = `
+
+        <h2>💻 fake hacker</h2>
+
+        <p>
+            completely fake visual prank ♡
+        </p>
+
+        <input
+            id="hname"
+            placeholder="friend's name"
+            maxlength="40">
+
+        <button
+            class="primary"
+            style="width:100%;"
+            onclick="startHack()">
+
+            start 😈
+
+        </button>
+
+        <div
+            id="terminal"
+            style="
+                background:#201a25;
+                color:#8dffae;
+                padding:15px;
+                margin-top:15px;
+                min-height:180px;
+                border-radius:15px;
+                font-family:monospace;
+                overflow:auto;
+            ">
+
+            >
+
+        </div>
+
+    `;
+
+}
+
+
+function startHack(){
+
+    const name =
+        document
+            .getElementById("hname")
+            .value
+            .trim()
+        ||
+        "TARGET";
+
+
+    const safeName =
+        escapeText(name);
+
+
+    const terminal =
+        document.getElementById(
+            "terminal"
+        );
+
+
+    terminal.innerHTML =
+        "";
+
+
+    const lines = [
+
+        `> connecting to ${safeName}...`,
+
+        "> scanning memes...",
+
+        "> searching embarrassing photos...",
+
+        "> downloading absolutely nothing...",
+
+        "> friendship virus detected...",
+
+        "> ERROR: target too cute to hack 😂",
+
+        "> GOTCHA! nothing was hacked ♡"
+
+    ];
+
+
+    let index = 0;
+
+
+    const interval =
+        setInterval(
+            function(){
+
+                const line =
+                    document.createElement(
+                        "div"
+                    );
+
+
+                line.textContent =
+                    lines[index];
+
+
+                terminal.appendChild(
+                    line
+                );
+
+
+                terminal.scrollTop =
+                    terminal.scrollHeight;
+
+
+                index++;
+
+
+                if(
+                    index >=
+                    lines.length
+                ){
+
+                    clearInterval(
+                        interval
+                    );
+
+                }
+
+            },
+            600
+        );
+
+}
+
+
+/* =========================================================
+   GUESS FRIEND
+========================================================= */
+
+function guess(){
+
+    modalContent.innerHTML = `
+
+        <h2>👀 guess the friend</h2>
+
+        <input
+            id="gname"
+            placeholder="correct friend's name"
+            maxlength="40">
+
+        <textarea
+            id="gclue"
+            placeholder="funny clue..."
+            maxlength="300"></textarea>
+
+        <button
+            class="primary"
+            style="width:100%;"
+            onclick="makeGuess()">
+
+            create mystery 👀
+
+        </button>
+
+        <div
+            class="result"
+            id="gresult">
+        </div>
+
+    `;
+
+}
+
+
+function makeGuess(){
+
+    const name =
+        document
+            .getElementById("gname")
+            .value
+            .trim();
+
+
+    const clue =
+        document
+            .getElementById("gclue")
+            .value
+            .trim();
+
+
+    if(!name){
+
+        return;
+
+    }
+
+
+    const box =
+        document.getElementById(
+            "gresult"
+        );
+
+
+    const title =
+        document.createElement(
+            "h2"
+        );
+
+
+    title.textContent =
+        "WHO IS IT? 👀";
+
+
+    const clueText =
+        document.createElement(
+            "p"
+        );
+
+
+    clueText.textContent =
+        clue ||
+        "Someone in this group...";
+
+
+    const reveal =
+        document.createElement(
+            "button"
+        );
+
+
+    reveal.className =
+        "primary";
+
+
+    reveal.style.marginTop =
+        "15px";
+
+
+    reveal.textContent =
+        "reveal";
+
+
+    const answer =
+        document.createElement(
+            "h3"
+        );
+
+
+    answer.style.marginTop =
+        "15px";
+
+
+    answer.style.fontFamily =
+        "Caveat";
+
+
+    answer.style.fontSize =
+        "2rem";
+
+
+    reveal.onclick =
+        function(){
+
+            answer.textContent =
+                "😂 It was " +
+                name +
+                "!";
+
+        };
+
+
+    box.innerHTML = "";
+
+
+    box.appendChild(
+        title
+    );
+
+    box.appendChild(
+        clueText
+    );
+
+    box.appendChild(
+        reveal
+    );
+
+    box.appendChild(
+        answer
+    );
+
+
+    box.classList.add(
+        "show"
+    );
+
+}
+
+
+/* =========================================================
+   DON'T CLICK
+========================================================= */
+
+let clicks = 0;
+
+
+function nothing(){
+
+    clicks = 0;
+
+
+    modalContent.innerHTML = `
+
+        <div style="text-align:center">
+
+            <h2>
+                😂 DON'T CLICK
+            </h2>
+
+            <p>
+                seriously.
+            </p>
+
+            <button
+                class="big-button"
+                onclick="nothingClick()">
+
+                DON'T<br>CLICK
+
+            </button>
+
+            <div
+                id="nothingText"
+                style="
+                    font-family:Caveat;
+                    font-size:1.6rem;
+                    color:#d65d90;
+                ">
+
+                I warned you.
+
+            </div>
+
+        </div>
+
+    `;
+
+}
+
+
+function nothingClick(){
+
+    clicks++;
+
+
+    const arr = [
+
+        "I told you 😭",
+
+        "WHY 😂",
+
+        "bro stop.",
+
+        "the button is judging you.",
+
+        "you have too much free time 💀",
+
+        "professional clicker 🏆",
+
+        "okay seriously now.",
+
+        "NO MORE."
+
+    ];
+
+
+    const text =
+        arr[
+            Math.min(
+                clicks - 1,
+                arr.length - 1
             )
         ];
 
 
-    document.getElementById(
-        "tdResult"
-    ).textContent =
-        "🧠 " + item;
+    document
+        .getElementById(
+            "nothingText"
+        )
+        .textContent =
+        text;
 
-};
-
-
-window.showDare =
-function(){
-
-    const item =
-        dares[
-            Math.floor(
-                Math.random() *
-                dares.length
-            )
-        ];
+}
 
 
-    document.getElementById(
-        "tdResult"
-    ).textContent =
-        "🔥 " +    
+/* =========================================================
+   GAME HELPERS
+========================================================= */
+
+function showResult(
+    id,
+    text
+){
+
+    const box =
+        document.getElementById(
+            id
+        );
+
+
+    if(!box){
+
+        return;
+
+    }
+
+
+    box.textContent =
+        text;
+
+
+    box.classList.add(
+        "show"
+    );
+
+}
+
+
+function escapeText(text){
+
+    return String(text)
+
+        .replaceAll(
+            "&",
+            "&amp;"
+        )
+
+        .replaceAll(
+            "<",
+            "&lt;"
+        )
+
+        .replaceAll(
+            ">",
+            "&gt;"
+        )
+
+        .replaceAll(
+            '"',
+            "&quot;"
+        )
+
+        .replaceAll(
+            "'",
+            "&#039;"
+        );
+
+}
+
+</script>
+
+
+</body>
+</html>
